@@ -34,7 +34,7 @@ class App extends Component {
       city: `toronto`,
       country: `ca`,
       sort: `date,asc`,
-      startDateTime: dateTime
+      startDateTime: `2019-06-04T12:00:00Z`
     }
   }).then(results => {
     const venueName = [];
@@ -77,15 +77,29 @@ class App extends Component {
         count: 20
       }
     }).then(results => {
+
       const restaurantName = [];
+      const restaurantCuisine = [];
+      const restaurantPriceRange = [];
+      const restaurantRating = [];
+      const restaurantAddress = [];
+      const restaurantUrl = [];
 
       for (let i = 0; i < results.data.nearby_restaurants.length; i++) {
         restaurantName.push(results.data.nearby_restaurants[i].restaurant.name);
-        
-        console.log(results.data.nearby_restaurants[i].restaurant.name);
+        restaurantCuisine.push(results.data.nearby_restaurants[i].restaurant.cuisines);        
+        restaurantPriceRange.push(results.data.nearby_restaurants[i].restaurant.price_range);
+        restaurantRating.push(results.data.nearby_restaurants[i].restaurant.user_rating.aggregate_rating);
+        restaurantAddress.push(results.data.nearby_restaurants[i].restaurant.location.address);
+        restaurantUrl.push(results.data.nearby_restaurants[i].restaurant.url);
 
         this.setState({
-          restaurantNames: restaurantName
+          restaurantNames: restaurantName,
+          restaurantCuisine: restaurantCuisine,
+          restaurantPriceRange: restaurantPriceRange,
+          restaurantRating: restaurantRating,
+          restaurantAddress: restaurantAddress,
+          restaurantUrl: restaurantUrl,
         });
       }
     });
