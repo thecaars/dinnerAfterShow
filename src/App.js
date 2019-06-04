@@ -6,20 +6,42 @@ class App extends Component {
 		constructor() {
     super();
     this.state = {
+      //TicketMaster states
       venueNames: [],
       eventNames: [],
       venueAddresses: [],
       cityNames: [],
       longitudes: [],
       latitudes: [],
+      dateTime: '',
+      
+      //Zomato states
       restaurantNames: [],
-      dateTime: ''
+      restaurantCuisine: [],
+      restaurantPriceRange: [],
+      restaurantRating: [],
+      restaurantAddress: [],
+      restaurantUrl: [],
+      
+      // Page state - controlling when they appear
+      venuePage:false,
+      restaurantPage:false,
+      confirmationPage: false,
+      savedCombosPage: false,
+      modalPage: false,
+      
+      // User Input States - keeping track of user values from input
+      countryUserInput: ``,
+      cityUserInput: ``,
+      venueUserInput: {},
+      restaurantUserInput: {},
+      userInputCombination: []
     };
   }
   
   componentDidMount() {
   const ticketMasterURL = `https://app.ticketmaster.com/discovery/v2/events.json`;
-  const tickerMasterKey = `OAKSlXdTBwnYydjVVSFhbh0MrAqawD6u`;
+  const ticketMasterKey = `OAKSlXdTBwnYydjVVSFhbh0MrAqawD6u`;
   const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode`;
   const zomatoKey = `105eeb0d2c69617a061003c1a4f82e13`;
   const dateTime = Date();
@@ -28,9 +50,9 @@ class App extends Component {
   axios({
     method: `GET`,
     url: ticketMasterURL,
-    dataRespons: `json`,
+    dataResponse: `json`,
     params: {
-      apikey: tickerMasterKey,
+      apikey: ticketMasterKey,
       city: `toronto`,
       country: `ca`,
       sort: `date,asc`,
