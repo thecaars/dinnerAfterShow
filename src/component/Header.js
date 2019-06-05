@@ -24,8 +24,6 @@ class Header extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault();
-        // const countryValue = this.state.userCountry;
-        // const cityValue = this.state.userCity;
         this.props.submitForm(this.state.userCountry, this.state.userCity);
 
     }
