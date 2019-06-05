@@ -4,7 +4,7 @@ import Header from './component/Header.js';
 import './App.css';
 
 class App extends Component {
-		constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       //TicketMaster states
@@ -14,7 +14,7 @@ class App extends Component {
       cityNames: [],
       longitudes: [],
       latitudes: [],
-      dateTime: '',
+      date: '',
       
       //Zomato states
       restaurantNames: [],
@@ -41,12 +41,19 @@ class App extends Component {
   }
   
   componentDidMount() {
-  const ticketMasterURL = `https://app.ticketmaster.com/discovery/v2/events.json`;
-  const ticketMasterKey = `OAKSlXdTBwnYydjVVSFhbh0MrAqawD6u`;
-  const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode`;
-  const zomatoKey = `105eeb0d2c69617a061003c1a4f82e13`;
-  const dateTime = Date();
-  console.log(dateTime)
+    const ticketMasterURL = `https://app.ticketmaster.com/discovery/v2/events.json`;
+    const ticketMasterKey = `OAKSlXdTBwnYydjVVSFhbh0MrAqawD6u`;
+    const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode`;
+    const zomatoKey = `105eeb0d2c69617a061003c1a4f82e13`;
+    const newDate = new Date();
+    const year = newDate.getFullYear();
+    const newMonth = newDate.getMonth();
+    const newDay = newDate.getDay();
+    let month = (newMonth < 10) ? "0" + newMonth : newMonth;
+    let day = (newDay < 10) ? "0" + newDay : newDay;
+    let date = (`${year}-${month}-${day}T12:00:00Z`)
+
+    this.setState({date})
 
   axios({
     method: `GET`,
@@ -57,9 +64,10 @@ class App extends Component {
       city: `toronto`,
       country: `ca`,
       sort: `date,asc`,
-      startDateTime: `2019-06-04T12:00:00Z`
+      startDateTime: date
     }
   }).then(results => {
+    console.log(results.data._embedded.events)
     const venueName = [];
     const eventName = [];
     const venueAddress = [];
@@ -75,7 +83,7 @@ class App extends Component {
       longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
       latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
 
-      console.log(results.data._embedded.events[i]._embedded.venues)
+      // console.log(results.data._embedded.events[i]._embedded.venues)
 
       this.setState({
         venueNames: venueName,
