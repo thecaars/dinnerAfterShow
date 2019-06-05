@@ -45,6 +45,7 @@ class App extends Component {
     const ticketMasterKey = `OAKSlXdTBwnYydjVVSFhbh0MrAqawD6u`;
     const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode`;
     const zomatoKey = `105eeb0d2c69617a061003c1a4f82e13`;
+
     const newDate = new Date();
     const year = newDate.getFullYear();
     const newMonth = newDate.getMonth();
@@ -53,7 +54,7 @@ class App extends Component {
     let day = (newDay < 10) ? "0" + newDay : newDay;
     let date = (`${year}-${month}-${day}T12:00:00Z`)
 
-    this.setState({date})
+    this.setState({ date })
 
   axios({
     method: `GET`,
@@ -64,10 +65,10 @@ class App extends Component {
       city: `toronto`,
       country: `ca`,
       sort: `date,asc`,
-      startDateTime: date
+      startDateTime: this.state.date
     }
   }).then(results => {
-    console.log(results.data._embedded.events)
+    console.log(this.state.date)
     const venueName = [];
     const eventName = [];
     const venueAddress = [];
@@ -155,6 +156,7 @@ class App extends Component {
     }
     // end of componentDidMount
   }
+
   render() {
     return (
       <div className="App">
