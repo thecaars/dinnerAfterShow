@@ -56,45 +56,50 @@ class App extends Component {
 
     this.setState({ date })
 
-  axios({
-    method: `GET`,
-    url: ticketMasterURL,
-    dataResponse: `json`,
-    params: {
-      apikey: ticketMasterKey,
-      city: `toronto`,
-      country: `ca`,
-      sort: `date,asc`,
-      startDateTime: this.state.date
-    }
-  }).then(results => {
-    console.log(this.state.date)
-    const venueName = [];
-    const eventName = [];
-    const venueAddress = [];
-    const cityName = [];
-    const longitude = [];
-    const latitude = [];
+  //ticket master api call
+  this.getTicketMasterData = (country, city) => {
+    axios({
+      method: `GET`,
+      url: ticketMasterURL,
+      dataResponse: `json`,
+      params: {
+        apikey: ticketMasterKey,
+        country: country,
+        city: city,
+        sort: `date,asc`,
+        startDateTime: this.state.date
+      }
+    }).then(results => {
+      console.log(this.state.date)
+      const venueName = [];
+      const eventName = [];
+      const venueAddress = [];
+      const cityName = [];
+      const longitude = [];
+      const latitude = [];
 
-    for (let i = 0; i < results.data._embedded.events.length; i++) {
-      venueName.push(results.data._embedded.events[i]._embedded.venues[0].name);
-      eventName.push(results.data._embedded.events[i].name);
-      venueAddress.push(results.data._embedded.events[i]._embedded.venues[0].address.line1);
-      cityName.push(results.data._embedded.events[i]._embedded.venues[0].city.name);
-      longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
-      latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
+      for (let i = 0; i < results.data._embedded.events.length; i++) {
+        venueName.push(results.data._embedded.events[i]._embedded.venues[0].name);
+        eventName.push(results.data._embedded.events[i].name);
+        venueAddress.push(results.data._embedded.events[i]._embedded.venues[0].address.line1);
+        cityName.push(results.data._embedded.events[i]._embedded.venues[0].city.name);
+        longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
+        latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
 
-      // console.log(results.data._embedded.events[i]._embedded.venues)
+        // console.log(results.data._embedded.events[i]._embedded.venues)
 
-      this.setState({
-        venueNames: venueName,
-        eventNames: eventName,
-        venueAddresses: venueAddress,
-        cityNames: cityName,
-        longitudes: longitude,
-        latitudes: latitude
-      });
-    }
+        this.setState({
+          venueNames: venueName,
+          eventNames: eventName,
+          venueAddresses: venueAddress,
+          cityNames: cityName,
+          longitudes: longitude,
+          latitudes: latitude
+        });
+      }
+    })
+    // end of getTicketMasterData
+  }
 
     axios({
       method: `GET`,
@@ -143,6 +148,9 @@ class App extends Component {
         countryUserInput: Country,
         cityUserInput: City,
       })
+
+      // submit user input to the ticket master api call
+      this.getTicketMasterData(Country, City);
     }
     // end of componentDidMount
   }
