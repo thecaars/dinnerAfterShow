@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Header from './component/Header.js';
 import './App.css';
 
 class App extends Component {
-		constructor() {
-    super();
+		constructor(props) {
+    super(props);
     this.state = {
       //TicketMaster states
       venueNames: [],
@@ -125,12 +126,31 @@ class App extends Component {
         });
       }
     });
-  });  
+  });
+
+    // header input change
+    this.handleUserCountryChange = (e) => {
+      this.setState({
+        countryUserInput: e.target.value
+      })
+    }
+
+    this.handleUserCityChange = (e) => {
+      this.setState({
+        cityUserInput: e.target.value
+      })
+    }
+
+    this.submitFrom = () => {
+      console.log('form will be submitted to the axios function')
+      // ticketMasterAxios(this.countryUserInput, this.cityUserInput);
+    }
+    // end of componentDidMount
   }
   render() {
     return (
       <div className="App">
-
+        <Header handleUserCountryChange={this.handleUserCountryChange} handleUserCityChange={this.handleUserCityChange} submitFrom={this.submitFrom} />
       </div>
     );
   }
