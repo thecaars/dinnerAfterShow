@@ -137,22 +137,12 @@ class App extends Component {
     });
   });
 
-    // header input change
-    this.handleUserCountryChange = (e) => {
+    // bring state from Header component to App
+    this.submitForm = (Country, City) => {
       this.setState({
-        countryUserInput: e.target.value
+        countryUserInput: Country,
+        cityUserInput: City,
       })
-    }
-
-    this.handleUserCityChange = (e) => {
-      this.setState({
-        cityUserInput: e.target.value
-      })
-    }
-
-    this.submitFrom = () => {
-      console.log('form will be submitted to the axios function')
-      // ticketMasterAxios(this.countryUserInput, this.cityUserInput);
     }
     // end of componentDidMount
   }
@@ -160,7 +150,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header handleUserCountryChange={this.handleUserCountryChange} handleUserCityChange={this.handleUserCityChange} submitFrom={this.submitFrom} />
+        <Header submitForm={this.submitForm} />
       </div>
     );
   }
