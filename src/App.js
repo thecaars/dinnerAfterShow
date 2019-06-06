@@ -57,50 +57,50 @@ class App extends Component {
 
     this.setState({ dateString })
 
-  axios({
-    method: `GET`,
-    url: ticketMasterURL,
-    dataResponse: `json`,
-    params: {
-      apikey: ticketMasterKey,
-      city: `toronto`,
-      country: `ca`,
-      sort: `date,asc`,
-      startDateTime: this.state.dateString
-    }
-  }).then(results => {
-    const venueName = [];
-    const eventName = [];
-    const venueAddress = [];
-    const cityName = [];
-    const longitude = [];
-    const latitude = [];
+  //ticket master api call
+  this.getTicketMasterData = (country, city) => {
+    axios({
+      method: `GET`,
+      url: ticketMasterURL,
+      dataResponse: `json`,
+      params: {
+        apikey: ticketMasterKey,
+        country: country,
+        city: city,
+        sort: `date,asc`,
+        startDateTime: this.state.date
+      }
+    }).then(results => {
+      console.log(this.state.date)
+      const venueName = [];
+      const eventName = [];
+      const venueAddress = [];
+      const cityName = [];
+      const longitude = [];
+      const latitude = [];
 
-    for (let i = 0; i < results.data._embedded.events.length; i++) {
-      venueName.push(results.data._embedded.events[i]._embedded.venues[0].name);
-      eventName.push(results.data._embedded.events[i].name);
-      venueAddress.push(results.data._embedded.events[i]._embedded.venues[0].address.line1);
-      cityName.push(results.data._embedded.events[i]._embedded.venues[0].city.name);
-      longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
-      latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
+      for (let i = 0; i < results.data._embedded.events.length; i++) {
+        venueName.push(results.data._embedded.events[i]._embedded.venues[0].name);
+        eventName.push(results.data._embedded.events[i].name);
+        venueAddress.push(results.data._embedded.events[i]._embedded.venues[0].address.line1);
+        cityName.push(results.data._embedded.events[i]._embedded.venues[0].city.name);
+        longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
+        latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
 
-      console.log(results.data._embedded.events[i]._embedded.venues[0].name)
-      console.log(results.data._embedded.events[i].name)
-      console.log(results.data._embedded.events[i]._embedded.venues[0].address.line1)
-      console.log(results.data._embedded.events[i]._embedded.venues[0].city.name)
-      console.log(results.data._embedded.events[i]._embedded.venues[0].location.longitude)
-      console.log(results.data._embedded.events[i]._embedded.venues[0].location.latitude)
+        // console.log(results.data._embedded.events[i]._embedded.venues)
 
-
-      this.setState({
-        venueNames: venueName,
-        eventNames: eventName,
-        venueAddresses: venueAddress,
-        cityNames: cityName,
-        longitudes: longitude,
-        latitudes: latitude
-      });
-    }
+        this.setState({
+          venueNames: venueName,
+          eventNames: eventName,
+          venueAddresses: venueAddress,
+          cityNames: cityName,
+          longitudes: longitude,
+          latitudes: latitude
+        });
+      }
+    })
+    // end of getTicketMasterData
+  }
 
     axios({
       method: `GET`,
@@ -115,7 +115,6 @@ class App extends Component {
         count: 20
       }
     }).then(results => {
-
       const restaurantName = [];
       const restaurantCuisine = [];
       const restaurantPriceRange = [];
@@ -125,7 +124,7 @@ class App extends Component {
 
       for (let i = 0; i < results.data.nearby_restaurants.length; i++) {
         restaurantName.push(results.data.nearby_restaurants[i].restaurant.name);
-        restaurantCuisine.push(results.data.nearby_restaurants[i].restaurant.cuisines);        
+        restaurantCuisine.push(results.data.nearby_restaurants[i].restaurant.cuisines);
         restaurantPriceRange.push(results.data.nearby_restaurants[i].restaurant.price_range);
         restaurantRating.push(results.data.nearby_restaurants[i].restaurant.user_rating.aggregate_rating);
         restaurantAddress.push(results.data.nearby_restaurants[i].restaurant.location.address);
@@ -140,25 +139,17 @@ class App extends Component {
           restaurantUrl: restaurantUrl,
         });
       }
-    });
-  });
+    })
 
-    // header input change
-    this.handleUserCountryChange = (e) => {
+    // bring state from Header component to App
+    this.submitForm = (Country, City) => {
       this.setState({
-        countryUserInput: e.target.value
+        countryUserInput: Country,
+        cityUserInput: City,
       })
-    }
 
-    this.handleUserCityChange = (e) => {
-      this.setState({
-        cityUserInput: e.target.value
-      })
-    }
-
-    this.submitFrom = () => {
-      console.log('form will be submitted to the axios function')
-      // ticketMasterAxios(this.countryUserInput, this.cityUserInput);
+      // submit user input to the ticket master api call
+      this.getTicketMasterData(Country, City);
     }
     // end of componentDidMount
   }
@@ -166,8 +157,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header handleUserCountryChange={this.handleUserCountryChange} handleUserCityChange={this.handleUserCityChange} submitFrom={this.submitFrom} />
-        {/* <DynamicMainDisplay /> */}
+        <Header submitForm={this.submitForm} />
       </div>
     );
   }
