@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Header from './component/Header.js';
+import DynamicMainDisplay from './component/DynamicMainDisplay';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //TicketMaster states
+      //TicketMaster endpoints
       venueNames: [],
       eventNames: [],
       venueAddresses: [],
       cityNames: [],
       longitudes: [],
       latitudes: [],
-      date: '',
+      dateString: '',
       
-      //Zomato states
+      //Zomato endpoints
       restaurantNames: [],
       restaurantCuisine: [],
       restaurantPriceRange: [],
@@ -25,8 +26,8 @@ class App extends Component {
       restaurantUrl: [],
       
       // Page state - controlling when they appear
-      venuePage:false,
-      restaurantPage:false,
+      venuePage: false,
+      restaurantPage: false,
       confirmationPage: false,
       savedCombosPage: false,
       modalPage: false,
@@ -54,7 +55,7 @@ class App extends Component {
     let day = (newDay < 10) ? "0" + newDay : newDay;
     let date = (`${year}-${month}-${day}T12:00:00Z`)
 
-    this.setState({ date })
+    this.setState({ dateString })
 
   axios({
     method: `GET`,
@@ -65,10 +66,9 @@ class App extends Component {
       city: `toronto`,
       country: `ca`,
       sort: `date,asc`,
-      startDateTime: this.state.date
+      startDateTime: this.state.dateString
     }
   }).then(results => {
-    console.log(this.state.date)
     const venueName = [];
     const eventName = [];
     const venueAddress = [];
@@ -84,7 +84,13 @@ class App extends Component {
       longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
       latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
 
-      // console.log(results.data._embedded.events[i]._embedded.venues)
+      console.log(results.data._embedded.events[i]._embedded.venues[0].name)
+      console.log(results.data._embedded.events[i].name)
+      console.log(results.data._embedded.events[i]._embedded.venues[0].address.line1)
+      console.log(results.data._embedded.events[i]._embedded.venues[0].city.name)
+      console.log(results.data._embedded.events[i]._embedded.venues[0].location.longitude)
+      console.log(results.data._embedded.events[i]._embedded.venues[0].location.latitude)
+
 
       this.setState({
         venueNames: venueName,
@@ -161,6 +167,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header handleUserCountryChange={this.handleUserCountryChange} handleUserCityChange={this.handleUserCityChange} submitFrom={this.submitFrom} />
+        {/* <DynamicMainDisplay /> */}
       </div>
     );
   }
