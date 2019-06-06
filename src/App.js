@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Header from './component/Header.js';
+import Carousel from './component/Carousel.js';
 import './App.css';
 
 class App extends Component {
@@ -161,6 +162,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header handleUserCountryChange={this.handleUserCountryChange} handleUserCityChange={this.handleUserCityChange} submitFrom={this.submitFrom} />
+
+        <Carousel />
       </div>
     );
   }
