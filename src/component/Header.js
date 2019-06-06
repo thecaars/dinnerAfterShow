@@ -71,7 +71,7 @@ class Header extends Component {
                     cityName.push(results.data._embedded.events[i]._embedded.venues[0].city.name);
                     longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
                     latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
-
+                    
 
                     this.setState({
                         venueNames: venueName,
