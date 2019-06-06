@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ItemsCarousel from 'react-items-carousel';
+import VenueCard from './VenueCard.js';
 import range from 'lodash/range';
 
 class Carousel extends Component {
@@ -10,6 +11,8 @@ class Carousel extends Component {
          activeItemIndex: 0,
       });
    }
+
+
 
    createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
@@ -41,6 +44,9 @@ class Carousel extends Component {
                >
 
                {/* map through venue and restaurant cards here */}
+               {/* this should be Components wrapped in if statements 
+               These components should also have the following information passed as props down:
+               LIST OF PROPS NEEDED TO PASS TO THE CARDS: venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput  */}
                {Array.from(new Array(20)).map((_, i) =>
                   <div
                      key={i}
@@ -51,9 +57,13 @@ class Carousel extends Component {
                      }}
                   />
                )}
+               
+              
+
+
             </ItemsCarousel>
 
-
+            <VenueCard ticketMasterData={this.props.ticketMasterData}/>
             {/* <div className="cardContainer">
                <VenueCard />
             </div> */}
