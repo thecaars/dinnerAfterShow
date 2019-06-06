@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Header from './component/Header.js';
+import Modal from './component/Modal.js';
+import DynamicMainDisplay from './component/DynamicMainDisplay.js';
 import './App.css';
+
+
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from 'react-router-dom'
+
 
 class App extends Component {
   constructor(props) {
@@ -26,17 +38,17 @@ class App extends Component {
       
       // Page state - controlling when they appear
       venuePage:false,
-      restaurantPage:false,
-      confirmationPage: false,
+      restaurantPage: false,
+      confirmationPage: true,
       savedCombosPage: false,
       modalPage: false,
       
       // User Input States - keeping track of user values from input
       countryUserInput: ``,
       cityUserInput: ``,
-      venueUserInput: {},
-      restaurantUserInput: {},
-      userInputCombination: []
+      venueUserInput: [], // We can use this IF: we only push to userInputCombination after
+      restaurantUserInput: [{name: "bob"}],  // We can use this IF: we only push to userInputCombination after
+      userInputCombination: [] // We can use this IF: implemented after clickingt the confirm button onrestaurant page
     };
   }
   
@@ -155,9 +167,24 @@ class App extends Component {
 
   render() {
     return (
+    
+    <Router>
       <div className="App">
         <Header submitForm={this.submitForm} />
+        <DynamicMainDisplay 
+          modalPage={this.state.modalPage} 
+          venuePage={this.state.venuePage} 
+          restaurantPage={this.state.restaurantPage} 
+          confirmationPage={this.state.confirmationPage}
+          restaurantUserInput={this.state.restaurantUserInput}
+          venueUserInput={this.state.venueUserInput}/>
       </div>
+    
+
+    
+    
+    
+    </Router>
     );
   }
 }
