@@ -1,5 +1,19 @@
-import react from 'react';
-import App from '../App';
+import React, {Component} from 'react';
+import App from '../App'
+import Modal from './Modal.js';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+  } from 'react-router-dom'
+
+
+// const restaurantCARD= {
+//     height: "100px",
+//     width: "100px",
+//     background: "red"
+// }
+
 
 class RestaurantCard extends Component {
 
@@ -19,4 +33,4 @@ class RestaurantCard extends Component {
 	};
 };
 
-export default VenueCard
+export default RestaurantCard;

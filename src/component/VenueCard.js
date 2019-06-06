@@ -1,4 +1,4 @@
-import react from 'react';
+import React, {Component, Fragment} from 'react';
 import App from '../App';
 
 class VenueCard extends Component {
@@ -6,14 +6,27 @@ class VenueCard extends Component {
 	
 
 	render() {
+
+		const {ticketMasterData} = this.props
+
+		const venueCards = ticketMasterData.map((event, i) => {
+			return(
+				<div className="venueCard" key={i}>
+					<img src={event.images[0].url} alt={event.name}/>
+					 {/* THIS IS MODAL -->*/}   {/* <a href="#"><i>i</i></a> */}
+					<p>{event.dates.start.localDate}</p>
+					{/* Event name */}
+					<h3>{event.name}</h3>
+					{/* Venue name */}
+					<h4>{event._embedded.venues[0].name}</h4>
+				</div>
+		
+			)
+		})
 		return(
-			<div className="venueCard">
-				<img src="this.props.imageURL" alt=""/>
-				<a href="#"><i>i</i></a>
-				<p>this.props.date</p>
-				<h3>this.props.eventName</h3>
-				<h4>this.props.venueName</h4>
-			</div>
+			<div>
+				{venueCards}
+			</div>	
 		)
 	};
 };
