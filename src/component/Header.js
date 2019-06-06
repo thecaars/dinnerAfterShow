@@ -40,7 +40,27 @@ class Header extends Component {
                             <label htmlFor="country"></label>
                             <select id="country" name="country" onChange={this.handleOnChange}>
                                 <option value="" readOnly>Country</option>
+                                <option value="" readOnly>Country</option>
+                                <option value="AU">Australia</option>
+                                <option value="BR">Brazil</option>
                                 <option value="CA">Canada</option>
+                                <option value="CL">Chile</option>
+                                <option value="CZ">Czech Republic</option>
+                                <option value="IN">India</option>
+                                <option value="IE">Ireland</option>
+                                <option value="IT">Italy</option>
+                                <option value="LB">Lebanon</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="PL">Poland</option>
+                                <option value="PT">Portugal</option>
+                                <option value="SG">Singapore</option>
+                                <option value="SK">Slovakia</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="TR">Turkey</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="US">United States</option>
                             </select>
                         </div>
 
