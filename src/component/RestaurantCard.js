@@ -9,10 +9,10 @@ class RestaurantCard extends Component {
 		return (
 			<div className="restaurantCard">
 				<a href="#"><i>i</i></a>
-				<h3>Restaurant Name</h3>
-				<h4>Cuisine Type</h4>
-				<h4>Rating</h4>
-				<p>Location</p>
+				<h3>this.props.restaurantName</h3>
+				<h4>this.props.restaurantCuisine</h4>
+				<h4>this.props.rating</	h4>
+				<p>this.props.restaurantAddress</p>
 				<p>Distance from Venue</p>
 			</div>
 		)

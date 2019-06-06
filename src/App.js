@@ -52,7 +52,7 @@ class App extends Component {
     const newDay = newDate.getDay();
     let month = (newMonth < 10) ? "0" + newMonth : newMonth;
     let day = (newDay < 10) ? "0" + newDay : newDay;
-    let date = (`${year}-${month}-${day}T12:00:00Z`)
+    let dateString = (`${year}-${month}-${day}T12:00:00Z`)
 
     this.setState({ date })
 
