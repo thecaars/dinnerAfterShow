@@ -3,12 +3,12 @@ import App from '../App';
 
 class VenueCard extends Component {
 
-
+	
 
 	render() {
 		return(
 			<div className="venueCard">
-				<img src="" alt=""/>
+				<img src="this.props.imageURL" alt=""/>
 				<a href="#"><i>i</i></a>
 				<p>this.props.date</p>
 				<h3>this.props.eventName</h3>
