@@ -19,7 +19,7 @@ class Carousel extends Component {
       const {
          activeItemIndex,
          children,
-      } = this.state;
+      } = this.state; 
 
       return (
          <div className="carouselContainer wrapper">
