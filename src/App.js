@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Header from './component/Header.js';
-import DynamicMainDisplay from './component/DynamicMainDisplay';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //TicketMaster endpoints
+      //TicketMaster states
       venueNames: [],
       eventNames: [],
       venueAddresses: [],
       cityNames: [],
       longitudes: [],
       latitudes: [],
-      dateString: '',
+      date: '',
       
-      //Zomato endpoints
+      //Zomato states
       restaurantNames: [],
       restaurantCuisine: [],
       restaurantPriceRange: [],
@@ -26,8 +25,8 @@ class App extends Component {
       restaurantUrl: [],
       
       // Page state - controlling when they appear
-      venuePage: false,
-      restaurantPage: false,
+      venuePage:false,
+      restaurantPage:false,
       confirmationPage: false,
       savedCombosPage: false,
       modalPage: false,
@@ -55,7 +54,7 @@ class App extends Component {
     let day = (newDay < 10) ? "0" + newDay : newDay;
     let date = (`${year}-${month}-${day}T12:00:00Z`)
 
-    this.setState({ dateString })
+    this.setState({ date })
 
   //ticket master api call
   this.getTicketMasterData = (country, city) => {
