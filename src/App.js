@@ -114,7 +114,6 @@ class App extends Component {
         count: 20
       }
     }).then(results => {
-
       const restaurantName = [];
       const restaurantCuisine = [];
       const restaurantPriceRange = [];
@@ -124,7 +123,7 @@ class App extends Component {
 
       for (let i = 0; i < results.data.nearby_restaurants.length; i++) {
         restaurantName.push(results.data.nearby_restaurants[i].restaurant.name);
-        restaurantCuisine.push(results.data.nearby_restaurants[i].restaurant.cuisines);        
+        restaurantCuisine.push(results.data.nearby_restaurants[i].restaurant.cuisines);
         restaurantPriceRange.push(results.data.nearby_restaurants[i].restaurant.price_range);
         restaurantRating.push(results.data.nearby_restaurants[i].restaurant.user_rating.aggregate_rating);
         restaurantAddress.push(results.data.nearby_restaurants[i].restaurant.location.address);
@@ -139,8 +138,7 @@ class App extends Component {
           restaurantUrl: restaurantUrl,
         });
       }
-    });
-  });
+    })
 
     // bring state from Header component to App
     this.submitForm = (Country, City) => {
