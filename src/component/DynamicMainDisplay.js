@@ -15,8 +15,8 @@ class DynamicMainDisplay extends Component {
             restaurantAddress: [],
             restaurantUrl: [],
             
-            // Page state - controlling when they appear
-            venuePage:false,
+			// Page state - controlling when they appear
+			venuePage: true,
             restaurantPage:false,
             confirmationPage: false,
             savedCombosPage: false,
@@ -94,13 +94,22 @@ class DynamicMainDisplay extends Component {
 	} // end of getvenueCard
 	  
 	
-	callZomatoApi = () => {
+	displayRestaurantCards = () => {
 		const longitude = this.state.venueUserInput._embedded.venues[0].location.longitude;
 		const latitude = this.state.venueUserInput._embedded.venues[0].location.latitude;
 
 		console.log(longitude, latitude)
 		
+		// calling the zomato API
 		this.getRestaurantData(longitude, latitude);
+
+		// changing from venue display to restaurant display
+		this.setState({
+			venuePage: false,
+			restaurantPage: true
+		})
+
+		// take the passed function from header in order to make venuePage false
 	}
 	
 	
@@ -128,9 +137,19 @@ class DynamicMainDisplay extends Component {
         return(
             <Fragment>
                 <h2>This is the h2</h2>
-                <Carousel ticketMasterData={this.props.ticketMasterData} getVenueCard={this.getVenueCard} restaurantData={this.state.restaurantData} getRestaurantCard={this.getRestaurantCard} />
+
+                <Carousel 
+					venuePage={this.state.venuePage}
+					ticketMasterData={this.props.ticketMasterData}
+					getVenueCard={this.getVenueCard}
+					restaurantPage={this.state.restaurantPage}
+					restaurantData={this.state.restaurantData}
+					getRestaurantCard={this.getRestaurantCard}
+				/>
+				
 				<button 
-					onClick={ !this.state.restaurantUserInput ? this.callZomatoApi : this.confirmUserInputChoices}>CONFIRMM BUTTON</button>
+					onClick={ !this.state.restaurantUserInput ? this.displayRestaurantCards : this.confirmUserInputChoices}>CONFIRMM BUTTON
+				</button>
             </Fragment>
         )
     }
