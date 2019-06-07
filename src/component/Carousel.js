@@ -62,12 +62,12 @@ class Carousel extends Component {
 
             </ItemsCarousel>
 
-            <VenueCard ticketMasterData={this.props.ticketMasterData} getVenueCard={this.props.getVenueCard} />
+            <VenueCard ticketMasterData={this.props.ticketMasterData} getVenueCard={this.props.getVenueCard}/>
             {/* <div className="cardContainer">
                <VenueCard />
             </div> */}
 
-            <RestaurantCard restaurantData={this.props.restaurantData} />
+            <RestaurantCard restaurantData={this.props.restaurantData} getRestaurantCard={this.props.getRestaurantCard} />
          </div>
       )
    }

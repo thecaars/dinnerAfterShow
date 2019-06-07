@@ -6,8 +6,8 @@ class DynamicMainDisplay extends Component {
     constructor(){
         super();
         this.state = {
-						//Zomato states
-						restaurantData: [],
+			//Zomato states
+			restaurantData: [],
             restaurantNames: [],
             restaurantCuisine: [],
             restaurantPriceRange: [],
@@ -23,10 +23,11 @@ class DynamicMainDisplay extends Component {
             modalPage: false,
             
             // User Input States - keeping track of user values from input
-						venueUserInput: [],
-            restaurantUserInput: [],
+			venueUserInput: false,
+            restaurantUserInput: false,
             userInputCombination: [],
-						ticketMasterData: []
+			ticketMasterData: [],
+			restaurantData: []
         }
     } //end of constructor 
 
@@ -83,25 +84,53 @@ class DynamicMainDisplay extends Component {
 				} // end of getRestaurantData
       }// end of componentDidMount
 
-      getVenueCard = (venueId) => {
-        this.setState({
-					venueUserInput: this.props.ticketMasterData[venueId],
-				})
-				
-				let longitude = this.props.ticketMasterData[venueId]._embedded.venues[0].location.longitude;
-				let latitude = this.props.ticketMasterData[venueId]._embedded.venues[0].location.latitude;
+	getVenueCard = (venueId) => {
+	this.setState({
+			venueUserInput: this.props.ticketMasterData[venueId],
+		})
+	
+	console.log(!this.state.restaurantUserInput)
+		
+	} // end of getvenueCard
+	  
+	
+	callZomatoApi = () => {
+		const longitude = this.state.venueUserInput._embedded.venues[0].location.longitude;
+		const latitude = this.state.venueUserInput._embedded.venues[0].location.latitude;
 
-				console.log(longitude, latitude)
-				
-				this.getRestaurantData(longitude, latitude);
-			}
-      render(){
+		console.log(longitude, latitude)
+		
+		this.getRestaurantData(longitude, latitude);
+	}
+	
+	
+	
+	
+	getRestaurantCard = (restaurantId) => {
+		this.setState({
+			restaurantUserInput: this.state.restaurantData[restaurantId]
+		})
+	}
+	
+	// confirming/combining selection VENUE and RESTO to the COMBO state
+	confirmUserInputChoices = () => {
+		this.setState({
+			userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
+		})
+	}
+
+
+
+
+		
+		render(){
         
         return(
             <Fragment>
                 <h2>This is the h2</h2>
-                <Carousel ticketMasterData={this.props.ticketMasterData} getVenueCard={this.getVenueCard} restaurantData={this.state.restaurantData} />
-                <button></button>
+                <Carousel ticketMasterData={this.props.ticketMasterData} getVenueCard={this.getVenueCard} restaurantData={this.state.restaurantData} getRestaurantCard={this.getRestaurantCard} />
+				<button 
+					onClick={ !this.state.restaurantUserInput ? this.callZomatoApi : this.confirmUserInputChoices}>CONFIRMM BUTTON</button>
             </Fragment>
         )
     }
