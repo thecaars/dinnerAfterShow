@@ -9,11 +9,15 @@ class Carousel extends Component {
             {this.props.venuePage 
                ? <VenueCard 
                   ticketMasterData={this.props.ticketMasterData}
-                  getVenueCard={this.props.getVenueCard} 
+                  getVenueCard={this.props.getVenueCard}
+                  venuePage={this.props.venuePage}
+                  restaurantPage={this.props.restaurantPage}
                />
                : <RestaurantCard 
                   restaurantData={this.props.restaurantData}
-                  getRestaurantCard={this.props.getRestaurantCard} 
+                  getRestaurantCard={this.props.getRestaurantCard}
+                  venuePage={this.props.venuePage}
+                  restaurantPage={this.props.restaurantPage}
                />
             }
          </div>

@@ -36,26 +36,34 @@ const confirmationPageCSS = {
     width: "500px",
 }
 
+const headerCSS = {
+    color: "white"
+}
+
 class Modal extends Component {
     
+
+
+
     render(){
         const  {state ={}} = this.props.location;
-        const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput} = state;
+        const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, specificId} = state;
 
         
         if (displayModal && venuePage) {
             return(
                 <> 
                     <div style={venuePageCSS}>
+                        <h1 style={headerCSS}>{ticketMasterData[specificId].name}</h1>
                     <Link to="/"><button>X</button> </Link>
-                    </div>            
+                    </div> 
+
+
                     <Route exact path="/" component={App}></Route>
                 </>
             )
         }
-       
-
-
+  
         else if (displayModal && restaurantPage) {
             return(
                 <>

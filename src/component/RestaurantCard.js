@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import range from 'lodash/range';
-// import Modal from './Modal.js';
-// import {
-// 	BrowserRouter as Router,
-// 	Route,
-// 	Link
-// } from 'react-router-dom'
+import Modal from './Modal.js';
+import {
+	BrowserRouter as Router,
+	Route,
+	Link
+} from 'react-router-dom'
 
 
 // const restaurantCARD= {
@@ -16,6 +16,8 @@ import range from 'lodash/range';
 // }
 
 class RestaurantCard extends Component {
+
+
 	handleRestaurantClick = (e) => {
 		this.props.getRestaurantCard(e.target.parentElement.id);
 	}
@@ -27,7 +29,7 @@ class RestaurantCard extends Component {
 		var dist = 2 * earth * Math.asin(Math.sqrt(equation)); 
 	}
 
-componentWillMount() {
+	componentWillMount() {
 		this.setState({
 			children: [],
 			activeItemIndex: 0,
