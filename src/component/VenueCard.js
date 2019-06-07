@@ -1,7 +1,16 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import App from '../App';
 
 class VenueCard extends Component {
+
+	constructor() {
+		super();
+	}
+
+	handleClick = (e) => {
+		this.props.getVenueCard(e.target.parentElement.id);
+
+	}
 
 	
 
@@ -11,7 +20,7 @@ class VenueCard extends Component {
 
 		const venueCards = ticketMasterData.map((event, i) => {
 			return(
-				<div className="venueCard" key={i}>
+				<div className="venueCard" key={event.id} id={i} onClick={this.handleClick} role="button">
 					<img src={event.images[0].url} alt={event.name}/>
 					 {/* THIS IS MODAL -->*/}   {/* <a href="#"><i>i</i></a> */}
 					<p>{event.dates.start.localDate}</p>

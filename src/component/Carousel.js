@@ -57,13 +57,11 @@ class Carousel extends Component {
                      }}
                   />
                )}
-               
-              
 
 
             </ItemsCarousel>
 
-            <VenueCard ticketMasterData={this.props.ticketMasterData}/>
+            <VenueCard ticketMasterData={this.props.ticketMasterData} getVenueCard={this.props.getVenueCard} />
             {/* <div className="cardContainer">
                <VenueCard />
             </div> */}
