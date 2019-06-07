@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { conditionalExpression } from '@babel/types';
 // import Modal from './Modal.js';
 // import {
 // 	BrowserRouter as Router,
@@ -9,15 +10,19 @@ import React, {Component} from 'react';
 
 // const restaurantCARD= {
 //     height: "100px",
-//     width: "100px",
+//     width: "100px",	
 //     background: "red"
 // }
 
 class RestaurantCard extends Component {
 
-	// handleClick = (e) => {
-	// 	this.props.getVenueCard(e.target.parentElement.id);
-	// }
+	handleClick = (e) => {
+		this.props.getRestaurantCard(e.target.parentElement.id);
+		console.log('target-parent-id', e.target.parentElement.id)
+		console.log('target-parent', e.target.parentElement)
+		console.log('target', e.target)
+		console.log('e', e)
+	}
 
 
 	render() {
