@@ -31,7 +31,7 @@ class DynamicMainDisplay extends Component {
     } //end of constructor 
 
     componentDidMount() {
-        const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode`;
+        const zomatoURL = `https://developers.zomato.com/api/v2.1/search`;
         const zomatoKey = `105eeb0d2c69617a061003c1a4f82e13`;
 
 			//zomato api call
@@ -42,24 +42,25 @@ class DynamicMainDisplay extends Component {
 						dataResponse: `json`,
 						params: {
 							apikey: zomatoKey,
-							radius: 1000,
+							// radius: 1000,
 							lat: latitude,
-							long: longitude,
-							start: 1,
-							count: 20
+							lon: longitude,
+							// start: 1,
+							// count: 20
 						}
 					}).then(results => {
 						this.setState({
-							restaurantData: results.data.nearby_restaurants,
+							restaurantData: results.data.restaurants,
 						})
+
+						console.log(results.data.restaurants)
+
 						// const restaurantName = [];
 						// const restaurantCuisine = [];
 						// const restaurantPriceRange = [];
 						// const restaurantRating = [];
 						// const restaurantAddress = [];
 						// const restaurantUrl = [];
-			
-						console.log(results.data.nearby_restaurants[0].restaurant.name)
 
 						// for (let i = 0; i < results.data.nearby_restaurants.length; i++) {
 						// 	restaurantName.push(results.data.nearby_restaurants[i].restaurant.name);
@@ -85,18 +86,21 @@ class DynamicMainDisplay extends Component {
       getVenueCard = (venueId) => {
         this.setState({
 					venueUserInput: this.props.ticketMasterData[venueId],
-					longitudeUserInput: this.props.ticketMasterData[venueId]._embedded.venues[0].location.longitude,
-					latitudeUserInput: this.props.ticketMasterData[venueId]._embedded.venues[0].location.latitude,
-        })
-				this.getRestaurantData(this.props.ticketMasterData[venueId]._embedded.venues[0].location.longitude, this.props.ticketMasterData[venueId]._embedded.venues[0].location.latitude);
+				})
+				
+				let longitude = this.props.ticketMasterData[venueId]._embedded.venues[0].location.longitude;
+				let latitude = this.props.ticketMasterData[venueId]._embedded.venues[0].location.latitude;
+
+				console.log(longitude, latitude)
+				
+				this.getRestaurantData(longitude, latitude);
 			}
-      
       render(){
         
         return(
             <Fragment>
                 <h2>This is the h2</h2>
-                <Carousel ticketMasterData={this.props.ticketMasterData} getVenueCard={this.getVenueCard} restaurantData={this.state.restaurantData}/>
+                <Carousel ticketMasterData={this.props.ticketMasterData} getVenueCard={this.getVenueCard} restaurantData={this.state.restaurantData} />
                 <button></button>
             </Fragment>
         )

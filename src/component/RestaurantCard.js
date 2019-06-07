@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import App from '../App'
 // import Modal from './Modal.js';
 // import {
 // 	BrowserRouter as Router,
@@ -14,7 +13,6 @@ import App from '../App'
 //     background: "red"
 // }
 
-
 class RestaurantCard extends Component {
 
 	// handleClick = (e) => {
@@ -28,8 +26,8 @@ class RestaurantCard extends Component {
 
 		const restaurantCards = restaurantData.map((restaurant, i) => {
 			return (
-				<div className="restaurantCard" key={restaurant.id} id={i} onClick={this.handleClick} role="button">
-					<a href="#"><i>i</i></a>
+				<div className="restaurantCard" key={restaurant.restaurant.id} id={i} onClick={this.handleClick} role="button">
+					<a href="./RestaurantInfoModal"><i>i</i></a>
 					<h3>{restaurant.restaurant.name}</h3>
 					<h4>{restaurant.restaurant.cuisines}</h4>
 					{/* if aggregate_rating > 0 */}

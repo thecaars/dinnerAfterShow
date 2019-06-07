@@ -68,7 +68,6 @@ class Carousel extends Component {
             </div> */}
 
             <RestaurantCard restaurantData={this.props.restaurantData} />
-
          </div>
       )
    }

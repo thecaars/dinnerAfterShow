@@ -1,21 +1,12 @@
 import React, {Component} from 'react';
-import App from '../App';
 
 class VenueCard extends Component {
-
-	constructor() {
-		super();
-	}
-
+	
 	handleClick = (e) => {
 		this.props.getVenueCard(e.target.parentElement.id);
-
-	}
-
-	
+	};
 
 	render() {
-
 		const {ticketMasterData} = this.props
 
 		const venueCards = ticketMasterData.map((event, i) => {
@@ -29,14 +20,13 @@ class VenueCard extends Component {
 					{/* Venue name */}
 					<h4>{event._embedded.venues[0].name}</h4>
 				</div>
-		
 			)
-		})
+		});
 		return(
 			<div>
 				{venueCards}
 			</div>	
-		)
+		);
 	};
 };
 
