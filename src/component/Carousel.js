@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import VenueCard from './VenueCard.js';
+import RestaurantCard from './RestaurantCard.js';
 import range from 'lodash/range';
 
 class Carousel extends Component {
@@ -66,6 +67,7 @@ class Carousel extends Component {
                <VenueCard />
             </div> */}
 
+            <RestaurantCard restaurantData={this.props.restaurantData} />
          </div>
       )
    }

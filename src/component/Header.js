@@ -50,38 +50,9 @@ class Header extends Component {
                     startDateTime: this.state.date
                 }
             }).then(results => {
-
                 this.setState({
                     ticketMasterData: results.data._embedded.events
                 })
-
-
-
-                const venueName = [];
-                const eventName = [];
-                const venueAddress = [];
-                const cityName = [];
-                const longitude = [];
-                const latitude = [];
-
-                for (let i = 0; i < results.data._embedded.events.length; i++) {
-                    venueName.push(results.data._embedded.events[i]._embedded.venues[0].name);
-                    eventName.push(results.data._embedded.events[i].name);
-                    venueAddress.push(results.data._embedded.events[i]._embedded.venues[0].address.line1);
-                    cityName.push(results.data._embedded.events[i]._embedded.venues[0].city.name);
-                    longitude.push(results.data._embedded.events[i]._embedded.venues[0].location.longitude);
-                    latitude.push(results.data._embedded.events[i]._embedded.venues[0].location.latitude);
-                    
-
-                    this.setState({
-                        venueNames: venueName,
-                        eventNames: eventName,
-                        venueAddresses: venueAddress,
-                        cityNames: cityName,
-                        longitudes: longitude,
-                        latitudes: latitude
-                    });
-                }
             })
         } // end of getTicketMasterData
     }  // end of componentDidMount
@@ -101,11 +72,6 @@ class Header extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault();
-        // this.props.submitForm(this.state.userCountry, this.state.userCity);
-        // this.setState({
-        //     userCountry: country,
-        //     userCity: city,
-        //   })
         this.getTicketMasterData(this.state.userCountry, this.state.userCity) 
     }
 
@@ -121,7 +87,7 @@ class Header extends Component {
                             <div className="selectInput">
                                 <label htmlFor="country"></label>
                                 <select id="country" name="country" onChange={this.handleOnChange}>
-                                    <option value="" readOnly>Country</option>
+                                    <option value="CA">Canada</option>
                                     <option value="" readOnly>Country</option>
                                     <option value="AU">Australia</option>
                                     <option value="BR">Brazil</option>
