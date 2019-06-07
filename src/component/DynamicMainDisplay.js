@@ -22,16 +22,18 @@ class DynamicMainDisplay extends Component {
             modalPage: false,
             
             // User Input States - keeping track of user values from input
-            venueUserInput: {},
-            restaurantUserInput: {},
-            userInputCombination: []
+            venueUserInput: [],
+            restaurantUserInput: [],
+            userInputCombination: [],
+            ticketMasterData: []
         }
     } //end of constructor 
-    
 
     componentDidMount() {
         const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode`;
         const zomatoKey = `105eeb0d2c69617a061003c1a4f82e13`;
+        // const longitude = this.props.ticketMasterData[clickedIndex]._embedded.venues[0].location.longitude;
+        // const latitude = this.props.ticketMasterData[clickedIndex]._embedded.venues[0].location.latitude;
 
         axios({
           method: `GET`,
@@ -69,15 +71,26 @@ class DynamicMainDisplay extends Component {
               restaurantAddress: restaurantAddress,
               restaurantUrl: restaurantUrl,
             });
-          }
-        })
+          } // end of for statement
+        }) // end of .then method
       }// end of componentDidMount
-    
-    render(){
+
+      getVenueCard = (venueId) => {
+
+        console.log('props venue', this.props.ticketMasterData[venueId]);
+        console.log('venue ID', venueId);
+        
+        this.setState({
+          venueUserInput: this.props.ticketMasterData[venueId]
+        })
+      }
+      
+      render(){
+        
         return(
             <Fragment>
                 <h2>This is the h2</h2>
-                <Carousel ticketMasterData={this.props.ticketMasterData}/>
+                <Carousel ticketMasterData={this.props.ticketMasterData} getVenueCard={this.getVenueCard} />
                 <button></button>
             </Fragment>
         )
