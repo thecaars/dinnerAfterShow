@@ -17,7 +17,10 @@ class Header extends Component {
             longitudes: [],
             latitudes: [],
             dateString: '',
-            ticketMasterData: []
+            ticketMasterData: [],
+
+            dynamicMainDisplayPage: false
+
         }
     }
 
@@ -72,6 +75,13 @@ class Header extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault();
+
+        //need error handling
+
+        this.setState({
+            dynamicMainDisplayPage: true
+        })
+
         this.getTicketMasterData(this.state.userCountry, this.state.userCity) 
     }
 
@@ -129,7 +139,10 @@ class Header extends Component {
                         </div>
                     </form>
                 </header>
-                <DynamicMainDisplay ticketMasterData={this.state.ticketMasterData}/>
+
+                {this.state.dynamicMainDisplayPage 
+                    ? <DynamicMainDisplay ticketMasterData={this.state.ticketMasterData} />
+                    : null}
             </div>
         ) // end of return()
     } // end of render()

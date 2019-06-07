@@ -25,8 +25,26 @@ class Carousel extends Component {
          children,
       } = this.state; 
 
+      // depending on the state of the venuePage and restaurantPage, different content will appear
+      // if(this.props.venuePage === true) {
+      //    <VenueCard ticketMasterData={this.props.ticketMasterData} getVenueCard={this.props.getVenueCard} />
+      // } 
+
+      // else if (this.props.restaurantPage === true) {
+      //    <RestaurantCard restaurantData={this.props.restaurantData} getRestaurantCard={this.props.getRestaurantCard} />
+      // }
+
       return (
          <div className="carouselContainer wrapper">
+
+            {this.props.venuePage 
+               ? <VenueCard ticketMasterData={this.props.ticketMasterData} getVenueCard={this.props.getVenueCard} />
+               : <RestaurantCard restaurantData={this.props.restaurantData} getRestaurantCard={this.props.getRestaurantCard} />
+            }
+
+
+
+
             <ItemsCarousel
                // Carousel configurations
                numberOfCards={3}
@@ -62,12 +80,7 @@ class Carousel extends Component {
 
             </ItemsCarousel>
 
-            <VenueCard ticketMasterData={this.props.ticketMasterData} getVenueCard={this.props.getVenueCard}/>
-            {/* <div className="cardContainer">
-               <VenueCard />
-            </div> */}
-
-            <RestaurantCard restaurantData={this.props.restaurantData} getRestaurantCard={this.props.getRestaurantCard} />
+            
          </div>
       )
    }
