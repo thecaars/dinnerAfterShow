@@ -101,10 +101,18 @@ class DynamicMainDisplay extends Component {
 
 		// event/resto combo saved successfully onto firebase~
 		console.log(this.state.userInputCombination);
+	}
+
+	submitToFirebase = () => {
+		// storing user's name, user's choosen event/resto combo to firebase
+
 		const dbRef = firebase.database().ref();
+
 		dbRef.push(this.state.userInputCombination);
+	}
 
-
+	resetToInitialState = () => {
+		// allow user to restart
 
 	}
 
@@ -130,7 +138,8 @@ class DynamicMainDisplay extends Component {
 							restaurantPage: false,
 							venuePage: false,
 							displayModal: true, 
-					}}}>
+						}
+					}}>
 						<button 
 							onClick={ !this.state.restaurantUserInput ? this.displayRestaurantCards : this.confirmUserInputChoices}>CONFIRMM BUTTON
 						</button>
