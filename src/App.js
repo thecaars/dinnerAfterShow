@@ -22,8 +22,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-
-          <SavedCombos />
         </div>
       </Router>  
     );

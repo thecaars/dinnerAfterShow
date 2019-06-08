@@ -124,11 +124,11 @@ handleOnSubmit = (e) => {
 									</div>
 							</div>
 							<div className="submitButton">
-								<label htmlFor="submitButton" class="visuallyHidden">Begin your search</label>
+								<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
 									<button id="submitButton" type="submit">begin</button>
 							</div>
 							<div className="communitySuggestionPage">
-								<label htmlFor="communitySuggestion" class="visuallyHidden">See all posted results</label>
+								<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
 								<button id="communitySuggestion">In a hurry? See other results</button>
 							</div>
 						</form>
