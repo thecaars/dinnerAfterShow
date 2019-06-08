@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
+import firebase from '../firebase.js';
 import Carousel from './Carousel'
 
 class DynamicMainDisplay extends Component {
@@ -85,6 +86,11 @@ class DynamicMainDisplay extends Component {
 		this.setState({
 			userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
 		})
+
+		// event/resto combo saved successfully onto firebase~
+		const dbRef = firebase.database().ref();
+
+		dbRef.push(this.state.userInputCombination);
 	}
 
 	render(){        

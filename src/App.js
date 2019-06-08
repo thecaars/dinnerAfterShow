@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Header from './component/Header.js';
+import SavedCombos from './component/SavedCombos.js';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -21,6 +22,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
+
+          <SavedCombos />
         </div>
       </Router>  
     );
