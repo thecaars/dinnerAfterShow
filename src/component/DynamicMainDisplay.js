@@ -111,31 +111,33 @@ class DynamicMainDisplay extends Component {
 	render(){        
 		return(
 			<Fragment>
-				<h2>This is the h2</h2>
-				<Carousel 
-					venuePage={this.state.venuePage}
-					ticketMasterData={this.props.ticketMasterData}
-					getVenueCard={this.getVenueCard}
-					restaurantPage={this.state.restaurantPage}
-					userInputCombination={this.state.userInputCombination}
-					restaurantData={this.state.restaurantData}
-					getRestaurantCard={this.getRestaurantCard}
-				/>
-				
-				<Link to={{
-					pathname: this.state.restaurantUserInput ? '/modal' : undefined, 
-					state: {
-						userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput],
-						restaurantPage: false,
-						venuePage: false,
-						displayModal: true, 
-				}}}>
-					<button 
-						onClick={ !this.state.restaurantUserInput ? this.displayRestaurantCards : this.confirmUserInputChoices}>CONFIRMM BUTTON
-					</button>
-				</Link>
+				<div className="dynamicMainDisplay">
+					<h2>This is the h2</h2>
+					<Carousel 
+						venuePage={this.state.venuePage}
+						ticketMasterData={this.props.ticketMasterData}
+						getVenueCard={this.getVenueCard}
+						restaurantPage={this.state.restaurantPage}
+						userInputCombination={this.state.userInputCombination}
+						restaurantData={this.state.restaurantData}
+						getRestaurantCard={this.getRestaurantCard}
+					/>
+					
+					<Link to={{
+						pathname: this.state.restaurantUserInput ? '/modal' : undefined, 
+						state: {
+							userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput],
+							restaurantPage: false,
+							venuePage: false,
+							displayModal: true, 
+					}}}>
+						<button 
+							onClick={ !this.state.restaurantUserInput ? this.displayRestaurantCards : this.confirmUserInputChoices}>CONFIRMM BUTTON
+						</button>
+					</Link>
 
-				<Route path="/modal" component={Modal}></Route>
+					<Route path="/modal" component={Modal}></Route>
+				</div>
 
 			</Fragment>
 		)
