@@ -47,7 +47,32 @@ const h1CSS = {
     color: "white"
 }
 
+
+
+
+
+
+
+
+
 class Modal extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            userName: ''
+        }
+    }
+    
+    submitToFirebase = (something) => {
+        // storing user's name, user's choosen event/resto combo to firebase
+        console.log(something);
+        // const dbRef = firebase.database().ref();
+
+        // dbRef.push(this.state.userInputCombination);
+    }
+
+
     render(){
         const  {state ={}} = this.props.location;
         const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, restaurantData, specificId, restaurantSpecificId, userInputCombination} = state;
@@ -121,7 +146,7 @@ class Modal extends Component {
                         {/* <Link to="/"><button>X</button> </Link> */}
 
                         <button>try again</button>
-                        <button>save</button>
+                        <button  onClick={() => {this.submitToFirebase(userInputCombination)}}>save</button>
                     </div>
 
 
