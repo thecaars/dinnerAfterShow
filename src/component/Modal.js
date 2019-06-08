@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import App from '../App'
 import {
     BrowserRouter as Router,
@@ -31,6 +31,12 @@ const confirmationPageCSS = {
     left: "30%",
     height: "500px",
     width: "500px",
+
+    display: "flex",
+}
+
+const confirmedChoicesDiv = {
+    width: "50%"
 }
 
 const h1CSS = {
@@ -40,7 +46,7 @@ const h1CSS = {
 class Modal extends Component {
     render(){
         const  {state ={}} = this.props.location;
-        const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, restaurantData, specificId, restaurantSpecificId} = state;
+        const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, restaurantData, specificId, restaurantSpecificId, userInputCombination} = state;
 
         if (displayModal && venuePage) {
             return(
@@ -68,17 +74,30 @@ class Modal extends Component {
             )
        } 
        
-    //    //// WHY THE FUCK --> venueUserInput[0] == undefined, or even nothing if I put an bject in it (remember i changed the value )
-    //    else if (displayModal && confirmationPage && venueUserInput[0] && restaurantUserInput[0]) {
-    //         return(
-    //             <>
-    //                 <div style={confirmationPageCSS}>
-    //                 <Link to="/"><button>X</button> </Link>
-    //                 </div>
-    //                 <Route exact path="/" component={App}></Route>
-    //             </>
-    //         )
-    //     } 
+       else if (displayModal &&  !restaurantPage && !venuePage) {
+            return(
+                <Fragment>
+                    {}
+                    <div style={confirmationPageCSS}>
+                        <div style={confirmedChoicesDiv}>
+                            <h3>{userInputCombination[0].name}</h3>
+                        </div>
+
+                        <div style={confirmedChoicesDiv}>
+                            <h3>{userInputCombination[1].restaurant.name}</h3>
+                        </div>
+                                 
+                        
+                        
+                        <Link to="/"><button>X</button> </Link>
+                    </div>
+
+
+
+                    <Route exact path="/" component={App}></Route>
+                </Fragment>
+            )
+        } 
 
        else { return (null)}
     }

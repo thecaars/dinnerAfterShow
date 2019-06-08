@@ -2,6 +2,13 @@ import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import firebase from '../firebase.js';
 import Carousel from './Carousel'
+import {
+	BrowserRouter as Router,
+	Route,
+	Link
+} from 'react-router-dom'
+import Modal from './Modal.js';
+
 
 class DynamicMainDisplay extends Component {
 	constructor(){
@@ -26,7 +33,7 @@ class DynamicMainDisplay extends Component {
 				// User Input States - keeping track of user values from input
 				venueUserInput: false,
 				restaurantUserInput: false,
-				userInputCombination: [],
+				userInputCombination: false,
 				ticketMasterData: [],
 				restaurantData: []
 			}
@@ -78,19 +85,26 @@ class DynamicMainDisplay extends Component {
 	
 	getRestaurantCard = (restaurantId) => {
 		this.setState({
-			restaurantUserInput: this.state.restaurantData[restaurantId]
+			restaurantUserInput: this.state.restaurantData[restaurantId],
+			userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
+			
 		})
 	}	
 	// confirming/combining selection VENUE and RESTO to the COMBO state
 	confirmUserInputChoices = () => {
 		this.setState({
-			userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
+			// create a userInputCombination state
+			restaurantPage: false,
+			// userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
+
 		})
 
 		// event/resto combo saved successfully onto firebase~
 		const dbRef = firebase.database().ref();
-
 		dbRef.push(this.state.userInputCombination);
+
+
+
 	}
 
 	render(){        
@@ -102,12 +116,26 @@ class DynamicMainDisplay extends Component {
 					ticketMasterData={this.props.ticketMasterData}
 					getVenueCard={this.getVenueCard}
 					restaurantPage={this.state.restaurantPage}
+					userInputCombination={this.state.userInputCombination}
 					restaurantData={this.state.restaurantData}
 					getRestaurantCard={this.getRestaurantCard}
 				/>
-				<button 
-					onClick={ !this.state.restaurantUserInput ? this.displayRestaurantCards : this.confirmUserInputChoices}>CONFIRMM BUTTON
-				</button>
+				
+				<Link to={{
+					pathname: this.state.restaurantUserInput ? '/modal' : undefined, 
+					state: {
+						userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput],
+						restaurantPage: false,
+						venuePage: false,
+						displayModal: true, 
+				}}}>
+					<button 
+						onClick={ !this.state.restaurantUserInput ? this.displayRestaurantCards : this.confirmUserInputChoices}>CONFIRMM BUTTON
+					</button>
+				</Link>
+
+				<Route path="/modal" component={Modal}></Route>
+
 			</Fragment>
 		)
 	}
