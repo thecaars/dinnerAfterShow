@@ -79,7 +79,7 @@ handleOnSubmit = (e) => {
 			dynamicMainDisplayPage: true
 	})
 
-	this.getTicketMasterData(this.state.userCountry, this.state.userCity)
+	this.getTicketMasterData(this.state.userCountry, this.state.userCity);
 }
 
 	render() {
