@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
+import App from '../App'
 import {
     BrowserRouter as Router,
     Route,
-    Link,
-    // NavLink
+    Link
   } from 'react-router-dom'
-
-
-import App from '../App'
 
 const venuePageCSS = {
     background: "black",
@@ -41,15 +38,10 @@ const headerCSS = {
 }
 
 class Modal extends Component {
-    
-
-
-
     render(){
         const  {state ={}} = this.props.location;
         const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, specificId} = state;
 
-        
         if (displayModal && venuePage) {
             return(
                 <> 
@@ -72,7 +64,7 @@ class Modal extends Component {
                     </div>
                     <Route exact path="/" component={App}></Route>
                 </>
-       )
+            )
        } 
        
        //// WHY THE FUCK --> venueUserInput[0] == undefined, or even nothing if I put an bject in it (remember i changed the value )
@@ -86,15 +78,8 @@ class Modal extends Component {
                 </>
             )
         } 
-       
-       
-       
-       
-       
+
        else { return (null)}
-   
-
-
     }
 }
 
