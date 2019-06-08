@@ -86,7 +86,7 @@ class DynamicMainDisplay extends Component {
 	getRestaurantCard = (restaurantId) => {
 		this.setState({
 			restaurantUserInput: this.state.restaurantData[restaurantId],
-			userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
+			userInputCombination: [this.state.venueUserInput, this.state.restaurantData[restaurantId]] 
 			
 		})
 	}	
@@ -100,6 +100,7 @@ class DynamicMainDisplay extends Component {
 		})
 
 		// event/resto combo saved successfully onto firebase~
+		console.log(this.state.userInputCombination);
 		const dbRef = firebase.database().ref();
 		dbRef.push(this.state.userInputCombination);
 
