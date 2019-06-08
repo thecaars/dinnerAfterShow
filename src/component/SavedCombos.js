@@ -41,7 +41,7 @@ class SavedCombos extends Component {
     render() {
         return(
             <div className="combo">
-                <h2>Shared Resutls</h2>
+                {/* <h2>Shared Resutls</h2>
                 {
                     this.state.savedCombos.map((data) => {
                         const eventInfo = data.combo[0];
@@ -72,7 +72,7 @@ class SavedCombos extends Component {
                             </div>
                         )
                     })
-                }
+                } */}
             </div>
         )
     }
