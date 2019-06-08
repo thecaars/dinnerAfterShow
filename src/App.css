@@ -119,6 +119,7 @@ header {
 /*                dynamic main display                  */
 /* **************************************************** */
 .dynamicMainDisplay {
+  position: relative;
   min-height: 100vh;
   background: #1d1d1d;
   display: flex;
@@ -143,5 +144,5 @@ header {
 
 .restaurantCard {
   background: peachpuff;
-  width: 10%;
+  
 }
