@@ -88,8 +88,8 @@ class Modal extends Component {
                         </div>
                                  
                         
-                        
-                        <Link to="/"><button>X</button> </Link>
+                        {/* This is because we haven't decided yet if they should be able to press [X] and go back to rechoose a restaurant */}
+                        {/* <Link to="/"><button>X</button> </Link> */}
                     </div>
 
 
