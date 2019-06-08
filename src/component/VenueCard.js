@@ -12,8 +12,6 @@ import {
 class VenueCard extends Component {
 	
 	handleVenueClick = (e) => {
-		console.log(e)
-		console.log(e.target)
 		this.props.getVenueCard(e.target.parentElement.id);
 	};
 
@@ -53,14 +51,15 @@ class VenueCard extends Component {
 							<div className="venueCard" key={event.id} id={i} onClick={this.handleVenueClick} role="button">
 								{/* THIS IS MODAL*/}
 								<Link id={i} to={{
-                       				pathname: venuePage ? '/modal' : undefined, 
-                        			state: {
+									pathname: venuePage ? '/modal' : undefined, 
+									state: {
 										specificId: i,
 										displayModal: true, 
 										venuePage: venuePage,
 										ticketMasterData: ticketMasterData
-									}}}>
-                    				<button onClick={this.handleVenueClick}>icon</button>
+									}
+								}}>
+									<button onClick={this.handleVenueClick}>icon</button>
 								</Link>
 								<img src={event.images[0].url} alt={event.name} />
 								<p>{event.dates.start.localDate}</p>
@@ -72,9 +71,7 @@ class VenueCard extends Component {
 						)
 					})}
 				</ItemsCarousel>
-
 				<Route path="/modal" component={Modal}></Route>
-
 			</Fragment>
 		)	
 	};
