@@ -47,14 +47,6 @@ const h1CSS = {
     color: "white"
 }
 
-
-
-
-
-
-
-
-
 class Modal extends Component {
 
     constructor(){
@@ -70,6 +62,10 @@ class Modal extends Component {
         // const dbRef = firebase.database().ref();
 
         // dbRef.push(this.state.userInputCombination);
+    }
+
+    resetApp = () => {
+        window.location.reload()
     }
 
 
@@ -145,7 +141,7 @@ class Modal extends Component {
                         {/* This is because we haven't decided yet if they should be able to press [X] and go back to rechoose a restaurant */}
                         {/* <Link to="/"><button>X</button> </Link> */}
 
-                        <button>try again</button>
+                        <button onClick={this.resetApp}>try again</button>
                         <button  onClick={() => {this.submitToFirebase(userInputCombination)}}>save</button>
                     </div>
 
