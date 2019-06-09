@@ -82,6 +82,7 @@ handleOnSubmit = (e) => {
 	this.getTicketMasterData(this.state.userCountry, this.state.userCity);
 }
 
+
 	render() {
 		return (
 			<div>
@@ -136,7 +137,7 @@ handleOnSubmit = (e) => {
 				</header>
 
 				{this.state.dynamicMainDisplayPage
-					? <DynamicMainDisplay ticketMasterData={this.state.ticketMasterData} />
+					? <DynamicMainDisplay ticketMasterData={this.state.ticketMasterData}/>
 					: null}
 			</div>
 		) // end of return()

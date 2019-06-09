@@ -9,12 +9,11 @@ import {
 } from 'react-router-dom'
 import Modal from './Modal.js';
 
-
 class DynamicMainDisplay extends Component {
 	constructor(){
 			super();
 			this.state = {
-		//Zomato states
+				//Zomato states
 				restaurantData: [],
 				restaurantNames: [],
 				restaurantCuisine: [],
@@ -103,12 +102,6 @@ class DynamicMainDisplay extends Component {
 		console.log(this.state.userInputCombination);
 	}
 
-
-
-	resetToInitialState = () => {
-		// allow user to restart
-
-	}
 
 	render(){        
 		return(
