@@ -4,24 +4,28 @@ import {
     BrowserRouter as Router,
     Route,
     Link
-  } from 'react-router-dom'
+} from 'react-router-dom'
 
 const venuePageCSS = {
-    background: "black",
+    background: "rgba(0, 0, 0, 0.6)",
     position: "absolute",
-    top: "30%",
-    left: "30%",
-    height: "500px",
-    width: "500px",
+    top: "0",
+    left: "0",
+    height: "100vh",
+    width: "100%",
+    padding: "100px 0",
+    color: "white"
 }
 
 const restaurantPageCSS = {
-    background: "green",
+    background: "rgba(0, 0, 0, 0.6)",
     position: "absolute",
-    top: "30%",
-    left: "30%",
-    height: "500px",
-    width: "500px",
+    top: "0",
+    left: "0",
+    height: "100vh",
+    width: "100%",
+    padding: "100px 0",
+    color: "white"
 }
 
 const confirmationPageCSS = {
@@ -44,6 +48,27 @@ const h1CSS = {
 }
 
 class Modal extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            userName: ''
+        }
+    }
+    
+    submitToFirebase = (something) => {
+        // storing user's name, user's choosen event/resto combo to firebase
+        console.log(something);
+        // const dbRef = firebase.database().ref();
+
+        // dbRef.push(this.state.userInputCombination);
+    }
+
+    resetApp = () => {
+        window.location.reload()
+    }
+
+
     render(){
         const  {state ={}} = this.props.location;
         const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, restaurantData, specificId, restaurantSpecificId, userInputCombination} = state;
@@ -51,9 +76,17 @@ class Modal extends Component {
         if (displayModal && venuePage) {
             return(
                 <> 
-                    <div style={venuePageCSS}>
-                        <h1 style={h1CSS}>{ticketMasterData[specificId].name}</h1>
-                    <Link to="/"><button>X</button> </Link>
+                    <div style={venuePageCSS} className="venueModal">
+                        <div className="venueModalInnerWrapper">
+                            <h2 style={h1CSS}>{ticketMasterData[specificId].name}</h2>
+                            <h3>Venue & Address</h3>
+                            <p>{ticketMasterData[specificId]._embedded.venues[0].name}</p>
+                            <p>{ticketMasterData[specificId]._embedded.venues[0].address.line1} {ticketMasterData[specificId]._embedded.venues[0].postalCode}</p>
+                            <a href={ticketMasterData[specificId].url} aria-label="go to ticketmaster page for the current event" target="_blank">buy your ticket here</a>
+                        </div>
+                        
+
+                        <Link to="/"><button>X</button> </Link>
                     </div> 
 
 
@@ -61,35 +94,55 @@ class Modal extends Component {
                 </>
             )
         }
-  
+
         else if (displayModal && restaurantPage) {
             return(
                 <>
-                    <div style={restaurantPageCSS} key={restaurantData[restaurantSpecificId].restaurant.id}>
-                       <Link to="/"><button>X</button></Link>
-                    <h1 style={h1CSS}>{restaurantData[restaurantSpecificId].restaurant.name}</h1>
+                    <div style={restaurantPageCSS} key={restaurantData[restaurantSpecificId].restaurant.id} className="restoModal">
+                        <Link to="/"><button>X</button></Link>
+                        <h1 style={h1CSS}>{restaurantData[restaurantSpecificId].restaurant.name}</h1>
+                        <p>{restaurantData[restaurantSpecificId].restaurant.location.address}</p>
+                        <p>{restaurantData[restaurantSpecificId].restaurant.price_range}</p>
+                        <a href={restaurantData[restaurantSpecificId].restaurant.url}>Link to Zomato Profile</a>
                     </div>
+
                     <Route exact path="/" component={App}></Route>
                 </>
             )
-       } 
-       
-       else if (displayModal &&  !restaurantPage && !venuePage) {
+        } 
+
+        else if (displayModal &&  !restaurantPage && !venuePage) {
             return(
                 <Fragment>
                     {}
-                    <div style={confirmationPageCSS}>
-                        <div style={confirmedChoicesDiv}>
-                            <h3>{userInputCombination[0].name}</h3>
+                    <div style={confirmationPageCSS} className="comboModal">
+                        <div style={confirmedChoicesDiv} className="venueResult">
+                            <img src={userInputCombination[0].images[0].url} alt={userInputCombination[0].name} />
+                            <h3>Date & Time</h3>
+                            <p>{userInputCombination[0].dates.start.localDate}</p>
+                            <p>{userInputCombination[0].dates.start.localTime}</p>
+                            <h3>Event Name</h3>
+                            <p>{userInputCombination[0].name}</p>
+                            <h3>Event Venue</h3>
+                            <p>{userInputCombination[0]._embedded.venues[0].name}</p>
+
+                            
                         </div>
 
-                        <div style={confirmedChoicesDiv}>
+                        <div style={confirmedChoicesDiv} className="restoResult">
                             <h3>{userInputCombination[1].restaurant.name}</h3>
+                            <p>{userInputCombination[1].restaurant.cuisines}</p>
+                            <p>{userInputCombination[1].restaurant.user_rating.aggregate_rating}</p>
+                            <p>{userInputCombination[1].restaurant.location.address}</p>
+                            <p>distance from event venue</p>
                         </div>
-                                 
+
                         
-                        
-                        <Link to="/"><button>X</button> </Link>
+                        {/* This is because we haven't decided yet if they should be able to press [X] and go back to rechoose a restaurant */}
+                        {/* <Link to="/"><button>X</button> </Link> */}
+
+                        <button onClick={this.resetApp}>try again</button>
+                        <button  onClick={() => {this.submitToFirebase(userInputCombination)}}>save</button>
                     </div>
 
 
@@ -99,8 +152,8 @@ class Modal extends Component {
             )
         } 
 
-       else { return (null)}
+        else { return (null)}
     }
 }
 
-export default Modal
+export default Modal;

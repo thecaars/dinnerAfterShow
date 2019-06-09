@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ItemsCarousel from 'react-items-carousel';
-import DistanceBetween from 'DistanceBetween';
+import DistanceBetween from './DistanceBetween';
 import range from 'lodash/range';
 import Modal from './Modal.js';
 import {

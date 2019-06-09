@@ -9,12 +9,11 @@ import {
 } from 'react-router-dom'
 import Modal from './Modal.js';
 
-
 class DynamicMainDisplay extends Component {
 	constructor(){
 			super();
 			this.state = {
-		//Zomato states
+				//Zomato states
 				restaurantData: [],
 				restaurantNames: [],
 				restaurantCuisine: [],
@@ -105,6 +104,7 @@ class DynamicMainDisplay extends Component {
 		dbRef.push(this.state.userInputCombination);
 	}
 
+
 	render(){        
 		return(
 			<Fragment>
@@ -133,8 +133,7 @@ class DynamicMainDisplay extends Component {
 					</button>
 				</Link>
 
-				<Route path="/modal" component={Modal}></Route>
-
+					<Route path="/modal" component={Modal}></Route>
 			</Fragment>
 		)
 	}
