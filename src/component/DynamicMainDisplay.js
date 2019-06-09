@@ -103,9 +103,6 @@ class DynamicMainDisplay extends Component {
 		console.log(this.state.userInputCombination);
 		const dbRef = firebase.database().ref();
 		dbRef.push(this.state.userInputCombination);
-
-
-
 	}
 
 	render(){        
@@ -120,6 +117,7 @@ class DynamicMainDisplay extends Component {
 					userInputCombination={this.state.userInputCombination}
 					restaurantData={this.state.restaurantData}
 					getRestaurantCard={this.getRestaurantCard}
+					venueUserInput={this.state.venueUserInput}
 				/>
 				
 				<Link to={{
