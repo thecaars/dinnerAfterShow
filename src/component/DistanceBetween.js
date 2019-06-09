@@ -8,9 +8,9 @@ class DistanceBetween extends Component {
 	dataFunction = (restaurant) => {
 		const lat1 = this.props.venueUserInput._embedded.venues[0].location.latitude
 		const lon1 = this.props.venueUserInput._embedded.venues[0].location.longitude
-		const lat2 = restaurant.restaurant.location.latitude
-		const lon2 = restaurant.restaurant.location.longitude
-		this.distanceBetweenLocations(lat1, lon1, lat2, lon2)
+		// const lat2 = 
+		// const lon2 = 
+		this.distanceBetweenLocations(lat1, lon1)
 	}
 
 	distanceBetweenLocations = (lat1, lon1, lat2, lon2) => {
