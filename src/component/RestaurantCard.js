@@ -96,7 +96,7 @@ class RestaurantCard extends Component {
 									restaurantData: restaurantData,
 									displayModal: true, 
 								}}}>	
-								<button>info</button>
+								<button className="moreInfo">info</button>
 							</Link>
 							<h3>{restaurant.restaurant.name}</h3>
 							<h4>{restaurant.restaurant.cuisines}</h4>

@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import firebase from '../firebase.js';
 import App from '../App'
 import {
     BrowserRouter as Router,
@@ -29,18 +30,18 @@ const restaurantPageCSS = {
 }
 
 const confirmationPageCSS = {
-    background: "purple",
+    background: "rgba(0, 0, 0, 0.6)",
     position: "absolute",
-    top: "30%",
-    left: "30%",
-    height: "500px",
-    width: "500px",
-
-    display: "flex",
+    top: "0",
+    left: "0",
+    height: "100vh",
+    width: "100%",
+    padding: "100px 0",
+    color: "white"
 }
 
 const confirmedChoicesDiv = {
-    width: "50%"
+    // width: "50%"
 }
 
 const h1CSS = {
@@ -55,14 +56,32 @@ class Modal extends Component {
             userName: ''
         }
     }
-    
-    submitToFirebase = (something) => {
-        // storing user's name, user's choosen event/resto combo to firebase
-        console.log(something);
-        // const dbRef = firebase.database().ref();
 
-        // dbRef.push(this.state.userInputCombination);
+    handleNameChange = (e) => {
+        this.setState({
+            userName: e.target.value
+        })
     }
+
+    submitToFirebase = (name, combo) => {
+        // storing user's name, user's choosen event/resto combo to firebase
+        const dbRef = firebase.database().ref();
+
+        if (this.state.userName) {
+            dbRef.push({
+                name: name,
+                combo: combo
+            });
+
+            alert('Thanks for sharing your combo choice.');
+
+            window.location.reload();
+        } else {
+            alert('Please enter your name before saving the data.')
+        } 
+    }
+    
+    
 
     resetApp = () => {
         window.location.reload()
@@ -116,33 +135,43 @@ class Modal extends Component {
                 <Fragment>
                     {}
                     <div style={confirmationPageCSS} className="comboModal">
-                        <div style={confirmedChoicesDiv} className="venueResult">
-                            <img src={userInputCombination[0].images[0].url} alt={userInputCombination[0].name} />
-                            <h3>Date & Time</h3>
-                            <p>{userInputCombination[0].dates.start.localDate}</p>
-                            <p>{userInputCombination[0].dates.start.localTime}</p>
-                            <h3>Event Name</h3>
-                            <p>{userInputCombination[0].name}</p>
-                            <h3>Event Venue</h3>
-                            <p>{userInputCombination[0]._embedded.venues[0].name}</p>
+                        <div className="comboCards">
+                            <div style={confirmedChoicesDiv} className="venueResult">
+                                <img src={userInputCombination[0].images[0].url} alt={userInputCombination[0].name} />
+                                <h3>Date & Time</h3>
+                                <p>{userInputCombination[0].dates.start.localDate}</p>
+                                <p>{userInputCombination[0].dates.start.localTime}</p>
+                                <h3>Event Name</h3>
+                                <p>{userInputCombination[0].name}</p>
+                                <h3>Event Venue</h3>
+                                <p>{userInputCombination[0]._embedded.venues[0].name}</p>
+                            </div>
 
-                            
+                            <div style={confirmedChoicesDiv} className="restoResult">
+                                <h3>{userInputCombination[1].restaurant.name}</h3>
+                                <p>{userInputCombination[1].restaurant.cuisines}</p>
+                                <p>{userInputCombination[1].restaurant.user_rating.aggregate_rating}</p>
+                                <p>{userInputCombination[1].restaurant.location.address}</p>
+                                <p>distance from event venue</p>
+                            </div>
                         </div>
-
-                        <div style={confirmedChoicesDiv} className="restoResult">
-                            <h3>{userInputCombination[1].restaurant.name}</h3>
-                            <p>{userInputCombination[1].restaurant.cuisines}</p>
-                            <p>{userInputCombination[1].restaurant.user_rating.aggregate_rating}</p>
-                            <p>{userInputCombination[1].restaurant.location.address}</p>
-                            <p>distance from event venue</p>
-                        </div>
-
                         
                         {/* This is because we haven't decided yet if they should be able to press [X] and go back to rechoose a restaurant */}
                         {/* <Link to="/"><button>X</button> </Link> */}
 
-                        <button onClick={this.resetApp}>try again</button>
-                        <button  onClick={() => {this.submitToFirebase(userInputCombination)}}>save</button>
+                        <div className="userName">
+                            <label htmlFor="userName">Please enter your name to save the data:</label>
+                            <input id="userName" type="text" onChange={this.handleNameChange}/>
+                        </div>
+
+                        <div className="resetButton">
+                            <button onClick={this.resetApp}>try again</button>
+                        </div>
+
+                        <div className="saveComboButton">
+                            {/* <button  onClick={() => {this.submitToFirebase(this.state.userName, userInputCombination)}}>save</button> */}
+                            <button onClick={() => { this.submitToFirebase(this.state.userName, userInputCombination) }}>save</button>
+                        </div>
                     </div>
 
 
