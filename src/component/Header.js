@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DynamicMainDisplay from './DynamicMainDisplay';
+import SavedCombos from './SavedCombos.js';
 
 class Header extends Component {
 	constructor() {
@@ -18,7 +19,8 @@ class Header extends Component {
 			dateString: '',
 			ticketMasterData: [],
 
-			dynamicMainDisplayPage: false
+			dynamicMainDisplayPage: false,
+			savedCombosPage: false
 		}
 }
 
@@ -73,13 +75,22 @@ handleOnChange = (e) => {
 handleOnSubmit = (e) => {
 	e.preventDefault();
 
-	//need error handling
-
-	this.setState({
-			dynamicMainDisplayPage: true
+	this.state.userCity
+	? this.setState({
+		dynamicMainDisplayPage: true,
+		savedCombosPage: false
 	})
+	: alert('please complete your inputs')
+
 
 	this.getTicketMasterData(this.state.userCountry, this.state.userCity);
+}
+
+displaySavedCombos = () => {
+	this.setState({
+		dynamicMainDisplayPage: false,
+		savedCombosPage: true
+	})
 }
 
 
@@ -126,19 +137,26 @@ handleOnSubmit = (e) => {
 							</div>
 							<div className="submitButton">
 								<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
-									<button id="submitButton" type="submit">begin</button>
-							</div>
-							<div className="communitySuggestionPage">
-								<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
-								<button id="communitySuggestion">In a hurry? See other results</button>
+								<button id="submitButton" type="submit">begin</button>
 							</div>
 						</form>
+
+						<div className="communitySuggestionPage">
+							<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
+							<button id="communitySuggestion" onClick={this.displaySavedCombos}>In a hurry? See other results</button>
+						</div>
 					</div>
 				</header>
 
 				{this.state.dynamicMainDisplayPage
 					? <DynamicMainDisplay ticketMasterData={this.state.ticketMasterData}/>
-					: null}
+					: null
+				}
+
+				{this.state.savedCombosPage
+					? <SavedCombos />
+					: null
+				}
 			</div>
 		) // end of return()
 	} // end of render()
