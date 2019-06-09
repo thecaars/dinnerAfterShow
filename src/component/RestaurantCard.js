@@ -54,39 +54,39 @@ class RestaurantCard extends Component {
 					activeItemIndex={this.state.activeItemIndex}
 					requestToChangeActive={value => this.setState({ activeItemIndex: value })}
 				>
-					{this.props.restaurantData.map((restaurant, i) => {
-						return (
-							<div className="restaurantCard" key={restaurant.id} id={i} onClick={this.handleRestaurantClick} role="button">
-								<Link to={{
-									pathname: restaurantPage ? '/modal' : undefined, 
-									state: {
-										restaurantSpecificId: i,
-										restaurantPage: restaurantPage,
-										venuePage: venuePage,
-										restaurantData: restaurantData,
-										displayModal: true, 
-									}}}>	
-									<button>info</button>
-								</Link>
-								<h3>{restaurant.restaurant.name}</h3>
-								<h4>{restaurant.restaurant.cuisines}</h4>
-								
-								{restaurant.restaurant.user_rating.aggregate_rating > 0 
-								? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>
-								: <h4>{restaurant.restaurant.user_rating.rating_text}</h4>}
-								
-								<p>{restaurant.restaurant.location.address}</p>
-								<DistanceBetween 
-									restaurantData={this.props.restaurantData}
-									getRestaurantCard={this.props.getRestaurantCard}
-									venuePage={this.props.venuePage}
-									restaurantPage={this.props.restaurantPage}
-									ticketMasterData={this.props.ticketMasterData}
-									venueUserInput={this.props.venueUserInput}
-								/>
-							</div>
-						)
-					})}
+				{this.props.restaurantData.map((restaurant, i) => {
+					return (
+						<div className="restaurantCard" key={restaurant.id} id={i} onClick={this.handleRestaurantClick} role="button">
+							<Link to={{
+								pathname: restaurantPage ? '/modal' : undefined, 
+								state: {
+									restaurantSpecificId: i,
+									restaurantPage: restaurantPage,
+									venuePage: venuePage,
+									restaurantData: restaurantData,
+									displayModal: true, 
+								}}}>	
+								<button className="moreInfo">info</button>
+							</Link>
+							<h3>{restaurant.restaurant.name}</h3>
+							<h4>{restaurant.restaurant.cuisines}</h4>
+							
+							{restaurant.restaurant.user_rating.aggregate_rating > 0 
+							? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>
+							: <h4>{restaurant.restaurant.user_rating.rating_text}</h4>}
+							
+							<p>{restaurant.restaurant.location.address}</p>
+							<DistanceBetween
+								restaurantData={this.props.restaurantData}
+								getRestaurantCard={this.props.getRestaurantCard}
+								venuePage={this.props.venuePage}
+								restaurantPage={this.props.restaurantPage}
+								ticketMasterData={this.props.ticketMasterData}
+								venueUserInput={this.props.venueUserInput}
+							/>
+						</div>
+					)
+				})}
 				</ItemsCarousel>
 				<Route path="/modal" component={Modal}></Route>
 			</Fragment>
