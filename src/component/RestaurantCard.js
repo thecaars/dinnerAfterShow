@@ -16,7 +16,7 @@ class RestaurantCard extends Component {
 		this.state = {
 			children: [],
 			activeItemIndex: 0,
-			distanceBetweenLocations: []
+      distanceArray: [],
 		}
 	}
 
@@ -24,13 +24,12 @@ class RestaurantCard extends Component {
 		this.props.getRestaurantCard(e.target.parentElement.id);
 	}
 
-
 	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
 	// changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
 
 	dataFunction = (venue, restaurant, i) => {
-		const lat1 = venue._embedded.venues[0].location.longitude
+		const lat1 = venue._embedded.venues[0].location.latitude
 		const lon1 = venue._embedded.venues[0].location.longitude
 		const lat2 = restaurant[i].restaurant.location.latitude
 		const lon2 = restaurant[i].restaurant.location.longitude
@@ -42,7 +41,9 @@ class RestaurantCard extends Component {
 		const equation = 0.5 - Math.cos((lat2 - lat1) * pi) / 2 + Math.cos(lat1 * pi) * Math.cos(lat2 * pi) * (1 - Math.cos((lon2 - lon1) * pi)) / 2;
 		const earth = 6371; //  Earth distance in km so it will return the distance in km
 		const distanceBetweenLocations = 2 * earth * Math.asin(Math.sqrt(equation));
-		this.state.distanceBetweenLocations.push(distanceBetweenLocations)
+		const distanceInMetres = distanceBetweenLocations * 1000
+		const distanceRounded = Math.round(distanceInMetres)
+		this.state.distanceArray.push(distanceRounded)
 	}
 
 	render() {
@@ -96,7 +97,7 @@ class RestaurantCard extends Component {
 							
 							<p>{restaurant.restaurant.location.address}</p>
 
-							<p>{this.state.distanceBetweenLocations[i]}</p>
+							<p>Distance from Venue: {this.state.distanceArray[i]}m</p>
 						</div>
 					)
 				})}
