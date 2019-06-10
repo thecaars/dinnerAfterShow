@@ -10,21 +10,21 @@ import {
 
 
 class VenueCard extends Component {
+	constructor() {
+		super();
+		this.state = {
+			children: [],
+			activeItemIndex: 0
+		}
+	}
 	
 	handleVenueClick = (e) => {
 		this.props.getVenueCard(e.target.parentElement.id);
 	};
 
-	componentWillMount() {
-		this.setState({
-			children: [],
-			activeItemIndex: 0,
-		});
-	}
+	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
-	createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
-
-	changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
+	// changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
 
 	render() {
 		const {venuePage, restaurantPage, ticketMasterData} = this.props

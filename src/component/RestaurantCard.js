@@ -13,21 +13,16 @@ import {
 class RestaurantCard extends Component {
 	constructor() {
 		super();
-		this.state = ({
-			distanceArray: [],
-		})
+		this.state = {
+			children: [],
+			activeItemIndex: 0,
+      distanceArray: [],
+		}
 	}
 
 	handleRestaurantClick = (e) => {
 		this.props.getRestaurantCard(e.target.parentElement.id);
 	}
-
-	// componentWillMount() {
-	// 	this.setState({
-	// 		children: [],
-	// 		activeItemIndex: 0,
-	// 	});
-	// }
 
 	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
