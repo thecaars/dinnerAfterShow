@@ -5,7 +5,7 @@ import RestaurantCard from './RestaurantCard.js';
 class Carousel extends Component {
 	render() {
 		return (
-			<div className="carouselContainer">
+			<div className="carouselContainer wrapper">
 			{this.props.venuePage 
 				? <VenueCard 
 					ticketMasterData={this.props.ticketMasterData}

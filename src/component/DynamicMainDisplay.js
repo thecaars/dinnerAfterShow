@@ -1,13 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import firebase from '../firebase.js';
-import Carousel from './Carousel'
+import Carousel from './Carousel.js';
 import {
 	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
 import Modal from './Modal.js';
+import ProgressBar from './ProgressBar.js';
 
 class DynamicMainDisplay extends Component {
 	constructor(){
@@ -34,7 +35,10 @@ class DynamicMainDisplay extends Component {
 				restaurantUserInput: false,
 				userInputCombination: false,
 				ticketMasterData: [],
-				restaurantData: []
+				restaurantData: [],
+
+				// Progress Bar Initial State (Starts at 33.34% to indicate Stage 1 of 3 is complete)
+				percentage: 33.34
 			}
 		} //end of constructor 
 
@@ -102,11 +106,29 @@ class DynamicMainDisplay extends Component {
 		console.log(this.state.userInputCombination);
 	}
 
+	handleClick = () => {
+		// Adds to ProgressBar with each click
+		this.setState({
+			percentage: this.state.percentage + 33.33
+		})
+
+		if (!this.state.restaurantUserInput) {
+			this.displayRestaurantCards()
+		}
+		else {
+			this.confirmUserInputChoices()
+		}
+	}
+
 
 	render(){        
 		return(
 			<Fragment>
 				<div className="dynamicMainDisplay">
+
+					<ProgressBar percentage={this.state.percentage}/>
+
+
 					<h2>This is the h2</h2>
 					<Carousel 
 						venuePage={this.state.venuePage}
@@ -127,9 +149,8 @@ class DynamicMainDisplay extends Component {
 							displayModal: true
 						}
 					}}>
-						<button 
-							onClick={ !this.state.restaurantUserInput ? this.displayRestaurantCards : this.confirmUserInputChoices}>CONFIRMM BUTTON
-						</button>
+
+						<button onClick={this.handleClick}>Confirm Selection</button>
 					</Link>
 
 					<Route path="/modal" component={Modal}></Route>
