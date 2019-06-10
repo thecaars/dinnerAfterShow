@@ -129,7 +129,9 @@ class DynamicMainDisplay extends Component {
 			<Fragment>
 				<div className="dynamicMainDisplay">
 					<ProgressBar percentage={this.state.percentage}/>
-					<h2>This is the h2</h2>
+
+
+					<h2>Please make a selection</h2>
 					<Carousel 
 						venuePage={this.state.venuePage}
 						ticketMasterData={this.props.ticketMasterData}
@@ -149,7 +151,8 @@ class DynamicMainDisplay extends Component {
 							displayModal: true
 						}
 					}}>
-						<button onClick={this.handleClick}>Confirm Selection</button>
+
+						<button className="dynamicConfirmButton" onClick={this.handleClick}>Confirm Selection</button>
 					</Link>
 					<Route path="/modal" component={Modal}></Route>
 				</div>

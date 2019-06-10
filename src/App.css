@@ -12,10 +12,10 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 /* **************************************************** */
 html {
   font-size: 125%;
-	font-family: 'Hind Siliguri', sans-serif;
 }
 
 body {
+  font-family: 'Hind Siliguri', sans-serif;
 	scroll-behavior: smooth;
 }
 
@@ -44,8 +44,7 @@ img {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: 'Poiret One', cursive;
 }
 
@@ -57,7 +56,9 @@ h1 {
 h2 {
   font-size: 3rem;
   color: #cf511b;
+  text-transform: capitalize;
 }
+
 
 /* **************************************************** */
 /*                        header                        */
@@ -77,20 +78,27 @@ header {
   background: rgba(82, 82, 82, 0.5);
   width: 80%;
   margin: 0 auto;
-  padding: 10%;
+  padding: 7%;
   color: #fdfdfd;
+  border-radius: 5px;
+}
+
+.headerInnerWrapper p {
+  padding: 15px 0;
 }
 
 .headerInnerWrapper select,
 .headerInnerWrapper input,
 .headerInnerWrapper button {
   margin: 5px;
-  height: 30px;
+  border-radius: 5px;
 }
 
 .headerInnerWrapper select,
 .headerInnerWrapper input {
   width: 60%;
+  padding: 0 10px;
+  border: 2px solid black;
 }
 
 .input {
@@ -98,12 +106,23 @@ header {
 }
 
 .headerInnerWrapper button {
-  width: 60%;
+  font-family: 'Poiret One', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
   background: #1d1d1d;
   color:#fdfdfd;
   border: none;
+  padding: 10px;
 }
 
+.submitButton button {
+  width: 25%; 
+}
+
+.communitySuggestionPage button {
+  width: 45%;
+
+}
 
 .headerInnerWrapper select:hover,
 .headerInnerWrapper select:focus,
@@ -124,16 +143,27 @@ header {
   position: relative;
   min-height: 100vh;
   /* background: #1d1d1d; */
-  background: #3b3b3b;
+  background: #595959;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .dynamicMainDisplayInnerWrapper {
   background: rgba(82, 82, 82, 0.5);
   width: 95%;
   margin: 0 auto;
+}
+
+.dynamicConfirmButton {
+  font-family: 'Poiret One', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  background: #cf511b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 /* **************************************************** */
@@ -149,23 +179,41 @@ header {
 /* **************************************************** */
 .venueCard,
 .restaurantCard {
-  background: rgba(223, 225, 50, 0.5);
+  background: rgba(223, 225, 50, 1);
   width: 90%;
   /* min-height: 450px; */
   margin: 0 auto;
   position: relative;
+  border-radius: 5px;
 }
 
 .moreInfo {
+  font-size: 2rem;
+  line-height: 0;
+  background: #dfe132;
+  border: 1px solid #dfe132;
+  border-radius: 50%;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 5px;
 }
 
 /* **************************************************** */
 /*                        modals                        */
 /* **************************************************** */
 /* bringing the style for each modal here later */
+.venueModal h1,
+.restoModal h1 {
+  margin: 20px 0;
+}
+
+.venueLink,
+.restaurantLink {
+  text-decoration: none;
+  color: white;
+  border-bottom: 1px dashed #cf511b;
+}
+
 .comboModal {
   display: flex;
   flex-direction: column;
@@ -192,6 +240,14 @@ header {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+
+.exitModal {
+  font-size: 2rem;
+  background: #cf511b;
+  line-height: 0;
+  border: 1px solid #cf511b;
+  margin: 20px;
 }
 
 /* **************************************************** */
