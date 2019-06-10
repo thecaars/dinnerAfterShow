@@ -12,7 +12,11 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 /* **************************************************** */
 html {
   font-size: 125%;
-  font-family: 'Hind Siliguri', sans-serif;
+	font-family: 'Hind Siliguri', sans-serif;
+}
+
+body {
+	scroll-behavior: smooth;
 }
 
 .App {
