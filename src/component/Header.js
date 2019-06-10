@@ -36,13 +36,8 @@ componentDidMount() {
 	let month = (newMonth < 10) ? "0" + newMonth : newMonth;
 	let day = (newDay < 10) ? "0" + newDay : newDay;
 	let dateString = (`${year}-${month}-${day}T12:00:00Z`)
-	console.log(newDate)
-	console.log(year)
-	console.log(newMonth)
-	console.log(newDay)
-	console.log(month)
-	console.log(day)
 	console.log(dateString)
+
 
 	this.setState({ dateString })
 

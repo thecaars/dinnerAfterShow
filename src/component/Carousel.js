@@ -18,6 +18,8 @@ class Carousel extends Component {
 					getRestaurantCard={this.props.getRestaurantCard}
 					venuePage={this.props.venuePage}
 					restaurantPage={this.props.restaurantPage}
+					ticketMasterData={this.props.ticketMasterData}
+					venueUserInput={this.props.venueUserInput}
 				/>
 			}
 			</div>

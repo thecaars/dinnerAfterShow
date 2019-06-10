@@ -54,7 +54,7 @@ class DynamicMainDisplay extends Component {
 				dataResponse: `json`,
 				params: {
 					apikey: zomatoKey,
-					// radius: 1000,
+					radius: 1000,
 					lat: latitude,
 					lon: longitude,
 					// start: 1,
@@ -77,6 +77,9 @@ class DynamicMainDisplay extends Component {
 	displayRestaurantCards = () => {
 		const longitude = this.state.venueUserInput._embedded.venues[0].location.longitude;
 		const latitude = this.state.venueUserInput._embedded.venues[0].location.latitude;
+
+		console.log(longitude)
+		console.log(latitude)
 		// calling the zomato API
 		this.getRestaurantData(longitude, latitude);
 		// changing from venue display to restaurant display
@@ -84,7 +87,7 @@ class DynamicMainDisplay extends Component {
 			venuePage: false,
 			restaurantPage: true
 		})
-	}
+	} // end of displayRestaurantCards
 	
 	getRestaurantCard = (restaurantId) => {
 		this.setState({
@@ -92,19 +95,20 @@ class DynamicMainDisplay extends Component {
 			userInputCombination: [this.state.venueUserInput, this.state.restaurantData[restaurantId]] 
 			
 		})
-	}	
+	}	 // end of getRestaurantCard
+
 	// confirming/combining selection VENUE and RESTO to the COMBO state
 	confirmUserInputChoices = () => {
 		this.setState({
 			// create a userInputCombination state
 			restaurantPage: false,
 			// userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
-
 		})
-
 		// event/resto combo saved successfully onto firebase~
 		console.log(this.state.userInputCombination);
-	}
+		const dbRef = firebase.database().ref();
+		dbRef.push(this.state.userInputCombination);
+	} // end of confirmUserInputChoices
 
 	handleClick = () => {
 		// Adds to ProgressBar with each click
@@ -118,17 +122,13 @@ class DynamicMainDisplay extends Component {
 		else {
 			this.confirmUserInputChoices()
 		}
-	}
+	} // end of handleClick
 
-
-	render(){        
+	render() {
 		return(
 			<Fragment>
 				<div className="dynamicMainDisplay">
-
 					<ProgressBar percentage={this.state.percentage}/>
-
-
 					<h2>This is the h2</h2>
 					<Carousel 
 						venuePage={this.state.venuePage}
@@ -138,8 +138,8 @@ class DynamicMainDisplay extends Component {
 						userInputCombination={this.state.userInputCombination}
 						restaurantData={this.state.restaurantData}
 						getRestaurantCard={this.getRestaurantCard}
+						venueUserInput={this.state.venueUserInput}
 					/>
-					
 					<Link to={{
 						pathname: this.state.restaurantUserInput ? '/modal' : undefined, 
 						state: {
@@ -149,13 +149,10 @@ class DynamicMainDisplay extends Component {
 							displayModal: true
 						}
 					}}>
-
 						<button onClick={this.handleClick}>Confirm Selection</button>
 					</Link>
-
 					<Route path="/modal" component={Modal}></Route>
 				</div>
-
 			</Fragment>
 		)
 	}
