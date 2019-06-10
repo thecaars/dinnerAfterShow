@@ -11,22 +11,23 @@ import {
 
 
 class RestaurantCard extends Component {
+	constructor() {
+		super();
+		this.state = {
+			children: [],
+			activeItemIndex: 0,
+			distanceBetweenLocations: []
+		}
+	}
 
 	handleRestaurantClick = (e) => {
 		this.props.getRestaurantCard(e.target.parentElement.id);
 	}
 
-	componentWillMount() {
-		this.setState({
-			children: [],
-			activeItemIndex: 0,
-			distanceBetweenLocations: []
-		});
-	}
 
-	createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
+	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
-	changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
+	// changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
 
 	dataFunction = (venue, restaurant, i) => {
 		const lat1 = venue._embedded.venues[0].location.longitude
