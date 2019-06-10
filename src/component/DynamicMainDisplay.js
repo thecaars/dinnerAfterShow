@@ -54,11 +54,12 @@ class DynamicMainDisplay extends Component {
 				dataResponse: `json`,
 				params: {
 					apikey: zomatoKey,
-					radius: 1000,
+					start: 1,
+					count: 20,
 					lat: latitude,
 					lon: longitude,
-					// start: 1,
-					// count: 20
+					radius: 1000,
+					sort: "real_distance"
 				}
 			}).then(results => {
 				this.setState({
@@ -78,8 +79,6 @@ class DynamicMainDisplay extends Component {
 		const longitude = this.state.venueUserInput._embedded.venues[0].location.longitude;
 		const latitude = this.state.venueUserInput._embedded.venues[0].location.latitude;
 
-		console.log(longitude)
-		console.log(latitude)
 		// calling the zomato API
 		this.getRestaurantData(longitude, latitude);
 		// changing from venue display to restaurant display
@@ -105,7 +104,6 @@ class DynamicMainDisplay extends Component {
 			// userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
 		})
 		// event/resto combo saved successfully onto firebase~
-		console.log(this.state.userInputCombination);
 		const dbRef = firebase.database().ref();
 		dbRef.push(this.state.userInputCombination);
 	} // end of confirmUserInputChoices
@@ -129,7 +127,6 @@ class DynamicMainDisplay extends Component {
 			<Fragment>
 				<div className="dynamicMainDisplay">
 					<ProgressBar percentage={this.state.percentage}/>
-
 
 					<h2>Please make a selection</h2>
 					<Carousel 

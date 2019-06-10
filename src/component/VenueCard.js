@@ -59,11 +59,9 @@ class VenueCard extends Component {
 										ticketMasterData: ticketMasterData
 									}
 								}}>
-									<button onClick={this.handleVenueClick} className="moreInfo"><i class="fas fa-info-circle"></i></button>
+									<button onClick={this.handleVenueClick} className="moreInfo">icon</button>
 								</Link>
-								<div className="venueImageContainer">
-									<img src={event.images[0].url} alt={event.name} />
-								</div>
+								<img src={event.images[0].url} alt={event.name} />
 								<p>{event.dates.start.localDate}</p>
 								{/* Event name */}
 								<h3>{event.name}</h3>

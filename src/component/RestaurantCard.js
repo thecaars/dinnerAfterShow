@@ -83,7 +83,7 @@ class RestaurantCard extends Component {
 									restaurantData: restaurantData,
 									displayModal: true, 
 								}}}>	
-								<button className="moreInfo"><i class="fas fa-info-circle"></i></button>
+								<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
 							</Link>
 							<h3>{restaurant.restaurant.name}</h3>
 							
