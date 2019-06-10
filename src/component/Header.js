@@ -31,11 +31,18 @@ componentDidMount() {
 	// Formatting Date for ticketmaster api call
 	const newDate = new Date();
 	const year = newDate.getFullYear();
-	const newMonth = newDate.getMonth();
-	const newDay = newDate.getDay();
+	const newMonth = newDate.getMonth() + 1;
+	const newDay = newDate.getDate();
 	let month = (newMonth < 10) ? "0" + newMonth : newMonth;
 	let day = (newDay < 10) ? "0" + newDay : newDay;
 	let dateString = (`${year}-${month}-${day}T12:00:00Z`)
+	console.log(newDate)
+	console.log(year)
+	console.log(newMonth)
+	console.log(newDay)
+	console.log(month)
+	console.log(day)
+	console.log(dateString)
 
 	this.setState({ dateString })
 
@@ -50,7 +57,7 @@ componentDidMount() {
 					country: country,
 					city: city,
 					sort: `date,asc`,
-					startDateTime: this.state.date
+					startDateTime: this.state.dateString
 			}
 		}).then(results => {
 			this.setState({
@@ -82,7 +89,12 @@ handleOnSubmit = (e) => {
 	})
 	: alert('please complete your inputs')
 
-
+	if(this.state.userCity) {
+		setTimeout(() => {
+			document.getElementById('carouselContainer').scrollIntoView()
+		}, 10);
+	}
+	
 	this.getTicketMasterData(this.state.userCountry, this.state.userCity);
 }
 
@@ -137,7 +149,7 @@ displaySavedCombos = () => {
 							</div>
 							<div className="submitButton">
 								<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
-								<button id="submitButton" type="submit">begin</button>
+								<button href="#carouselContainer" id="submitButton" type="submit">begin</button>
 							</div>
 						</form>
 

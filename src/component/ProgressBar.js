@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 const Tracker = styled.div`
 	width: 50%;
-   height: 20px;
-   margin: 15px auto;
+	height: 20px;
+	margin: 15px auto;
 	background: #222;
 	border-radius: 10px;
 	box-shadow: inset 0 0 5px #000;
@@ -27,11 +27,9 @@ class ProgressBar extends Component {
    render() {
       return (
          <Tracker>
-
             <ProgressInTracker 
                percentage={this.percentageLimits(0, this.props.percentage, 100)}
             />
-
          </Tracker>
       )
    }

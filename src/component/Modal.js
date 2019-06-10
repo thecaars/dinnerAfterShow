@@ -73,9 +73,9 @@ class Modal extends Component {
                 combo: combo
             });
 
-            alert('Thanks for sharing your combo choice.');
+					alert('Thanks for sharing your combo choice.');
+						window.location.href = "/"
 
-            window.location.reload();
         } else {
             alert('Please enter your name before saving the data.')
         } 
@@ -83,9 +83,9 @@ class Modal extends Component {
     
     
 
-    resetApp = () => {
-        window.location.reload()
-    }
+	resetApp = () => {
+		window.location.href = "/"
+	}
 
 
     render(){
