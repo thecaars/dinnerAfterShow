@@ -11,22 +11,27 @@ import {
 
 
 class RestaurantCard extends Component {
+	constructor() {
+		super();
+		this.state = ({
+			distanceArray: [],
+		})
+	}
 
 	handleRestaurantClick = (e) => {
 		this.props.getRestaurantCard(e.target.parentElement.id);
 	}
 
-	componentWillMount() {
-		this.setState({
-			children: [],
-			activeItemIndex: 0,
-			distanceArray: []
-		});
-	}
+	// componentWillMount() {
+	// 	this.setState({
+	// 		children: [],
+	// 		activeItemIndex: 0,
+	// 	});
+	// }
 
-	createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
+	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
-	changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
+	// changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
 
 	dataFunction = (venue, restaurant, i) => {
 		const lat1 = venue._embedded.venues[0].location.latitude
@@ -43,7 +48,6 @@ class RestaurantCard extends Component {
 		const distanceBetweenLocations = 2 * earth * Math.asin(Math.sqrt(equation));
 		const distanceInMetres = distanceBetweenLocations * 1000
 		const distanceRounded = Math.round(distanceInMetres)
-		console.log(distanceRounded)
 		this.state.distanceArray.push(distanceRounded)
 	}
 
