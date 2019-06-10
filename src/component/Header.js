@@ -77,20 +77,33 @@ handleOnChange = (e) => {
 handleOnSubmit = (e) => {
 	e.preventDefault();
 
-	this.state.userCity
-	? this.setState({
-		dynamicMainDisplayPage: true,
-		savedCombosPage: false
-	})
-	: alert('Please remember to choose a country and city!')
-
+	// this.state.userCity
+	// ? this.setState({
+	// 	dynamicMainDisplayPage: true,
+	// 	savedCombosPage: false
+	// })
+	// : alert('please complete your inputs')	
+	
 	if(this.state.userCity) {
+		
+		this.setState({
+			dynamicMainDisplayPage: true,
+			savedCombosPage: false
+		})
+
 		setTimeout(() => {
 			document.getElementById('carouselContainer').scrollIntoView()
 		}, 10);
+
+		this.getTicketMasterData(this.state.userCountry, this.state.userCity);
+
+	} 
+
+	else {
+		alert('please complete your inputs')
 	}
 	
-	this.getTicketMasterData(this.state.userCountry, this.state.userCity);
+	
 }
 
 displaySavedCombos = () => {
