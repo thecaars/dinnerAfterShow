@@ -63,20 +63,22 @@ class Modal extends Component {
         })
     }
 
-    submitToFirebase = (name, combo) => {
+    submitToFirebase = async (name, combo) => {
+        console.log('submitToFirebase', name, combo)
         // storing user's name, user's choosen event/resto combo to firebase
         const dbRef = firebase.database().ref();
 
         if (this.state.userName) {
-            dbRef.push({
+            //loader
+            await dbRef.push({
                 name: name,
                 combo: combo
             });
-
-					alert('Thanks for sharing your combo choice.');
-						window.location.href = "/"
-
-        } else {
+            //loader off
+			alert('Thanks for sharing your combo choice.');
+			window.location.href = "/"
+        } 
+        else {
             alert('Please enter your name before saving the data.')
         } 
     }
