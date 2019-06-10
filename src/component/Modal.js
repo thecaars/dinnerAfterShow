@@ -123,7 +123,7 @@ class Modal extends Component {
                         <Link to="/"><button className="exitModal"><i class="fas fa-window-close"></i></button></Link>
                         <h1 style={h1CSS}>{restaurantData[restaurantSpecificId].restaurant.name}</h1>
                         <p>{restaurantData[restaurantSpecificId].restaurant.location.address}</p>
-                        <p>{restaurantData[restaurantSpecificId].restaurant.price_range}</p>
+                        <p>Price Range: {restaurantData[restaurantSpecificId].restaurant.price_range}/5</p>
                         <a href={restaurantData[restaurantSpecificId].restaurant.url} className="restaurantLink">Link to Zomato Profile</a>
                     </div>
 
