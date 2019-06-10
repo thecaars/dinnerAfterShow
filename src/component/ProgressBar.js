@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const Tracker = styled.div`
 	width: 50%;
@@ -14,7 +13,7 @@ const Tracker = styled.div`
 const ProgressInTracker = styled.div`
    width: ${props => props.percentage}%;
    height: 100%;
-   background: #dfe132;
+   background: #4c003e;
    border-radius: 8px;
    transition: width 0.3s ease-in;
 `;
@@ -34,9 +33,5 @@ class ProgressBar extends Component {
       )
    }
 } // end of ProgressBar extends Component
-
-ProgressBar.propTypes = {
-   percentage: PropTypes.number,
-}
 
 export default ProgressBar

@@ -82,7 +82,7 @@ handleOnSubmit = (e) => {
 		dynamicMainDisplayPage: true,
 		savedCombosPage: false
 	})
-	: alert('please complete your inputs')
+	: alert('Please remember to choose a country and city!')
 
 	if(this.state.userCity) {
 		setTimeout(() => {
@@ -150,7 +150,7 @@ displaySavedCombos = () => {
 
 						<div className="communitySuggestionPage">
 							<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
-							<button id="communitySuggestion" onClick={this.displaySavedCombos}>In a hurry? See other results</button>
+							<button id="communitySuggestion" onClick={this.displaySavedCombos}>In a hurry? Click for saved combinations</button>
 						</div>
 					</div>
 				</header>
