@@ -45,10 +45,10 @@ class SavedCombos extends Component {
                 {
                     this.state.savedCombos.map((data) => {
                         const userName = data.combo.name;
-                        const event = data.combo.combo[0];
+                        const event = data.combo[0];
                         const eventDate = event.dates.start;
                         const eventVenue = event._embedded.venues[0];
-                        const resto = data.combo.combo[1].restaurant;
+                        const resto = data.combo[1].restaurant;
 
                         return(
                             <div key={data.key} className="singleCombo">

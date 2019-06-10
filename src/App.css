@@ -12,22 +12,15 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 /* **************************************************** */
 html {
   font-size: 125%;
-  font-family: 'Hind Siliguri', sans-serif;
+	font-family: 'Hind Siliguri', sans-serif;
+}
+
+body {
+	scroll-behavior: smooth;
 }
 
 .App {
   text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .wrapper {
@@ -72,8 +65,8 @@ h2 {
 
 header {
   background-image:
-        linear-gradient(to bottom, rgba(49, 49, 49, 0.5), rgba(24, 22, 22, 0.5)),
-        url('./assets/jeremy-bishop-114041-unsplash.jpg');
+    linear-gradient(to bottom, rgba(49, 49, 49, 0.5), rgba(24, 22, 22, 0.5)),
+    url('./assets/jeremy-bishop-114041-unsplash.jpg');
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -130,7 +123,8 @@ header {
 .dynamicMainDisplay {
   position: relative;
   min-height: 100vh;
-  background: #1d1d1d;
+  /* background: #1d1d1d; */
+  background: #3b3b3b;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -146,8 +140,8 @@ header {
 /*                       carousel                       */
 /* **************************************************** */
 .carouselContainer {
-  width: 95%;
-  max-width: 95%;
+  width: 90%;
+  max-width: 90%;
 }
 
 /* **************************************************** */

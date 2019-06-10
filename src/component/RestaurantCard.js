@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import ItemsCarousel from 'react-items-carousel';
-import DistanceBetween from './DistanceBetween';
 import range from 'lodash/range';
 import Modal from './Modal.js';
 import {
@@ -21,12 +20,29 @@ class RestaurantCard extends Component {
 		this.setState({
 			children: [],
 			activeItemIndex: 0,
+			distanceBetweenLocations: []
 		});
 	}
 
 	createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
 	changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
+
+	dataFunction = (venue, restaurant, i) => {
+		const lat1 = venue._embedded.venues[0].location.longitude
+		const lon1 = venue._embedded.venues[0].location.longitude
+		const lat2 = restaurant[i].restaurant.location.latitude
+		const lon2 = restaurant[i].restaurant.location.longitude
+		this.distanceBetweenLocations(lat1, lon1, lat2, lon2)
+	}
+
+	distanceBetweenLocations = (lat1, lon1, lat2, lon2) => {
+		const pi = 0.017453292519943295;    //This is  Math.PI / 180
+		const equation = 0.5 - Math.cos((lat2 - lat1) * pi) / 2 + Math.cos(lat1 * pi) * Math.cos(lat2 * pi) * (1 - Math.cos((lon2 - lon1) * pi)) / 2;
+		const earth = 6371; //  Earth distance in km so it will return the distance in km
+		const distanceBetweenLocations = 2 * earth * Math.asin(Math.sqrt(equation));
+		this.state.distanceBetweenLocations.push(distanceBetweenLocations)
+	}
 
 	render() {
 		const { restaurantData, restaurantPage, venuePage } = this.props
@@ -55,6 +71,7 @@ class RestaurantCard extends Component {
 					requestToChangeActive={value => this.setState({ activeItemIndex: value })}
 				>
 				{this.props.restaurantData.map((restaurant, i) => {
+					{ this.dataFunction(this.props.venueUserInput, this.props.restaurantData, i) }
 					return (
 						<div className="restaurantCard" key={restaurant.id} id={i} onClick={this.handleRestaurantClick} role="button">
 							<Link to={{
@@ -69,6 +86,7 @@ class RestaurantCard extends Component {
 								<button className="moreInfo">info</button>
 							</Link>
 							<h3>{restaurant.restaurant.name}</h3>
+							
 							<h4>{restaurant.restaurant.cuisines}</h4>
 							
 							{restaurant.restaurant.user_rating.aggregate_rating > 0 
@@ -76,14 +94,8 @@ class RestaurantCard extends Component {
 							: <h4>{restaurant.restaurant.user_rating.rating_text}</h4>}
 							
 							<p>{restaurant.restaurant.location.address}</p>
-							<DistanceBetween
-								restaurantData={this.props.restaurantData}
-								getRestaurantCard={this.props.getRestaurantCard}
-								venuePage={this.props.venuePage}
-								restaurantPage={this.props.restaurantPage}
-								ticketMasterData={this.props.ticketMasterData}
-								venueUserInput={this.props.venueUserInput}
-							/>
+
+							<p>{this.state.distanceBetweenLocations[i]}</p>
 						</div>
 					)
 				})}
