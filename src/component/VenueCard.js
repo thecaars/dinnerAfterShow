@@ -15,27 +15,23 @@ class VenueCard extends Component {
 		this.state = {
 			children: [],
 			activeItemIndex: 0,
-			selectedCard: false,
+			selectedCard: true,
 		}
 	}
 	
 	handleVenueClick = (e) => {
-		const clickedVenue = e.target.parentElement.id
-		
-		this.props.getVenueCard(clickedVenue);
-		
-		
+		const clickedVenueId = e.target.parentElement.id
+		this.props.getVenueCard(clickedVenueId);
 
+		if (this.state.selectedCard) {
+			e.target.parentElement.className = `venueCard show`
+		} else if (!this.state.selectedCard) {
+			e.target.parentElement.className = `venueCard hide`
+		}
 		this.setState({
 			selectedCard: !this.state.selectedCard
 		})
 	};
-
-	// toggleClass = () => {
-	// 	this.setState({
-	// 		selectedCard: !this.state.selectedCard
-	// 	})
-	// }
 
 	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
@@ -43,7 +39,8 @@ class VenueCard extends Component {
 
 	render() {
 		const {venuePage, restaurantPage, ticketMasterData} = this.props
-		const selectedCard = this.state.selectedCard ? 'show' : 'hide';
+		// const selectedCard = this.state.selectedCard ? 'show' : 'hide';
+
 		return (
 			<Fragment>
 				<ItemsCarousel
@@ -64,7 +61,7 @@ class VenueCard extends Component {
 				>
 					{this.props.ticketMasterData.map((event, i) => {
 						return (
-							<div className={`venueCard ${selectedCard}`}key={event.id} id={i} onClick={this.handleVenueClick} role="button">
+							<div className={`venueCard`}key={event.id} id={i} onClick={this.handleVenueClick} role="button">
 								{/* THIS IS MODAL*/}
 								<Link id={i} to={{
 									pathname: venuePage ? '/modal' : undefined, 
