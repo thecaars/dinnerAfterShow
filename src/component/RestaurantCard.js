@@ -108,7 +108,7 @@ class RestaurantCard extends Component {
 								</div>
 								<h3>{restaurant.restaurant.name}</h3>
 								
-								<h4>{restaurant.restaurant.cuisines}</h4>
+								<p>{restaurant.restaurant.cuisines}</p>
 								
 								{restaurant.restaurant.user_rating.aggregate_rating > 0 
 								? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>

@@ -98,18 +98,15 @@ class Modal extends Component {
             return(
                 <> 
                     <div style={venuePageCSS} className="venueModal">
-                        <div className="venueModalInnerWrapper">
+                        <div className="venueModal wrapper">
                             <h2 style={h1CSS}>{ticketMasterData[specificId].name}</h2>
                             <h3>Venue & Address</h3>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].name}</p>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].address.line1} {ticketMasterData[specificId]._embedded.venues[0].postalCode}</p>
                             <a href={ticketMasterData[specificId].url} className="venueLink" aria-label="go to ticketmaster page for the current event" target="_blank">buy your ticket here</a>
                         </div>
-                        
-
-                        <Link to="/"><button className="exitModal"><i class="fas fa-window-close"></i></button> </Link>
+                        <Link to="/"><button className="exitModal"><i class="fas fa-window-close"></i></button></Link>
                     </div> 
-
 
                     <Route exact path="/" component={App}></Route>
                 </>
@@ -126,7 +123,6 @@ class Modal extends Component {
                         <p>Price Range: {restaurantData[restaurantSpecificId].restaurant.price_range}/5</p>
                         <a href={restaurantData[restaurantSpecificId].restaurant.url} className="restaurantLink">Link to Zomato Profile</a>
                     </div>
-
                     <Route exact path="/" component={App}></Route>
                 </>
             )
@@ -175,14 +171,10 @@ class Modal extends Component {
                             <button onClick={() => { this.submitToFirebase(this.state.userName, userInputCombination) }}>save</button>
                         </div>
                     </div>
-
-
-
                     <Route exact path="/" component={App}></Route>
                 </Fragment>
             )
         } 
-
         else { return (null)}
     }
 }

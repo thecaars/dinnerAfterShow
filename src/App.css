@@ -180,7 +180,7 @@ button {
 /* **************************************************** */
 .dynamicMainDisplay {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   background: #ccdbdc;
   display: flex;
   flex-direction: column;
@@ -288,9 +288,9 @@ button {
 	height: 100%;
 }
 
-.venueCard p:first-of-type {
+.venueCard p:first-of-type,
+.restaurantCard h4:last-of-type {
 	background-color: #cf511b;
-	width: 100px;
 	border-radius: 5px;
 	color: white;
 	margin: 20px auto 10px;
@@ -298,9 +298,21 @@ button {
 	font-size: .8rem;
 }
 
+.venueCard p:first-of-type {
+	width: 100px;
+}
+
+.restaurantCard h4:last-of-type {
+	width: 70px;	
+}
+
+.restaurantCard p:first-of-type {
+	font-weight: bold;
+}
+
 .fas {
 	color: white;
-	font-size: .7rem
+	font-size: 1rem
 }
 
 .fas:hover {
@@ -338,6 +350,26 @@ button {
   border-bottom: 1px dashed #cf511b;
 }
 
+.venueLink:hover,
+.restaurantLink:hover {
+	color: #4c003e;
+}
+
+.venueModal,
+.restaurantModal {
+	width: 80%;
+	background: rgba(204, 219, 220, .6);
+	padding: 50px;
+	border-radius: 2px;
+}
+
+.venueModal h2,
+.venueModal,
+.restaurantModal,
+.restaurantModal {
+	color: #36002c;
+}
+
 .comboModal {
   display: flex;
   flex-direction: column;
@@ -345,7 +377,7 @@ button {
 }
 
 .comboCards {
-  background: rgba(223, 225, 50, 0.5);
+  background: rgba(204, 219, 220, 1);
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -368,10 +400,15 @@ button {
 
 .exitModal {
   font-size: 2rem;
-  background: #cf511b;
+  background: #4c003e;
   line-height: 0;
-  border: 1px solid #cf511b;
+  border: none;
   margin: 20px;
+}
+
+.fa-window-close {
+	background: #000;
+	color: #ccdbdc;
 }
 
 /* **************************************************** */
