@@ -29,16 +29,16 @@ const restaurantPageCSS = {
     color: "white"
 }
 
-const confirmationPageCSS = {
+const confirmationPageCSS = `
     background: "rgba(0, 0, 0, 0.6)",
     position: "absolute",
     top: "0",
     left: "0",
-    height: "100vh",
+    min-height: "100vh",
     width: "100%",
-    padding: "100px 0",
-    color: "white"
-}
+    padding: "20px 0",
+    color: "#4c003e"
+`;
 
 const confirmedChoicesDiv = {
     // width: "50%"
@@ -65,7 +65,7 @@ class Modal extends Component {
 
     submitToFirebase = async (name, combo) => {
         console.log('submitToFirebase', name, combo)
-        // storing user's name, user's choosen event/resto combo to firebase
+        // storing user's name, user's choosen event/restaurant combo to firebase
         const dbRef = firebase.database().ref();
 
         if (this.state.userName) {
@@ -97,7 +97,7 @@ class Modal extends Component {
         if (displayModal && venuePage) {
             return(
                 <> 
-                    <div style={venuePageCSS} className="venueModal">
+                    <div style={venuePageCSS}>
                         <div className="venueModal wrapper">
                             <h2 style={h1CSS}>{ticketMasterData[specificId].name}</h2>
                             <h3>Venue & Address</h3>
@@ -116,12 +116,14 @@ class Modal extends Component {
         else if (displayModal && restaurantPage) {
             return(
                 <>
-                    <div style={restaurantPageCSS} key={restaurantData[restaurantSpecificId].restaurant.id} className="restoModal">
+                    <div style={restaurantPageCSS} key={restaurantData[restaurantSpecificId].restaurant.id}>
+                        <div className="restaurantModal wrapper">
+                            <h1 style={h1CSS}>{restaurantData[restaurantSpecificId].restaurant.name}</h1>
+                            <p>{restaurantData[restaurantSpecificId].restaurant.location.address}</p>
+                            <p>Price Range: {restaurantData[restaurantSpecificId].restaurant.price_range}/5</p>
+                            <a href={restaurantData[restaurantSpecificId].restaurant.url} className="restaurantLink">Link to Zomato Profile</a>
+                        </div>
                         <Link to="/"><button className="exitModal"><i class="fas fa-window-close"></i></button></Link>
-                        <h1 style={h1CSS}>{restaurantData[restaurantSpecificId].restaurant.name}</h1>
-                        <p>{restaurantData[restaurantSpecificId].restaurant.location.address}</p>
-                        <p>Price Range: {restaurantData[restaurantSpecificId].restaurant.price_range}/5</p>
-                        <a href={restaurantData[restaurantSpecificId].restaurant.url} className="restaurantLink">Link to Zomato Profile</a>
                     </div>
                     <Route exact path="/" component={App}></Route>
                 </>
@@ -137,15 +139,14 @@ class Modal extends Component {
                             <div style={confirmedChoicesDiv} className="venueResult">
                                 <img src={userInputCombination[0].images[0].url} alt={userInputCombination[0].name} />
                                 <h3>Date & Time</h3>
-                                <p>{userInputCombination[0].dates.start.localDate}</p>
-                                <p>{userInputCombination[0].dates.start.localTime}</p>
+                                <p>{userInputCombination[0].dates.start.localDate} at {userInputCombination[0].dates.start.localTime}</p>
                                 <h3>Event Name</h3>
                                 <p>{userInputCombination[0].name}</p>
                                 <h3>Event Venue</h3>
                                 <p>{userInputCombination[0]._embedded.venues[0].name}</p>
                             </div>
 
-                            <div style={confirmedChoicesDiv} className="restoResult">
+                            <div style={confirmedChoicesDiv} className="restaurantResult">
                                 <h3>{userInputCombination[1].restaurant.name}</h3>
                                 <p>{userInputCombination[1].restaurant.cuisines}</p>
                                 <p>{userInputCombination[1].restaurant.user_rating.aggregate_rating}</p>

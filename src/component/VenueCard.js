@@ -66,18 +66,18 @@ class VenueCard extends Component {
 						return (
 							<Fragment>
 								{/* THIS IS MODAL*/}
-								<Link id={i} to={{
-									pathname: venuePage ? '/modal' : undefined,
-									state: {
-										specificId: i,
-										displayModal: true,
-										venuePage: venuePage,
-										ticketMasterData: ticketMasterData
-									}
-								}}>
-									<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
-								</Link>
 								<div className={`venueCard`}key={event.id} id={i} onClick={this.handleVenueClick} role="button">
+									<Link id={i} to={{
+										pathname: venuePage ? '/modal' : undefined,
+										state: {
+											specificId: i,
+											displayModal: true,
+											venuePage: venuePage,
+											ticketMasterData: ticketMasterData
+										}
+									}}>
+										<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
+									</Link>
 									<div className="imageContainer">
 										<img className="cardImage" src={event.images[0].url} alt={event.name} />
 									</div>

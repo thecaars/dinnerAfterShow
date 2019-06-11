@@ -156,7 +156,7 @@ class DynamicMainDisplay extends Component {
 						getRestaurantCard={this.getRestaurantCard}
 						venueUserInput={this.state.venueUserInput}
 					/>
-					<Link to={{
+					<Link className="dynamicConfirmButtonContainer" to={{
 						pathname: this.state.restaurantUserInput ? '/modal' : undefined, 
 						state: {
 							userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput],
