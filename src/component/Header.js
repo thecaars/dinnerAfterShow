@@ -116,10 +116,6 @@ handleOnSubmit = (e) => {
 		}
 
 		this.getTicketMasterData(this.state.userCountry, this.state.userCity);
-		
-		// setTimeout(() => {
-		// 	document.getElementById('carouselContainer').scrollIntoView()
-		// }, 100);
 
 	}  // end of if(this.state.userCity) statement
 
@@ -160,16 +156,16 @@ displaySavedCombos = () => {
 												<option value="US">United States</option>
 											</optgroup>
 										</select>
-								</div>
-								<div className="textInput">
-									<label htmlFor="city"></label>
-									<input id="city" type="text" onChange={this.handleOnChange} />
-								</div>
-							</div>
-							<div className="submitButton">
-								<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
-								<button href="#carouselContainer" id="submitButton" type="submit">begin</button>
-							</div>
+											<label htmlFor="city"></label>
+									<input id="city" type="text" placeholder="E.g. Toronto" onChange={this.handleOnChange} />
+									</div>
+									<div className="submitButton">
+										<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
+										<button href="#carouselContainer" id="submitButton" type="submit">Begin</button>
+										<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
+										<button id="communitySuggestion" onClick={this.displaySavedCombos}>Previously Saved Combos</button>
+									</div>
+								</div>			
 						</form>
 					</div>
 				</header>

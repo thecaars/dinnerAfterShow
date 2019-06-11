@@ -252,19 +252,24 @@ button {
 .restaurantCard {
   background: white;
   width: 90%;
-  height: 90%;
+  height: 100%;
   margin: 0 auto;
 	position: relative;
   border-radius: 2px;
 }
 
-.venueCard:focus,
-.venueCard:active {
+.show {
 	-webkit-box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
-	box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
+	box-shadow: 5px 2px 25px 0 rgba(0, 0, 0, 0.5);
 }
+
+.hide {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 .imageContainer {
-	height: 40%;
+	height: 50%;
 }
 
 .venueCard img,
@@ -301,17 +306,21 @@ button {
   line-height: 0;
   position: absolute;
   top: 5px;
-  right: 5px;
+  z-index: 2;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 /* **************************************************** */
 /*                        modals                        */
 /* **************************************************** */
-/* bringing the style for each modal here later */
-.venueModal h1,
-.restoModal h1 {
-  /* margin: 20px 0; */
-}
 
 .venueLink,
 .restaurantLink {
