@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 
 const venuePageCSS = {
-    background: "rgba(0, 0, 0, 0.6)",
+    background: "rgba(0, 0, 0, 0)",
     position: "absolute",
     top: "0",
     left: "0",
@@ -19,7 +19,7 @@ const venuePageCSS = {
 }
 
 const restaurantPageCSS = {
-    background: "rgba(0, 0, 0, 0.6)",
+    background: "rgba(0, 0, 0, 0)",
     position: "absolute",
     top: "0",
     left: "0",
@@ -30,7 +30,7 @@ const restaurantPageCSS = {
 }
 
 const confirmationPageCSS = `
-    background: "rgba(0, 0, 0, 0.6)",
+    background: "rgba(0, 0, 0, 0)",
     position: "absolute",
     top: "0",
     left: "0",
@@ -64,7 +64,6 @@ class Modal extends Component {
     }
 
     submitToFirebase = async (name, combo) => {
-        console.log('submitToFirebase', name, combo)
         // storing user's name, user's choosen event/restaurant combo to firebase
         const dbRef = firebase.database().ref();
 

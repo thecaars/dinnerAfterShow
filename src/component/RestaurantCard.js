@@ -122,11 +122,11 @@ class RestaurantCard extends Component {
 								
 								{restaurant.restaurant.user_rating.aggregate_rating > 0 
 								? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>
-								: <h4>{restaurant.restaurant.user_rating.rating_text}</h4>}
+									: <h4 className="notRated">{restaurant.restaurant.user_rating.rating_text}</h4>}
 								
 								<p>{restaurant.restaurant.location.address}</p>
 
-								<p>Distance from Venue: {this.state.distanceArray[i]}m</p>
+								<p>Distance from Venue: <span>{this.state.distanceArray[i]}m</span></p>
 								<div className="overlay" onClick={this.handleRestaurantClick}></div>
 							</div>
 						</Fragment>
