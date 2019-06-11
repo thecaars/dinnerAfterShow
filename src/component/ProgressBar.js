@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Tracker = styled.div`
-	width: 50%;
-	height: 20px;
-	margin: 15px auto;
+	width: 40%;
+	height: 10px;
+	margin: 8px auto;
 	background: white;
 	border-radius: 10px;
 `;

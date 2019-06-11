@@ -160,14 +160,14 @@ button {
   width: calc(50% - 20px);
 }
 
-.headerInnerWrapper select:hover,
+/* .headerInnerWrapper select:hover,
 .headerInnerWrapper select:focus,
 .headerInnerWrapper select:active,
 .headerInnerWrapper input:hover,
 .headerInnerWrapper input:focus,
 .headerInnerWrapper input:active {
 
-}
+} */
 
 .headerInnerWrapper button:hover,
 .headerInnerWrapper button:focus {
@@ -180,7 +180,7 @@ button {
 /* **************************************************** */
 .dynamicMainDisplay {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   background: #ccdbdc;
   display: flex;
   flex-direction: column;
@@ -199,11 +199,15 @@ button {
   color: #ccdbdc;
   border: none;
   border-radius: 2px;
-  padding: 10px;
+  padding: 5px 10px;
 }
 
 .dynamicConfirmButton:hover {
 	background: #4c003e;
+}
+
+.dynamicConfirmButtonContainer {
+  padding-bottom: 10px;
 }
 
 /* **************************************************** */
@@ -211,7 +215,7 @@ button {
 /* **************************************************** */
 .carouselContainer {
   width: 90%;
-	max-width: 90%;
+  max-width: 90%;
 }
 
 .sc-EHOje,
@@ -250,8 +254,8 @@ button {
 .restaurantCard {
   background: white;
   width: 90%;
-  min-height: 75%;
-	margin: 50px auto;
+  min-height: 87%;
+	margin: 25px auto;
 	padding: 0;
 	position: relative;
   border-radius:2px;
@@ -266,7 +270,8 @@ button {
 .venueCard h3,
 .restaurantCard h3 {
 	margin-top: 0;
-	margin-bottom: 0;
+  margin-bottom: 0;
+  line-height: 1.4;
 }
 
 .show {
@@ -293,7 +298,7 @@ button {
 	background-color: #cf511b;
 	border-radius: 5px;
 	color: white;
-	margin: 20px auto 10px;
+	margin: 10px auto;
 	letter-spacing: .6px;
 	font-size: .8rem;
 }
@@ -315,8 +320,13 @@ button {
 	font-size: 1rem
 }
 
-.fas:hover {
+.fas:hover,
+.restaurantCard .fas:hover {
 	color: #dfe132;
+}
+
+.restaurantCard .fas {
+  color: black;
 }
 
 .moreInfo {
@@ -324,9 +334,9 @@ button {
 	border: none;
   font-size: 2rem;
   line-height: 0;
-  position: relative;
-  top: 80px;
-	left: 40%;
+  position: absolute;
+  top: 2%;
+	right: 2%;
   z-index: 2;	
 }
 
@@ -360,7 +370,8 @@ button {
 	width: 80%;
 	background: rgba(204, 219, 220, .6);
 	padding: 50px;
-	border-radius: 2px;
+  border-radius: 2px;
+  color: pink;
 }
 
 .venueModal h2,
@@ -387,8 +398,8 @@ button {
 }
 
 .venueResult,
-.restoResult {
-  width: 30%;
+.restaurantResult {
+  width: 45%;
 }
 
 .userName {
@@ -414,3 +425,33 @@ button {
 /* **************************************************** */
 /*                   SavedCombos page                   */
 /* **************************************************** */
+
+
+
+
+/* **************************************************** */
+/*                     media queries                    */
+/* **************************************************** */
+
+@media (max-width: 850px) {
+  .selectInput {
+    display: block;
+  }
+
+  .headerInnerWrapper select,
+  .headerInnerWrapper input {
+    text-align: center;
+  }
+}
+
+@media (max-width: 535px) {
+  .headerInnerWrapper {
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .headerInnerWrapper h1 {
+    font-size: 4rem;
+  }
+}

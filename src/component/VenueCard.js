@@ -122,22 +122,19 @@ class VenueCard extends Component {
 					{this.props.ticketMasterData.map((event, i) => {
 						return (
 							<Fragment>
-								{/* THIS OPENS A MODAL*/}
-								<Link id={i} to={{
-									pathname: venuePage ? '/modal' : undefined,
-									state: {
-										specificId: i,
-										displayModal: true,
-										venuePage: venuePage,
-										ticketMasterData: ticketMasterData
-									}
-								}}>
-									<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
-								</Link>
-
-								<div className={`venueCard ${this.props.selectedCardId === i ? `show` : `hide`}`} key={event.id} id={i} onClick={()=>{this.props.changeSelectedCard(i)}} role="button">
-									
-									
+								{/* THIS IS MODAL*/}
+								<div className={`venueCard`}key={event.id} id={i} onClick={this.handleVenueClick} role="button">
+									<Link id={i} to={{
+										pathname: venuePage ? '/modal' : undefined,
+										state: {
+											specificId: i,
+											displayModal: true,
+											venuePage: venuePage,
+											ticketMasterData: ticketMasterData
+										}
+									}}>
+										<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
+									</Link>
 									<div className="imageContainer">
 										<img className="cardImage" src={event.images[0].url} alt={event.name} />
 									</div>
