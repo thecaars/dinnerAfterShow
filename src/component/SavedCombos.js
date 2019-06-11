@@ -11,19 +11,21 @@ class SavedCombos extends Component {
     }
 
     createNewCombo = () => {
-        window.location.href = "/"
+			window.location.href = "/"
     }
     
     removeCombo = (comboId) => {
-        const dbRefCombo = firebase.database().ref(comboId);
+			const dbRefCombo = firebase.database().ref(comboId);
 
-        dbRefCombo.remove();
+			dbRefCombo.remove();
+				
+			window.location.href = "/"
     }
 
     render() {
         return(
-            <div id="combo" className="combo">
-                <h1>Shared Results</h1>
+            <div id="combo" className="savedCombos">
+                <h2>Shared Results</h2>
                 <label htmlFor="makeYourCombo" className="visuallyHidden">Create your own combo</label>
 								<button id="createNewCombo" className="createNewCombo" onClick={this.createNewCombo}>Create New Combo</button>
 
@@ -37,7 +39,7 @@ class SavedCombos extends Component {
 
                         return(
 													<div className="savedCombosOuterContainer">
-														<h2>{userName}'s Combo</h2>
+														<h3>{userName}'s Combo</h3>
 														<div key={data.key} className="savedCombosInnerContainer">
 																<div className="eventComboContainer comboContainer">
 																		<div className="imageContainer">

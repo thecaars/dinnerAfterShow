@@ -224,9 +224,7 @@ displaySavedCombos = () => {
 				}
 
 				{this.state.savedCombosPage
-					? <SavedCombos 
-							savedCombos={this.state.savedCombos}
-						/>
+					? <SavedCombos savedCombos={this.state.savedCombos} />
 					: null
 				}
 			</div>

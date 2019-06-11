@@ -101,18 +101,18 @@ class RestaurantCard extends Component {
 					{ this.dataFunction(this.props.venueUserInput, this.props.restaurantData, i) }
 					return (
 						<Fragment>
-							<Link to={{
-								pathname: restaurantPage ? '/modal' : undefined, 
-								state: {
-									restaurantSpecificId: i,
-									restaurantPage: restaurantPage,
-									venuePage: venuePage,
-									restaurantData: restaurantData,
-									displayModal: true, 
-								}}}>	
-								<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
-							</Link>
 							<div className="restaurantCard" key={restaurant.id} id={i} role="button">
+								<Link to={{
+									pathname: restaurantPage ? '/modal' : undefined, 
+									state: {
+										restaurantSpecificId: i,
+										restaurantPage: restaurantPage,
+										venuePage: venuePage,
+										restaurantData: restaurantData,
+										displayModal: true, 
+									}}}>	
+									<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
+								</Link>
 								<div className="imageContainer">
 									<img className="imageContainer" src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting" />
 								</div>
