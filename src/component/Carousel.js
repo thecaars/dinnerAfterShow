@@ -3,6 +3,20 @@ import VenueCard from './VenueCard.js';
 import RestaurantCard from './RestaurantCard.js';
 
 class Carousel extends Component {
+	constructor(){
+		super()
+		this.state ={
+			selectedCardId:null
+		}
+	}
+	
+	changeSelectedCard =(i)=>{
+		this.props.getVenueCard(i);
+		this.setState({
+			selectedCardId:i
+		})
+	
+	}
 	render() {
 		return (
 			<div id="carouselContainer" className="carouselContainer wrapper">
@@ -12,6 +26,8 @@ class Carousel extends Component {
 					getVenueCard={this.props.getVenueCard}
 					venuePage={this.props.venuePage}
 					restaurantPage={this.props.restaurantPage}
+					selectedCardId={this.state.selectedCardId}
+					changeSelectedCard={this.changeSelectedCard}
 				/>
 				: <RestaurantCard 
 					restaurantData={this.props.restaurantData}
