@@ -21,71 +21,11 @@ class VenueCard extends Component {
 		}
 	}
 	
-
-	// handleVenueClick = (e) => {
-	// 	if (this.state.selectedCardId == e.target.parentElement.id){
-	// 		this.handleInfoClick(e)
-	// 		e.target.parentElement.className = `venueCard show`
-	// 		this.setState({
-	// 			selectedCardId: e.target.parentElement.id
-	// 		})
-	// 	}
-	// 	else if (this.state.selectedCardId == e.target.parentElement.id){
-
-	// 	}
-	// }
-
-	
 	handleVenueClick = (e) => {
 		const targetClassName = e.target.parentElement.className
 		console.log(targetClassName)
-		// if (e.target.parentElement.className === `venueCard hide`) {
-		// 	// this.handleInfoClick(e)
-		// 	console.log(this.card.current)
-		// 	// this.setState({
-		// 	// 	selectedCard: !this.state.selectedCard
-		// 	// })
-
-		// 	// setTimeout(function(e) {
-		// 	// 	// console.log("this is just e ",e)
-		// 	// 	// console.log("e.target", e.target)
-		// 	// 	e.target.parentElement.className = `venueCard show`
-		// 	// }, 1000)
-		
-		// }
-		// else if(e.target.parentElement.className === `venueCard show`){
-		// 	this.handleInfoClick(e)
-		// 	// this.setState({
-		// 	// 	selectedCard: false
-		// 	// })
-		// }
-
+	
 	}
-
-	// handleVenueClick = (e) => {
-	// 	if (this.state.selectedCard && !this.state.isVenueCardClicked) {
-	// 		this.handleInfoClick(e)
-	// 		e.target.parentElement.className = `venueCard show`
-	// 		this.setState({
-	// 			selectedCard: !this.state.selectedCard,
-	// 			isVenueCardClicked: true
-	// 		})
-	// 	} else if (!this.state.selectedCard) {
-	// 		// need to check IF The venueCard has the class name of show in it, then give it JUST the venue card property AND revert ISVENUECARCLICKED to true 
-	// 		if( e.target.parentElement.className === `venueCard show`) {
-	// 				e.target.parentElement.className = `venueCard`
-	// 				this.setState({
-	// 					selectedCard: !this.state.selectedCard,
-	// 					isVenueCardClicked: false
-	// 				})
-	// 		} 
-			
-	// 	}
-
-	// 	this.setState({
-	// 	})
-
-	// };
 
 	handleInfoClick = (e) => {
 		console.log(e)
@@ -93,14 +33,10 @@ class VenueCard extends Component {
 		this.props.getVenueCard(clickedVenueId);
 	}
 
-	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
-
-	// changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
 
 	render() {
 		const {venuePage, restaurantPage, ticketMasterData} = this.props
-		// const selectedCard = this.state.selectedCard ? 'show' : 'hide';
-		// const selectedTernary = this.props.selectedCardId ===  ? `hide` : `hide`
+
 		return (
 			<Fragment>
 				<ItemsCarousel
@@ -123,7 +59,7 @@ class VenueCard extends Component {
 						return (
 							<Fragment>
 								{/* THIS IS MODAL*/}
-								<div className={`venueCard`}key={event.id} id={i} onClick={this.handleVenueClick} role="button">
+								<div className={`venueCard ${this.props.selectedCardId === i ? `show` : `hide`}`}key={event.id} id={i} onClick={() => {this.props.changeSelectedCard(i)}} role="button">
 									<Link id={i} to={{
 										pathname: venuePage ? '/modal' : undefined,
 										state: {
