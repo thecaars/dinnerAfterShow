@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
-import firebase from '../firebase.js';
 import Carousel from './Carousel.js';
 import {
 	BrowserRouter as Router,
@@ -11,8 +10,8 @@ import Modal from './Modal.js';
 import ProgressBar from './ProgressBar.js';
 
 class DynamicMainDisplay extends Component {
-	constructor(){
-			super();
+	constructor(props){
+			super(props);
 			this.state = {
 				//Zomato states
 				restaurantData: [],
@@ -24,8 +23,9 @@ class DynamicMainDisplay extends Component {
 				restaurantUrl: [],
 				
 				// Page state - controlling when they appear
-				venuePage: true,
-				restaurantPage:false,
+				venuePage: this.props.venuePage,
+				restaurantPage: this.props.restaurantPage,
+				resetVenueResto: this.props.resetVenueResto,
 				confirmationPage: false,
 				savedCombosPage: false,
 				modalPage: false,
@@ -41,6 +41,15 @@ class DynamicMainDisplay extends Component {
 				percentage: 33.34
 			}
 		} //end of constructor 
+
+	componentDidUpdate(prevProps) {
+		if (this.props.resetVenueResto !== prevProps.resetVenueResto) {
+			this.setState({
+				venuePage: true,
+				restaurantPage: false
+			})
+		  }
+	}
 
 	componentDidMount() {
 		const zomatoURL = `https://developers.zomato.com/api/v2.1/search`;
@@ -68,6 +77,8 @@ class DynamicMainDisplay extends Component {
 			}) // end of .then method
 		} // end of getRestaurantData
 	}// end of componentDidMount
+
+	
 
 	getVenueCard = (venueId) => {
 	this.setState({
@@ -103,9 +114,6 @@ class DynamicMainDisplay extends Component {
 			restaurantPage: false,
 			// userInputCombination: [this.state.venueUserInput, this.state.restaurantUserInput]
 		})
-		// event/resto combo saved successfully onto firebase~
-		const dbRef = firebase.database().ref();
-		dbRef.push(this.state.userInputCombination);
 	} // end of confirmUserInputChoices
 
 	handleClick = () => {
