@@ -260,6 +260,10 @@ button:hover {
 	font-size: 0.9rem;
 }
 
+.restaurantCard p span {
+	font-weight: bold;
+}
+
 .venueCard h3,
 .restaurantCard h3 {
 	margin-top: 0;

@@ -126,7 +126,7 @@ class RestaurantCard extends Component {
 								
 								<p>{restaurant.restaurant.location.address}</p>
 
-								<p>Distance from Venue: {this.state.distanceArray[i]}m</p>
+								<p>Distance from Venue: <span>{this.state.distanceArray[i]}m</span></p>
 								<div className="overlay" onClick={this.handleRestaurantClick}></div>
 							</div>
 						</Fragment>
