@@ -75,7 +75,7 @@ class Modal extends Component {
                 combo: combo
             });
             //loader off
-			alert('Thanks for sharing your combo choice.');
+			alert('Thank you for sharing your combination.');
 			window.location.href = "/"
         } 
         else {

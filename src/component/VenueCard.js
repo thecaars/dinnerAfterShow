@@ -16,22 +16,79 @@ class VenueCard extends Component {
 			children: [],
 			activeItemIndex: 0,
 			selectedCard: true,
+			selectedCardId: null,
+			isVenueCardClicked: false
 		}
 	}
 	
+
+	// handleVenueClick = (e) => {
+	// 	if (this.state.selectedCardId == e.target.parentElement.id){
+	// 		this.handleInfoClick(e)
+	// 		e.target.parentElement.className = `venueCard show`
+	// 		this.setState({
+	// 			selectedCardId: e.target.parentElement.id
+	// 		})
+	// 	}
+	// 	else if (this.state.selectedCardId == e.target.parentElement.id){
+
+	// 	}
+	// }
+
+	
 	handleVenueClick = (e) => {
-		this.handleInfoClick(e)
-		if (this.state.selectedCard) {
-			e.target.parentElement.className = `venueCard show`
-		} else if (!this.state.selectedCard) {
-			e.target.parentElement.className = `venueCard hide`
-		}
-		this.setState({
-			selectedCard: !this.state.selectedCard
-		})
-	};
+		const targetClassName = e.target.parentElement.className
+		console.log(targetClassName)
+		// if (e.target.parentElement.className === `venueCard hide`) {
+		// 	// this.handleInfoClick(e)
+		// 	console.log(this.card.current)
+		// 	// this.setState({
+		// 	// 	selectedCard: !this.state.selectedCard
+		// 	// })
+
+		// 	// setTimeout(function(e) {
+		// 	// 	// console.log("this is just e ",e)
+		// 	// 	// console.log("e.target", e.target)
+		// 	// 	e.target.parentElement.className = `venueCard show`
+		// 	// }, 1000)
+		
+		// }
+		// else if(e.target.parentElement.className === `venueCard show`){
+		// 	this.handleInfoClick(e)
+		// 	// this.setState({
+		// 	// 	selectedCard: false
+		// 	// })
+		// }
+
+	}
+
+	// handleVenueClick = (e) => {
+	// 	if (this.state.selectedCard && !this.state.isVenueCardClicked) {
+	// 		this.handleInfoClick(e)
+	// 		e.target.parentElement.className = `venueCard show`
+	// 		this.setState({
+	// 			selectedCard: !this.state.selectedCard,
+	// 			isVenueCardClicked: true
+	// 		})
+	// 	} else if (!this.state.selectedCard) {
+	// 		// need to check IF The venueCard has the class name of show in it, then give it JUST the venue card property AND revert ISVENUECARCLICKED to true 
+	// 		if( e.target.parentElement.className === `venueCard show`) {
+	// 				e.target.parentElement.className = `venueCard`
+	// 				this.setState({
+	// 					selectedCard: !this.state.selectedCard,
+	// 					isVenueCardClicked: false
+	// 				})
+	// 		} 
+			
+	// 	}
+
+	// 	this.setState({
+	// 	})
+
+	// };
 
 	handleInfoClick = (e) => {
+		console.log(e)
 		const clickedVenueId = e.target.parentElement.id
 		this.props.getVenueCard(clickedVenueId);
 	}
@@ -43,7 +100,7 @@ class VenueCard extends Component {
 	render() {
 		const {venuePage, restaurantPage, ticketMasterData} = this.props
 		// const selectedCard = this.state.selectedCard ? 'show' : 'hide';
-
+		// const selectedTernary = this.props.selectedCardId ===  ? `hide` : `hide`
 		return (
 			<Fragment>
 				<ItemsCarousel
