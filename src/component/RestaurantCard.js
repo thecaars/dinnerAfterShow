@@ -18,32 +18,29 @@ class RestaurantCard extends Component {
 			activeItemIndex: 0,
 			distanceArray: [],
 			distanceRounded: 0,
-			selectedCard: [],
+			// selectedCard: [],
 		}
 	}
 
 
-	handleRestaurantClick = (e) => {
-		this.handleInfoClick(e)
-		if (this.state.selectedCard) {
-			e.target.parentElement.className = `restaurantCard show`
-		} else if (!this.state.selectedCard) {
-			e.target.parentElement.className = `restaurantCard hide`
-		}
-		this.setState({
-			selectedCard: !this.state.selectedCard
-		})
-	};
+	// handleRestaurantClick = (e) => {
+	// 	this.handleInfoClick(e)
+	// 	if (this.state.selectedCard) {
+	// 		e.target.parentElement.className = `restaurantCard show`
+	// 	} else if (!this.state.selectedCard) {
+	// 		e.target.parentElement.className = `restaurantCard hide`
+	// 	}
+	// 	this.setState({
+	// 		selectedCard: !this.state.selectedCard
+	// 	})
+	// };
 
 	handleInfoClick = (e) => {
 		const clickedRestaurantId = e.target.parentElement.id
 		this.props.getRestaurantCard(clickedRestaurantId);
 	}
 
-	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
-	// changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
-	
 	dataFunction = (venue, restaurant, i) => {
 		const lat1 = venue._embedded.venues[0].location.latitude
 		const lon1 = venue._embedded.venues[0].location.longitude
@@ -83,7 +80,7 @@ class RestaurantCard extends Component {
 
 				<ItemsCarousel
 					// Carousel configurations
-					numberOfCards={3}
+					numberOfCards={this.props.screenWidth > 980 ? 3 : this.props.screenWidth > 710 ? 2 : 1}
 					gutter={10}
 					slidesToScroll={1}
 					activePosition={'center'}
@@ -101,23 +98,30 @@ class RestaurantCard extends Component {
 					{ this.dataFunction(this.props.venueUserInput, this.props.restaurantData, i) }
 					return (
 						<Fragment>
-							<div className="restaurantCard" key={restaurant.id} id={i} role="button">
-								<Link to={{
-									pathname: restaurantPage ? '/modal' : undefined, 
-									state: {
-										restaurantSpecificId: i,
-										restaurantPage: restaurantPage,
-										venuePage: venuePage,
-										restaurantData: restaurantData,
-										displayModal: true, 
-									}}}>	
-									<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
-								</Link>
+							<div 
+								className={`restaurantCard ${this.props.selectedRestoCardId === i ? `show` : `hide`}`} 
+								key={restaurant.id} 
+								id={i} 
+								role="button"
+								onClick={() => { this.props.changeSelectedRestoCard(i)}}
+							>
+									<Link to={{
+										pathname: restaurantPage ? '/modal' : undefined, 
+										state: {
+											restaurantSpecificId: i,
+											restaurantPage: restaurantPage,
+											venuePage: venuePage,
+											restaurantData: restaurantData,
+											displayModal: true, 
+										}}}>	
+										<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
+									</Link>
+								
 								<div className="imageContainer">
 									<img className="imageContainer" src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting" />
 								</div>
-								<h3>{restaurant.restaurant.name}</h3>
 								
+								<h3>{restaurant.restaurant.name}</h3>
 								<p>{restaurant.restaurant.cuisines}</p>
 								
 								{restaurant.restaurant.user_rating.aggregate_rating > 0 

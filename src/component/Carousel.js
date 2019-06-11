@@ -6,7 +6,8 @@ class Carousel extends Component {
 	constructor(){
 		super()
 		this.state ={
-			selectedCardId:null
+			selectedCardId:null,
+			selectedRestoCardId:null
 		}
 	}
 	
@@ -15,8 +16,16 @@ class Carousel extends Component {
 		this.setState({
 			selectedCardId:i
 		})
-	
 	}
+
+	changeSelectedRestoCard = (i) => {
+		this.props.getRestaurantCard(i);
+		this.setState({
+			selectedRestoCardId: i
+		})
+	}
+
+
 	render() {
 		return (
 			<div id="carouselContainer" className="carouselContainer wrapper">
@@ -28,6 +37,7 @@ class Carousel extends Component {
 					restaurantPage={this.props.restaurantPage}
 					selectedCardId={this.state.selectedCardId}
 					changeSelectedCard={this.changeSelectedCard}
+					screenWidth={this.props.screenWidth}
 				/>
 				: <RestaurantCard 
 					restaurantData={this.props.restaurantData}
@@ -36,6 +46,9 @@ class Carousel extends Component {
 					restaurantPage={this.props.restaurantPage}
 					ticketMasterData={this.props.ticketMasterData}
 					venueUserInput={this.props.venueUserInput}
+					screenWidth={this.props.screenWidth}
+					changeSelectedRestoCard={this.changeSelectedRestoCard}
+					selectedRestoCardId={this.state.selectedRestoCardId}
 				/>
 			}
 			</div>

@@ -38,7 +38,10 @@ class DynamicMainDisplay extends Component {
 				restaurantData: [],
 
 				// Progress Bar Initial State (Starts at 33.34% to indicate Stage 1 of 3 is complete)
-				percentage: 33.34
+				percentage: 33.34,
+
+				// screen width for responsiveness of carousel
+				screenWidth: 0
 			}
 		} //end of constructor 
 
@@ -76,6 +79,12 @@ class DynamicMainDisplay extends Component {
 				})
 			}) // end of .then method
 		} // end of getRestaurantData
+
+		const intViewportWidth = window.innerWidth;
+		console.log(intViewportWidth)
+		this.setState({
+			screenWidth: intViewportWidth
+		})
 	}// end of componentDidMount
 
 	
@@ -155,6 +164,7 @@ class DynamicMainDisplay extends Component {
 						restaurantData={this.state.restaurantData}
 						getRestaurantCard={this.getRestaurantCard}
 						venueUserInput={this.state.venueUserInput}
+						screenWidth={this.state.screenWidth}
 					/>
 					<Link className="dynamicConfirmButtonContainer" to={{
 						pathname: this.state.restaurantUserInput ? '/modal' : undefined, 
