@@ -21,8 +21,11 @@ class VenueCard extends Component {
 	
 	handleVenueClick = (e) => {
 		const clickedVenue = e.target.parentElement.id
+		
 		this.props.getVenueCard(clickedVenue);
 		
+		
+
 		this.setState({
 			selectedCard: !this.state.selectedCard
 		})

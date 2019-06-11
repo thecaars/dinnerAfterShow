@@ -159,18 +159,6 @@ displaySavedCombos = () => {
 												<option value="US">United States</option>
 											</optgroup>
 										</select>
-								{/* </div>
-
-								<div className="textInput">
-									<label htmlFor="city"></label>
-									<input id="city" type="text" onChange={this.handleOnChange} />
-								</div>
-							</div>
-
-							<div className="submitButton">
-								<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
-								<button href="#carouselContainer" id="submitButton" type="submit">begin</button>
-							</div> */}
 											<label htmlFor="city"></label>
 									<input id="city" type="text" placeholder="E.g. Toronto" onChange={this.handleOnChange} />
 									</div>
