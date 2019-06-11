@@ -319,11 +319,6 @@ button {
 /* **************************************************** */
 /*                        modals                        */
 /* **************************************************** */
-/* bringing the style for each modal here later */
-.venueModal h1,
-.restoModal h1 {
-  /* margin: 20px 0; */
-}
 
 .venueLink,
 .restaurantLink {
