@@ -64,15 +64,21 @@ componentDidMount() {
 				this.setState({
 					ticketMasterData: results.data._embedded.events
 				})
+				setTimeout(() => {
+					document.getElementById('carouselContainer').scrollIntoView()
+				}, 10);
 			}
 			else {
 				// ******************************************
 				// dynamicMainDisplay shows different content
 				// ******************************************
 				this.setState({
-					ticketMasterData: []
+					ticketMasterData: [],
+					dynamicMainDisplayPage: false
 				})
+				alert(`There aren't any events near you at this time. Please enter another city name.`);
 			}
+
 		})
 	} // end of getTicketMasterData
 }  // end of componentDidMount
@@ -111,18 +117,13 @@ handleOnSubmit = (e) => {
 
 		this.getTicketMasterData(this.state.userCountry, this.state.userCity);
 		
-		setTimeout(() => {
-			document.getElementById('carouselContainer').scrollIntoView()
-		}, 10);
+		// setTimeout(() => {
+		// 	document.getElementById('carouselContainer').scrollIntoView()
+		// }, 100);
 
-		
-	} 
-	else {
-		alert('please complete your inputs')
-	}
-	
-	
-}
+	}  // end of if(this.state.userCity) statement
+
+} // end of handleOnSubmit
 
 displaySavedCombos = () => {
 	this.setState({
