@@ -19,12 +19,6 @@ body {
 	scroll-behavior: smooth;
 }
 
-img {
-	width: 100%;
-	max-width: 100%;
-	/* display: inline-block; */
-}
-
 .App {
   text-align: center;
 }
@@ -208,6 +202,10 @@ button {
   padding: 10px;
 }
 
+.dynamicConfirmButton:hover {
+	background: #4c003e;
+}
+
 /* **************************************************** */
 /*                       carousel                       */
 /* **************************************************** */
@@ -222,7 +220,7 @@ button {
 .eeaShJ {
 	height: 25px;
 	width: 25px;
-	margin: 20% 10px;
+	margin: 25% 10px;
 	background: white;
 	border-radius: 50%;
 	transition: .2s;
@@ -252,15 +250,28 @@ button {
 .restaurantCard {
   background: white;
   width: 90%;
-  height: 100%;
-  margin: 0 auto;
+  min-height: 75%;
+	margin: 50px auto;
+	padding: 0;
 	position: relative;
-  border-radius: 2px;
+  border-radius:2px;
+}
+
+.venueCard p,
+.restaurantCard p {
+	margin: 0 20px;
+	font-size: 0.9rem;
+}
+
+.venueCard h3,
+.restaurantCard h3 {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .show {
-	-webkit-box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
-	box-shadow: 5px 2px 25px 0 rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 30px 10px rgba(0,0,0, .5);
+	box-shadow: 0 0 30px 10px rgba(0,0,0, .5);
 }
 
 .hide {
@@ -287,11 +298,6 @@ button {
 	font-size: .8rem;
 }
 
-.moreInfo {
-	background: none;
-	border: none;
-}
-
 .fas {
 	color: white;
 	font-size: .7rem
@@ -302,11 +308,14 @@ button {
 }
 
 .moreInfo {
+	background: none;
+	border: none;
   font-size: 2rem;
   line-height: 0;
-  position: absolute;
-  top: 5px;
-  z-index: 2;
+  position: relative;
+  top: 80px;
+	left: 40%;
+  z-index: 2;	
 }
 
 .overlay {

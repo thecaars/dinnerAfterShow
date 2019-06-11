@@ -16,12 +16,27 @@ class RestaurantCard extends Component {
 		this.state = {
 			children: [],
 			activeItemIndex: 0,
-      distanceArray: [],
+			distanceArray: [],
+			selectedCard: [],
 		}
 	}
 
+
 	handleRestaurantClick = (e) => {
-		this.props.getRestaurantCard(e.target.parentElement.id);
+		this.handleInfoClick(e)
+		if (this.state.selectedCard) {
+			e.target.parentElement.className = `restaurantCard show`
+		} else if (!this.state.selectedCard) {
+			e.target.parentElement.className = `restaurantCard hide`
+		}
+		this.setState({
+			selectedCard: !this.state.selectedCard
+		})
+	};
+
+	handleInfoClick = (e) => {
+		const clickedRestaurantId = e.target.parentElement.id
+		this.props.getRestaurantCard(clickedRestaurantId);
 	}
 
 	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
@@ -75,7 +90,7 @@ class RestaurantCard extends Component {
 				{this.props.restaurantData.map((restaurant, i) => {
 					{ this.dataFunction(this.props.venueUserInput, this.props.restaurantData, i) }
 					return (
-						<div className="restaurantCard" key={restaurant.id} id={i} onClick={this.handleRestaurantClick} role="button">
+						<Fragment>
 							<Link to={{
 								pathname: restaurantPage ? '/modal' : undefined, 
 								state: {
@@ -85,20 +100,26 @@ class RestaurantCard extends Component {
 									restaurantData: restaurantData,
 									displayModal: true, 
 								}}}>	
-								<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
+								<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
 							</Link>
-							<h3>{restaurant.restaurant.name}</h3>
-							
-							<h4>{restaurant.restaurant.cuisines}</h4>
-							
-							{restaurant.restaurant.user_rating.aggregate_rating > 0 
-							? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>
-							: <h4>{restaurant.restaurant.user_rating.rating_text}</h4>}
-							
-							<p>{restaurant.restaurant.location.address}</p>
+							<div className="restaurantCard" key={restaurant.id} id={i} role="button">
+								<div className="imageContainer">
+									<img className="imageContainer" src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting" />
+								</div>
+								<h3>{restaurant.restaurant.name}</h3>
+								
+								<h4>{restaurant.restaurant.cuisines}</h4>
+								
+								{restaurant.restaurant.user_rating.aggregate_rating > 0 
+								? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>
+								: <h4>{restaurant.restaurant.user_rating.rating_text}</h4>}
+								
+								<p>{restaurant.restaurant.location.address}</p>
 
-							<p>Distance from Venue: {this.state.distanceArray}m</p>
-						</div>
+								<p>Distance from Venue: {this.state.distanceArray[i]}m</p>
+								<div className="overlay" onClick={this.handleRestaurantClick}></div>
+							</div>
+						</Fragment>
 					)
 				})}
 				</ItemsCarousel>
