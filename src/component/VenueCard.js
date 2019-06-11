@@ -20,6 +20,7 @@ class VenueCard extends Component {
 	}
 	
 	handleVenueClick = (e) => {
+		this.handleInfoClick(e)
 		if (this.state.selectedCard) {
 			e.target.parentElement.className = `venueCard show`
 		} else if (!this.state.selectedCard) {
