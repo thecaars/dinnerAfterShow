@@ -23,10 +23,9 @@ class SavedCombos extends Component {
     render() {
         return(
             <div id="combo" className="combo">
-                <h2>Shared Resutls</h2>
-
+                <h1>Shared Results</h1>
                 <label htmlFor="makeYourCombo" className="visuallyHidden">Create your own combo</label>
-                <button id="makeYourCombo" onClick={this.createNewCombo}>Create New Combo</button>
+								<button id="createNewCombo" className="createNewCombo" onClick={this.createNewCombo}>Create New Combo</button>
 
                 {
                     this.state.savedCombos.map((data) => {
@@ -37,29 +36,34 @@ class SavedCombos extends Component {
                         const resto = data.combo.combo[1].restaurant;
 
                         return(
-                            <div key={data.key} className="singleCombo">
-                                <h2>{userName}</h2>
-                                <div className="event">
-                                    <img src={event.images[0].url} alt={event.name}/>
-                                    <p>{eventDate.localDate} {eventDate.localTime}</p>
-                                    <h3>{event.name}</h3>
-                                    <p>{eventVenue.name}</p>
-                                    <a href={eventVenue.url} aria-label="go to ticketmasker page for the specific venue where tickets are sold.">get your ticket</a>
-                                </div>
-
-                                <div className="restaurant">
-                                    <img src={resto.featured_image} alt={resto.name}/>
-                                    <h3>{resto.name}</h3>
-                                    <p>{resto.cuisines}</p>
-                                    <div className="priceNRating">
-                                        <p>{resto.price_range}/5</p>
-                                        <p>{resto.user_rating.aggregaterating}/5</p>
-                                    </div>
-                                    <a href={resto.url}>zomato profile</a>
-                                </div>
-
-                                <button onClick={() => { this.removeCombo(data.key) }}>remove combo</button>
-                            </div>
+													<div className="savedCombosOuterContainer">
+														<h2>{userName}'s Combo</h2>
+														<div key={data.key} className="savedCombosInnerContainer">
+																<div className="eventComboContainer comboContainer">
+																		<div className="imageContainer">
+																			<img src={event.images[0].url} alt={event.name}/>
+																		</div>
+																		<p>{eventDate.localDate} {eventDate.localTime}</p>
+																		<h3>{event.name}</h3>
+																		<p>{eventVenue.name}</p>
+																		<a href={eventVenue.url} aria-label="go to ticketmasker page for the specific venue where tickets are sold.">get your ticket</a>
+																</div>
+															<div className="restaurantComboContainer comboContainer">
+																	<div className="imageContainer">
+																	<img src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting"/>
+																	</div>
+																		<h3>{resto.name}</h3>
+																		<p>{resto.cuisines}</p>
+																		<div className="priceNRating">
+																				<p>{resto.price_range}/5</p>
+																				<p>{resto.user_rating.aggregaterating}</p>
+																		</div>
+																		<a href={resto.url}>zomato profile</a>
+																</div>
+														</div>
+														<button onClick={() => { this.removeCombo(data.key) }}>remove combo</button>
+													</div>
+														
                         )
                     })
                 }

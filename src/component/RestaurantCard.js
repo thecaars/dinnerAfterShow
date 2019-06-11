@@ -122,7 +122,7 @@ class RestaurantCard extends Component {
 								
 								{restaurant.restaurant.user_rating.aggregate_rating > 0 
 								? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>
-								: <h4>{restaurant.restaurant.user_rating.rating_text}</h4>}
+									: <h4 className="notRated">{restaurant.restaurant.user_rating.rating_text}</h4>}
 								
 								<p>{restaurant.restaurant.location.address}</p>
 
