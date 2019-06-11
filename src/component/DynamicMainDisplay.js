@@ -148,7 +148,6 @@ class DynamicMainDisplay extends Component {
 							displayModal: true
 						}
 					}}>
-
 						<button className="dynamicConfirmButton" onClick={this.handleClick}>Confirm Selection</button>
 					</Link>
 					<Route path="/modal" component={Modal}></Route>
