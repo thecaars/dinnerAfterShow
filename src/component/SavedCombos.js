@@ -2,41 +2,16 @@ import React, {Component} from 'react';
 import firebase from '../firebase.js';
 
 class SavedCombos extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.state = {
-            savedCombos: []
+        this.state ={
+            savedCombos: this.props.savedCombos
         }
     }
-    
-    componentDidMount() {
-        const dbRef = firebase.database().ref();
 
-        dbRef.on('value', (response) => {
-            const valueArray = response.val();
-
-            const newSaved = [];
-
-            if (valueArray !== null) {
-                for (let item in valueArray) {
-                    newSaved.push({
-                        key: item,
-                        combo: valueArray[item],
-                    });
-    
-                    this.setState({
-                        savedCombos: newSaved
-                    })
-                }
-            } else {
-                this.setState({
-                    savedCombos: []
-                })
-            }
-
-        });
-
+    createNewCombo = () => {
+        window.location.href = "/"
     }
     
     removeCombo = (comboId) => {
@@ -47,8 +22,12 @@ class SavedCombos extends Component {
 
     render() {
         return(
-            <div className="combo">
+            <div id="combo" className="combo">
                 <h2>Shared Resutls</h2>
+
+                <label htmlFor="makeYourCombo" className="visuallyHidden">Create your own combo</label>
+                <button id="makeYourCombo" onClick={this.createNewCombo}>Create New Combo</button>
+
                 {
                     this.state.savedCombos.map((data) => {
                         const userName = data.combo.name;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import firebase from '../firebase.js';
 import DynamicMainDisplay from './DynamicMainDisplay';
 import SavedCombos from './SavedCombos.js';
 
@@ -24,7 +25,9 @@ class Header extends Component {
 
 			venuePage: true,
 			restaurantPage: false,
-			resetVenueResto: false
+			resetVenueResto: false,
+
+			savedCombos: []
 		}
 }
 
@@ -57,24 +60,58 @@ componentDidMount() {
 					startDateTime: this.state.dateString
 			}
 		}).then(results => {
-			//change #1
 			const resultsReturned = results.data.page.totalPages;
 
 			if (resultsReturned > 0) {
 				this.setState({
 					ticketMasterData: results.data._embedded.events
 				})
+				setTimeout(() => {
+					document.getElementById('carouselContainer').scrollIntoView()
+				}, 10);
 			}
 			else {
 				// ******************************************
 				// dynamicMainDisplay shows different content
 				// ******************************************
 				this.setState({
-					ticketMasterData: []
+					ticketMasterData: [],
+					dynamicMainDisplayPage: false
 				})
+				alert(`There aren't any events near you at this time. Please enter another city name.`);
 			}
+
 		})
 	} // end of getTicketMasterData
+
+	// getting firebase data
+	const dbRef = firebase.database().ref();
+	
+	dbRef.on('value', (response) => {
+		const valueArray = response.val();
+	
+		const newSaved = [];
+	
+		if (valueArray !== null) {
+			for (let item in valueArray) {
+				newSaved.push({
+					key: item,
+					combo: valueArray[item],
+				});
+	
+				this.setState({
+					savedCombos: newSaved
+				})
+			}
+		} else {
+			this.setState({
+				savedCombos: []
+			})
+		}
+	
+	}); // end of getting firebase data
+
+	
 }  // end of componentDidMount
 
 handleOnChange = (e) => {
@@ -110,32 +147,35 @@ handleOnSubmit = (e) => {
 		}
 
 		this.getTicketMasterData(this.state.userCountry, this.state.userCity);
-		
-		setTimeout(() => {
-			document.getElementById('carouselContainer').scrollIntoView()
-		}, 10);
 
-		
-	} 
-	else {
-		alert('please complete your inputs')
-	}
-	
-	
-}
+	}  // end of if(this.state.userCity) statement
 
+} // end of handleOnSubmit
+
+// savedCombo display function
 displaySavedCombos = () => {
-	this.setState({
-		dynamicMainDisplayPage: false,
-		savedCombosPage: true
-	})
+	// check firebase data is loaded before loading the page
+	if (this.state.savedCombos.length === 0) {
+		// if there's nothing to laod, alert the users
+		alert(`Sorry, there's no saved suggestion at the moment; or you are clicking too quickly. Stop trying to break our app.`)
+	} else {
+		// if there's array then try to load, hope this will make the setTimeout behave
+		this.setState({
+			dynamicMainDisplayPage: false,
+			savedCombosPage: true
+		})
+	
+		setTimeout(() => {
+			document.getElementById('combo').scrollIntoView()
+		}, 500);
+	}
 }
 
 
 	render() {
 		return (
 			<div>
-				<header>
+				<header id="header">
 					<div className="headerInnerWrapper">
 						<h1>DINNER AFTER SHOW</h1>
 						<p>Input your country and city to see what upcoming events are happening around you.</p>
@@ -165,11 +205,11 @@ displaySavedCombos = () => {
 									<div className="submitButton">
 										<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
 										<button href="#carouselContainer" id="submitButton" type="submit">Begin</button>
-										<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
-										<button id="communitySuggestion" onClick={this.displaySavedCombos}>Previously Saved Combos</button>
 									</div>
 								</div>			
 						</form>
+						<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
+						<button href="#combo" id="communitySuggestion" onClick={this.displaySavedCombos}>Previously Saved Combos</button>
 					</div>
 				</header>
 
@@ -184,7 +224,7 @@ displaySavedCombos = () => {
 				}
 
 				{this.state.savedCombosPage
-					? <SavedCombos />
+					? <SavedCombos savedCombos={this.state.savedCombos} />
 					: null
 				}
 			</div>

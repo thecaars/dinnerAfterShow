@@ -132,7 +132,7 @@ class VenueCard extends Component {
 										ticketMasterData: ticketMasterData
 									}
 								}}>
-									<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
+									<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
 								</Link>
 
 								<div className={`venueCard ${this.props.selectedCardId === i ? `show` : `hide`}`} key={event.id} id={i} onClick={()=>{this.props.changeSelectedCard(i)}} role="button">
@@ -146,7 +146,7 @@ class VenueCard extends Component {
 									<h3>{event.name}</h3>
 									{/* Venue name */}
 									<p>{event._embedded.venues[0].name}</p>
-									<div className="overlay"></div>
+									<div className="overlay" onClick={this.handleInfoClick}></div>
 								</div>
 							</Fragment>
 						)
