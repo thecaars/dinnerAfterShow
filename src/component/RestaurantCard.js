@@ -66,7 +66,7 @@ class RestaurantCard extends Component {
 					showSlither={false}
 					firstAndLastGutter={true}
 					chevronWidth={50}
-					rightChevron={'	>'}
+					rightChevron={'>'}
 					leftChevron={'<'}
 					// Active item configurations
 					activeItemIndex={this.state.activeItemIndex}
@@ -97,7 +97,7 @@ class RestaurantCard extends Component {
 							
 							<p>{restaurant.restaurant.location.address}</p>
 
-							<p>Distance from Venue: {this.state.distanceArray[i]}m</p>
+							<p>Distance from Venue: {this.state.distanceArray}m</p>
 						</div>
 					)
 				})}
