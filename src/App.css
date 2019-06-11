@@ -260,18 +260,16 @@ button {
 
 .show {
 	-webkit-box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
-	box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
-	background: blue;
+	box-shadow: 5px 2px 25px 0 rgba(0, 0, 0, 0.5);
 }
 
 .hide {
 	-webkit-box-shadow: none;
 	box-shadow: none;
-	/* background: white; */
 }
 
 .imageContainer {
-	height: 40%;
+	height: 50%;
 }
 
 .venueCard img,
@@ -308,7 +306,16 @@ button {
   line-height: 0;
   position: absolute;
   top: 5px;
-  right: 5px;
+  z-index: 2;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 /* **************************************************** */
