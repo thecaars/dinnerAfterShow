@@ -193,7 +193,6 @@ displaySavedCombos = () => {
 				{this.state.dynamicMainDisplayPage
 					? <DynamicMainDisplay 
 						ticketMasterData={this.state.ticketMasterData}
-
 						venuePage={this.state.venuePage}
 						restaurantPage={this.state.restaurantPage}
 						resetVenueResto={this.state.resetVenueResto}

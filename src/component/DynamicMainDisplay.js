@@ -23,8 +23,8 @@ class DynamicMainDisplay extends Component {
 				restaurantUrl: [],
 				
 				// Page state - controlling when they appear
-				venuePage: this.props.venuePage,
-				restaurantPage: this.props.restaurantPage,
+				venuePage: true,
+				restaurantPage: false,
 				resetVenueResto: this.props.resetVenueResto,
 				confirmationPage: false,
 				savedCombosPage: false,
@@ -118,15 +118,18 @@ class DynamicMainDisplay extends Component {
 
 	handleClick = () => {
 		// Adds to ProgressBar with each click
-		this.setState({
-			percentage: this.state.percentage + 33.33
-		})
-
-		if (!this.state.restaurantUserInput) {
+		if (this.state.venuePage && this.state.venueUserInput) {
 			this.displayRestaurantCards()
+			this.setState({
+				percentage: this.state.percentage + 33.33
+			})	
 		}
-		else {
+		else if (this.state.restaurantUserInput){
 			this.confirmUserInputChoices()
+			this.setState({
+				percentage: this.state.percentage + 33.33
+			})
+	
 		}
 	} // end of handleClick
 
