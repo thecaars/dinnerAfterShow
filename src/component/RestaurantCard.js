@@ -17,6 +17,7 @@ class RestaurantCard extends Component {
 			children: [],
 			activeItemIndex: 0,
 			distanceArray: [],
+			distanceRounded: 0,
 			selectedCard: [],
 		}
 	}
@@ -59,18 +60,27 @@ class RestaurantCard extends Component {
 		const distanceInMetres = distanceBetweenLocations * 1000
 		const distanceRounded = Math.round(distanceInMetres)
 		this.state.distanceArray.push(distanceRounded)
+
+		// TRYING TO GET A HEADING TO SHOW IN BETWEEN H2 AND CAROUSEL WHEN RESTAURANT DISTANCE IS OVER 1000m
+		// if (this.props.restaurantPage && distanceRounded > 1000) {
+		// 	this.setState({
+		// 		distanceRounded: distanceRounded
+		// 	})
+		// }
 	}
+
+	
 
 	render() {
 		const { restaurantData, restaurantPage, venuePage } = this.props
 
 		return (
 			<Fragment>
-				{this.props.restaurantData == true ?
+				{this.props.restaurantData == true ? this.dataFunction() : null}
 
-					this.dataFunction()
+				{/* TRYING TO GET A HEADING TO SHOW IN BETWEEN H2 AND CAROUSEL WHEN RESTAURANT DISTANCE IS OVER 1000m */}
+				{/* <div className="farRestaurantWarning">{this.props.restaurantPage && this.state.distanceRounded > 1000 ? `WORK PLZ` : null}</div> */}
 
-					: null}
 				<ItemsCarousel
 					// Carousel configurations
 					numberOfCards={3}

@@ -48,7 +48,7 @@ class DynamicMainDisplay extends Component {
 				venuePage: true,
 				restaurantPage: false
 			})
-		  }
+		}
 	}
 
 	componentDidMount() {
@@ -124,12 +124,18 @@ class DynamicMainDisplay extends Component {
 				percentage: this.state.percentage + 33.33
 			})	
 		}
-		else if (this.state.restaurantUserInput){
+		else if (this.state.restaurantPage && this.state.restaurantUserInput){
 			this.confirmUserInputChoices()
 			this.setState({
 				percentage: this.state.percentage + 33.33
 			})
-	
+		}
+		else if (this.state.venuePage && this.state.venueUserInput === false) {
+			alert("Please select an event.");
+		}
+		else if (this.state.restaurantPage && this.state.restaurantUserInput === false) {
+			alert("Please select a restaurant.");
+
 		}
 	} // end of handleClick
 
