@@ -41,7 +41,7 @@ class VenueCard extends Component {
 			<Fragment>
 				<ItemsCarousel
 					// Carousel configurations
-					numberOfCards={3}
+					numberOfCards={ this.props.screenWidth > 980 ? 3 : this.props.screenWidth > 710 ? 2 : 1 }
 					gutter={10}
 					slidesToScroll={1}
 					activePosition={'center'}

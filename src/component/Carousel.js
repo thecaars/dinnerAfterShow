@@ -28,6 +28,7 @@ class Carousel extends Component {
 					restaurantPage={this.props.restaurantPage}
 					selectedCardId={this.state.selectedCardId}
 					changeSelectedCard={this.changeSelectedCard}
+					screenWidth={this.props.screenWidth}
 				/>
 				: <RestaurantCard 
 					restaurantData={this.props.restaurantData}
@@ -36,6 +37,7 @@ class Carousel extends Component {
 					restaurantPage={this.props.restaurantPage}
 					ticketMasterData={this.props.ticketMasterData}
 					venueUserInput={this.props.venueUserInput}
+					screenWidth={this.props.screenWidth}
 				/>
 			}
 			</div>
