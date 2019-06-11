@@ -20,7 +20,11 @@ class Header extends Component {
 			ticketMasterData: [],
 
 			dynamicMainDisplayPage: false,
-			savedCombosPage: false
+			savedCombosPage: false,
+
+			venuePage: true,
+			restaurantPage: false,
+			resetVenueResto: false
 		}
 }
 
@@ -53,9 +57,22 @@ componentDidMount() {
 					startDateTime: this.state.dateString
 			}
 		}).then(results => {
-			this.setState({
+			//change #1
+			const resultsReturned = results.data.page.totalPages;
+
+			if (resultsReturned > 0) {
+				this.setState({
 					ticketMasterData: results.data._embedded.events
-			})
+				})
+			}
+			else {
+				// ******************************************
+				// dynamicMainDisplay shows different content
+				// ******************************************
+				this.setState({
+					ticketMasterData: []
+				})
+			}
 		})
 	} // end of getTicketMasterData
 }  // end of componentDidMount
@@ -72,31 +89,34 @@ handleOnChange = (e) => {
 	};
 };
 
+// when form being submitted, press on begin button
 handleOnSubmit = (e) => {
 	e.preventDefault();
-
-	// this.state.userCity
-	// ? this.setState({
-	// 	dynamicMainDisplayPage: true,
-	// 	savedCombosPage: false
-	// })
-	// : alert('please complete your inputs')	
 	
 	if(this.state.userCity) {
-		
-		this.setState({
-			dynamicMainDisplayPage: true,
-			savedCombosPage: false
-		})
 
+		if (!this.state.resetVenueResto) {
+			this.setState({
+				dynamicMainDisplayPage: true,
+				savedCombosPage: false,
+				resetVenueResto: true
+			})
+		} else {
+			this.setState({
+				dynamicMainDisplayPage: true,
+				savedCombosPage:false,
+				resetVenueResto: false
+			})
+		}
+
+		this.getTicketMasterData(this.state.userCountry, this.state.userCity);
+		
 		setTimeout(() => {
 			document.getElementById('carouselContainer').scrollIntoView()
 		}, 10);
 
-		this.getTicketMasterData(this.state.userCountry, this.state.userCity);
-
+		
 	} 
-
 	else {
 		alert('please complete your inputs')
 	}
@@ -124,8 +144,9 @@ displaySavedCombos = () => {
 								<div className="selectInput">
 										<label htmlFor="country"></label>
 										<select id="country" name="country" onChange={this.handleOnChange}>
+											{/* change #2 */}
+											<optgroup label="Country">
 												<option value="CA">Canada</option>
-												<option value="" readOnly>Country</option>
 												<option value="AU">Australia</option>
 												<option value="CA">Canada</option>
 												<option value="IN">India</option>
@@ -136,23 +157,29 @@ displaySavedCombos = () => {
 												<option value="AE">United Arab Emirates</option>
 												<option value="UK">United Kingdom</option>
 												<option value="US">United States</option>
+											</optgroup>
 										</select>
-											<label htmlFor="city"></label>
-									<input id="city" type="text" placeholder="E.g. Toronto" onChange={this.handleOnChange} />
-									</div>
-									<div className="submitButton">
-										<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
-										<button href="#carouselContainer" id="submitButton" type="submit">Begin</button>
-										<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
-										<button id="communitySuggestion" onClick={this.displaySavedCombos}>Previously Saved Combos</button>
-									</div>
-								</div>			
+								</div>
+								<div className="textInput">
+									<label htmlFor="city"></label>
+									<input id="city" type="text" onChange={this.handleOnChange} />
+								</div>
+							</div>
+							<div className="submitButton">
+								<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>
+								<button href="#carouselContainer" id="submitButton" type="submit">begin</button>
+							</div>
 						</form>
 					</div>
 				</header>
 
 				{this.state.dynamicMainDisplayPage
-					? <DynamicMainDisplay ticketMasterData={this.state.ticketMasterData}/>
+					? <DynamicMainDisplay 
+						ticketMasterData={this.state.ticketMasterData}
+						venuePage={this.state.venuePage}
+						restaurantPage={this.state.restaurantPage}
+						resetVenueResto={this.state.resetVenueResto}
+						/>
 					: null
 				}
 
