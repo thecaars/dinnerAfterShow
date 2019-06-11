@@ -20,14 +20,19 @@ class VenueCard extends Component {
 	}
 	
 	handleVenueClick = (e) => {
-		this.props.getVenueCard(e.target.parentElement.id);
+		const clickedVenue = e.target.parentElement.id
+		this.props.getVenueCard(clickedVenue);
+		
+		this.setState({
+			selectedCard: !this.state.selectedCard
+		})
 	};
 
-	toggleClass = () => {
-		this.setState({
-			selected: !this.state.selected
-		})
-	}
+	// toggleClass = () => {
+	// 	this.setState({
+	// 		selectedCard: !this.state.selectedCard
+	// 	})
+	// }
 
 	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
@@ -56,7 +61,7 @@ class VenueCard extends Component {
 				>
 					{this.props.ticketMasterData.map((event, i) => {
 						return (
-							<div onClick="toggleClass" className={`selectedCard ${selectedCard}`}className="venueCard" key={event.id} id={i} onClick={this.handleVenueClick} role="button">
+							<div className={`venueCard ${selectedCard}`}key={event.id} id={i} onClick={this.handleVenueClick} role="button">
 								{/* THIS IS MODAL*/}
 								<Link id={i} to={{
 									pathname: venuePage ? '/modal' : undefined, 
