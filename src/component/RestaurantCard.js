@@ -27,7 +27,7 @@ class RestaurantCard extends Component {
 	// createChildren = n => range(n).map(i => <div key={i} style={{ "padding": "0 60px", "maxWidth": "100vw", "margin": "0 auto" }}>{i}</div>);
 
 	// changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
-
+	
 	dataFunction = (venue, restaurant, i) => {
 		const lat1 = venue._embedded.venues[0].location.latitude
 		const lon1 = venue._embedded.venues[0].location.longitude
@@ -66,7 +66,7 @@ class RestaurantCard extends Component {
 					showSlither={false}
 					firstAndLastGutter={true}
 					chevronWidth={50}
-					rightChevron={'	>'}
+					rightChevron={'>'}
 					leftChevron={'<'}
 					// Active item configurations
 					activeItemIndex={this.state.activeItemIndex}
@@ -97,7 +97,7 @@ class RestaurantCard extends Component {
 							
 							<p>{restaurant.restaurant.location.address}</p>
 
-							<p>Distance from Venue: {this.state.distanceArray[i]}m</p>
+							<p>Distance from Venue: {this.state.distanceArray}m</p>
 						</div>
 					)
 				})}

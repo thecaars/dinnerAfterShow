@@ -19,6 +19,12 @@ body {
 	scroll-behavior: smooth;
 }
 
+img {
+	width: 100%;
+	max-width: 100%;
+	/* display: inline-block; */
+}
+
 .App {
   text-align: center;
 }
@@ -43,22 +49,26 @@ img {
 }
 
 h1,
-h2,
-h3 {
-  font-family: 'Poiret One', cursive;
+h2 {
+	font-family: 'Poiret One', cursive;
+	text-transform: uppercase;
 }
 
 h1 {
-  font-size: 4rem;
-  text-shadow: 0 0 5px #000;
+  font-size: 5rem;
+	text-shadow: 0 0 10px rgba(100,100,100, 1);
+	
 }
 
 h2 {
   font-size: 3rem;
-  color: #cf511b;
-  text-transform: capitalize;
+  color: #4c003e;
 }
 
+h3 {
+	margin: 20px 20px 10px;
+	text-transform: uppercase;
+}
 
 /* **************************************************** */
 /*                        header                        */
@@ -66,39 +76,38 @@ h2 {
 
 header {
   background-image:
-    linear-gradient(to bottom, rgba(49, 49, 49, 0.5), rgba(24, 22, 22, 0.5)),
-    url('./assets/jeremy-bishop-114041-unsplash.jpg');
-  background-size: cover;
+    linear-gradient(to bottom, rgba(204, 219, 220, .5), rgba(204, 219, 220, .5)),
+    url('./assets/brad-knight-780006-unsplash.jpg');
+	background-size: cover;
+	background-position: 50% 60%;
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 
 .headerInnerWrapper {
-  background: rgba(82, 82, 82, 0.5);
   width: 80%;
   margin: 0 auto;
   padding: 7%;
-  color: #fdfdfd;
-  border-radius: 5px;
+  color: #4c003e;
 }
 
 .headerInnerWrapper p {
-  padding: 15px 0;
+	padding: 15px 0;
+	font-family: 'Hind Siliguri', sans-serif;
 }
 
 .headerInnerWrapper select,
 .headerInnerWrapper input,
 .headerInnerWrapper button {
   margin: 5px;
-  border-radius: 5px;
 }
 
 .headerInnerWrapper select,
 .headerInnerWrapper input {
-  width: 60%;
+  width: 100%;
   padding: 0 10px;
-  border: 2px solid black;
+  border: none;
 }
 
 .input {
@@ -106,22 +115,55 @@ header {
 }
 
 .headerInnerWrapper button {
-  font-family: 'Poiret One', cursive;
-  text-transform: uppercase;
   letter-spacing: 1.1px;
-  background: #1d1d1d;
-  color:#fdfdfd;
-  border: none;
+  background: #36002c;
+	border: none;
+	margin: 0 20px;
   padding: 10px;
 }
 
+.selectInput {
+	display: flex;
+	margin-top: 10px;
+}
+
+select,
+input {
+	-webkit-box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
+	box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
+	background: rgba(204, 219, 220, .6);
+}
+
+select {
+	border: 0 !important;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-position: 82px 7px;
+	width: 100px;   
+}
+
+select,
+input,
+button {
+	border-radius: 2px;
+}
+
+button {
+	color: #ccdbdc;
+}
+
+.submitButton {
+	margin-top: 30px;
+	width: 100%;
+}
+
 .submitButton button {
-  width: 25%; 
+  width: auto;
+	padding: 8px 25px;
 }
 
 .communitySuggestionPage button {
-  width: 45%;
-
+  width: calc(50% - 20px);
 }
 
 .headerInnerWrapper select:hover,
@@ -129,11 +171,14 @@ header {
 .headerInnerWrapper select:active,
 .headerInnerWrapper input:hover,
 .headerInnerWrapper input:focus,
-.headerInnerWrapper input:active,
+.headerInnerWrapper input:active {
+
+}
+
 .headerInnerWrapper button:hover,
-.headerInnerWrapper button:focus,
-.headerInnerWrapper button:active {
-  box-shadow: 0 0 10px #cf511b;
+.headerInnerWrapper button:focus {
+	background: #cf511b;
+	transition: .2s;
 }
 
 /* **************************************************** */
@@ -142,27 +187,24 @@ header {
 .dynamicMainDisplay {
   position: relative;
   min-height: 100vh;
-  /* background: #1d1d1d; */
-  background: #595959;
+  background: #ccdbdc;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 .dynamicMainDisplayInnerWrapper {
-  background: rgba(82, 82, 82, 0.5);
   width: 95%;
   margin: 0 auto;
 }
 
 .dynamicConfirmButton {
-  font-family: 'Poiret One', cursive;
   text-transform: uppercase;
   letter-spacing: 1.1px;
   background: #cf511b;
-  color: white;
+  color: #ccdbdc;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 10px;
 }
 
@@ -171,28 +213,92 @@ header {
 /* **************************************************** */
 .carouselContainer {
   width: 90%;
-  max-width: 90%;
+	max-width: 90%;
 }
+
+.sc-EHOje,
+.bFVIv,
+.sc-ifAKCX,
+.eeaShJ {
+	height: 25px;
+	width: 25px;
+	margin: 20% 10px;
+	background: white;
+	border-radius: 50%;
+	transition: .2s;
+}
+
+.sc-EHOje:hover,
+.bFVIv:hover,
+.sc-ifAKCX:hover,
+.eeaShJ:hover {
+	color: white;
+	background: #084c61;
+}
+
+.sc-EHOje:active,
+.bFVIv:active,
+.sc-ifAKCX:active,
+.eeaShJ:active {
+	color: white;
+	background: #cf511b;
+}
+
 
 /* **************************************************** */
 /*                         cards                        */
 /* **************************************************** */
 .venueCard,
 .restaurantCard {
-  background: rgba(223, 225, 50, 1);
+  background: white;
   width: 90%;
-  /* min-height: 450px; */
+  height: 100%;
   margin: 0 auto;
-  position: relative;
-  border-radius: 5px;
+	position: relative;
+  border-radius: 2px;
+}
+
+.venueCard:focus,
+.venueCard:active {
+	-webkit-box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
+	box-shadow: 5px 2px 25px 0 rgba(100, 100, 100, 0.5);
+}
+.imageContainer {
+	height: 40%;
+}
+
+.venueCard img,
+.restaurantCard img {
+	height: 100%;
+}
+
+.venueCard p:first-of-type {
+	background-color: #cf511b;
+	width: 100px;
+	border-radius: 5px;
+	color: white;
+	margin: 20px auto 10px;
+	letter-spacing: .6px;
+	font-size: .8rem;
+}
+
+.moreInfo {
+	background: none;
+	border: none;
+}
+
+.fas {
+	color: white;
+	font-size: .7rem
+}
+
+.fas:hover {
+	color: #dfe132;
 }
 
 .moreInfo {
   font-size: 2rem;
   line-height: 0;
-  background: #dfe132;
-  border: 1px solid #dfe132;
-  border-radius: 50%;
   position: absolute;
   top: 5px;
   right: 5px;
@@ -201,11 +307,6 @@ header {
 /* **************************************************** */
 /*                        modals                        */
 /* **************************************************** */
-/* bringing the style for each modal here later */
-.venueModal h1,
-.restoModal h1 {
-  margin: 20px 0;
-}
 
 .venueLink,
 .restaurantLink {

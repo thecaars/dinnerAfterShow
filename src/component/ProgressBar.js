@@ -5,15 +5,14 @@ const Tracker = styled.div`
 	width: 50%;
 	height: 20px;
 	margin: 15px auto;
-	background: #222;
+	background: white;
 	border-radius: 10px;
-	box-shadow: inset 0 0 5px #000;
 `;
 
 const ProgressInTracker = styled.div`
    width: ${props => props.percentage}%;
    height: 100%;
-   background: #4c003e;
+   background: #084c61;
    border-radius: 8px;
    transition: width 0.3s ease-in;
 `;
