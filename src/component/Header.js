@@ -200,7 +200,7 @@ displaySavedCombos = () => {
 											</optgroup>
 										</select>
 											<label htmlFor="city"></label>
-									<input id="city" type="text" placeholder="E.g. Toronto" onChange={this.handleOnChange} />
+									<input id="city" type="text" placeholder="e.g. Toronto" onChange={this.handleOnChange} />
 									</div>
 									<div className="submitButton">
 										<label htmlFor="submitButton" className="visuallyHidden">Begin your search</label>

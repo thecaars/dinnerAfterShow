@@ -28,7 +28,7 @@ class VenueCard extends Component {
 	}
 
 	handleInfoClick = (e) => {
-		console.log(e)
+		// console.log(e)
 		const clickedVenueId = e.target.parentElement.id
 		this.props.getVenueCard(clickedVenueId);
 	}
