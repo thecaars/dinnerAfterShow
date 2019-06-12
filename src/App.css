@@ -103,18 +103,14 @@ header {
   text-align: center;
 }
 
-/* choose either one */
 .headerInnerWrapper select:hover,
 .headerInnerWrapper select:focus,
 .headerInnerWrapper input:hover,
-.headerInnerWrapper input:focus {
+.headerInnerWrapper input:focus,
+.userName input:hover,
+.userName input:focus {
   box-shadow: 0 0 3px #cf511b;
 }
-
-/* .headerInnerWrapper select:focus,
-.headerInnerWrapper input:focus {
-  border: 1px dotted #cf511b;
-} */
 
 .input {
   margin-bottom: 15px;
@@ -126,11 +122,7 @@ input::placeholder {
 }
 
 .headerInnerWrapper button {
-  letter-spacing: 1.1px;
-  background: #36002c;
-	border: none;
 	margin: 0 20px;
-  padding: 10px;
 }
 
 .selectInput {
@@ -164,7 +156,7 @@ button {
   letter-spacing: 1.1px;
   background: #4c003e;
   color: white;
-  border: none;
+	border: 1px solid #4c003e;
   border-radius: 2px;
   padding: 10px;
   transition: .2s ease-in-out;
@@ -185,19 +177,20 @@ button {
 }
 
 .headerInnerWrapper button:hover,
-.headerInnerWrapper button:focus,
 .dynamicConfirmButton:hover,
-.dynamicConfirmButton:focus,
-/* is placed here for driness */
 .savedCombos button:hover,
-.savedCombos button:focus {
+.saveComboButton button:hover,
+.resetButton button:hover  {
 	background: #cf511b;
 }
 
-/* .headerInnerWrapper button:focus,
-.dynamicConfirmButton:focus {
-  border: 2px dotted #dfe132;
-}  */
+.headerInnerWrapper button:focus,
+.dynamicConfirmButton:focus,
+.savedCombos button:focus,
+.saveComboButton button:focus,
+.resetButton button:focus {
+  border: 1px dotted #dfe132;
+} 
 
 /* **************************************************** */
 /*                dynamic main display                  */
@@ -495,24 +488,29 @@ button {
   margin: 3px;
 }
 
-.eventComboContainer {
-	/* margin-right: 10px; */
-}
-
-.restaurantComboContainer {
-	/* margin-left: 10px; */
-}
-
 .comboContainer {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
 }
 
+.comboContainer a {
+  text-decoration: none;
+  color: #4c003e;
+  text-shadow: 0 0 10px #cf511b;
+}
+
+.comboContainer a:hover {
+    text-shadow: 0 0 10px #cf511b;
+
+}
+
 .savedCombos h3 {
 	font-size: 2rem;
 	color: #4c003e;
 }
+
+
 
 .removeButton {
   margin: 10px;
