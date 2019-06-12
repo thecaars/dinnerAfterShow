@@ -103,18 +103,12 @@ header {
   text-align: center;
 }
 
-/* choose either one */
 .headerInnerWrapper select:hover,
 .headerInnerWrapper select:focus,
 .headerInnerWrapper input:hover,
 .headerInnerWrapper input:focus {
   box-shadow: 0 0 3px #cf511b;
 }
-
-/* .headerInnerWrapper select:focus,
-.headerInnerWrapper input:focus {
-  border: 1px dotted #cf511b;
-} */
 
 .input {
   margin-bottom: 15px;
@@ -188,16 +182,11 @@ button {
 .headerInnerWrapper button:focus,
 .dynamicConfirmButton:hover,
 .dynamicConfirmButton:focus,
-/* is placed here for driness */
 .savedCombos button:hover,
 .savedCombos button:focus {
 	background: #cf511b;
 }
 
-/* .headerInnerWrapper button:focus,
-.dynamicConfirmButton:focus {
-  border: 2px dotted #dfe132;
-}  */
 
 /* **************************************************** */
 /*                dynamic main display                  */
@@ -472,17 +461,11 @@ button {
 	background: #ccdbdc;
 }
 
-.savedCombosOuterContainer {
-	/* height: 700px; */
-	/* border-bottom: 2px solid black; */
-}
-
 .savedCombosInnerContainer {
 	display: flex;
 	flex-direction: row;
   width: 90%;
   margin: 0 auto;
-	/* height: 400px; */
 }
 
 .savedCombosInnerContainer .imageContainer {
@@ -493,14 +476,6 @@ button {
 .restaurantComboContainer {
   background: #fdfdfd;
   margin: 3px;
-}
-
-.eventComboContainer {
-	/* margin-right: 10px; */
-}
-
-.restaurantComboContainer {
-	/* margin-left: 10px; */
 }
 
 .comboContainer {

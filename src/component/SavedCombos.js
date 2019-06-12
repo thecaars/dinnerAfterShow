@@ -45,7 +45,6 @@ class SavedCombos extends Component {
 										</div>
 									<div className="restaurantComboContainer comboContainer">
 											<div className="imageContainer">
-											{/* <img src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting"/> */}
 											<img src={plateSetting} alt="A dinner place setting." />
 											</div>
 												<h3>{resto.name}</h3>

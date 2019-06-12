@@ -18,10 +18,6 @@ class VenueCard extends Component {
 			isVenueCardClicked: false
 		}
 	}
-	
-	handleVenueClick = (e) => {
-		const targetClassName = e.target.parentElement.className
-	}
 
 	handleInfoClick = (e) => {
 		const clickedVenueId = e.target.parentElement.id

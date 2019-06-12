@@ -18,22 +18,8 @@ class RestaurantCard extends Component {
 			distanceArray: [],
 			distanceRounded: 0,
 			distanceOver1000m: false,
-			// selectedCard: [],
 		}
 	}
-
-
-	// handleRestaurantClick = (e) => {
-	// 	this.handleInfoClick(e)
-	// 	if (this.state.selectedCard) {
-	// 		e.target.parentElement.className = `restaurantCard show`
-	// 	} else if (!this.state.selectedCard) {
-	// 		e.target.parentElement.className = `restaurantCard hide`
-	// 	}
-	// 	this.setState({
-	// 		selectedCard: !this.state.selectedCard
-	// 	})
-	// };
 
 	handleInfoClick = (e) => {
 		const clickedRestaurantId = e.target.parentElement.id

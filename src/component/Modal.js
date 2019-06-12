@@ -41,7 +41,7 @@ const confirmationPageCSS = {
 }
 
 const confirmedChoicesDiv = {
-    // width: "50%"
+
 }
 
 const h2CSS = {
@@ -137,25 +137,18 @@ class Modal extends Component {
                         <div className="comboCards">
                             <div style={confirmedChoicesDiv} className="venueResult">
                                 <img src={userInputCombination[0].images[0].url} alt={userInputCombination[0].name} />
-                                {/* <h3>Date & Time</h3> */}
                                 <h3>{userInputCombination[0].name}</h3>
                                 <p>{userInputCombination[0]._embedded.venues[0].name}</p>
                                 <p>{userInputCombination[0].dates.start.localDate} at {userInputCombination[0].dates.start.localTime}</p>
-                                {/* <h3>Event Name</h3> */}
-                                {/* <h3>Event Venue</h3> */}
                             </div>
 
                             <div style={confirmedChoicesDiv} className="restaurantResult">
                                 <img src={plateSetting} alt="A dinner plate setting."/>
                                 <h3>{userInputCombination[1].restaurant.name}</h3>
                                 <p>{userInputCombination[1].restaurant.cuisines}</p>
-                                {/* <p>{userInputCombination[1].restaurant.user_rating.aggregate_rating}</p> */}
                                 <p>{userInputCombination[1].restaurant.location.address}</p>
-                                {/* <p>distance from event venue</p> */}
                             </div>
                         
-                            {/* This is because we haven't decided yet if they should be able to press [X] and go back to rechoose a restaurant */}
-                            {/* <Link to="/"><button>X</button> </Link> */}
                             <div className="optionToSaveCombo">
                                 <div className="userName">
                                     <label htmlFor="userName">Please enter your name to save the data:</label>
@@ -163,7 +156,6 @@ class Modal extends Component {
                                 </div>
                                 <div className="optionToSaveComboButtons">
                                     <div className="saveComboButton">
-                                        {/* <button  onClick={() => {this.submitToFirebase(this.state.userName, userInputCombination)}}>save</button> */}
                                         <button onClick={() => { this.submitToFirebase(this.state.userName, userInputCombination) }}>save</button>
                                     </div>
                                     <div className="resetButton">
