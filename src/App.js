@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Header from './component/Header.js';
-import SavedCombos from './component/SavedCombos.js';
 import './App.css';
 import {
   BrowserRouter as Router,
