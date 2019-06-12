@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import Carousel from './Carousel.js';
 import {
-	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
@@ -10,8 +9,8 @@ import Modal from './Modal.js';
 import ProgressBar from './ProgressBar.js';
 
 class DynamicMainDisplay extends Component {
-	constructor(props){
-			super(props);
+	constructor(){
+			super();
 			this.state = {
 				//Zomato states
 				restaurantData: [],
@@ -25,7 +24,6 @@ class DynamicMainDisplay extends Component {
 				// Page state - controlling when they appear
 				venuePage: true,
 				restaurantPage: false,
-				resetVenueResto: this.props.resetVenueResto,
 				confirmationPage: false,
 				savedCombosPage: false,
 				modalPage: false,
@@ -35,16 +33,16 @@ class DynamicMainDisplay extends Component {
 				restaurantUserInput: false,
 				userInputCombination: false,
 				ticketMasterData: [],
-				// restaurantData: [], // duplicate of above
 
 				// Progress Bar Initial State (Starts at 33.34% to indicate Stage 1 of 3 is complete)
 				percentage: 33.34,
 
-				// screen width for responsiveness of carousel
+				// recordign screen width for responsiveness of carousel
 				screenWidth: 0
 			}
 		} //end of constructor 
 
+	// used to reset dynamicMainDisplay if user decide to do new search while on restaurant card page
 	componentDidUpdate(prevProps) {
 		if (this.props.resetVenueResto !== prevProps.resetVenueResto) {
 			this.setState({
@@ -80,15 +78,14 @@ class DynamicMainDisplay extends Component {
 			}) // end of .then method
 		} // end of getRestaurantData
 
+		// checking and recording viewport view for dynamic media query using js
 		const intViewportWidth = window.innerWidth;
-		// console.log(intViewportWidth)
 		this.setState({
 			screenWidth: intViewportWidth
 		})
 	}// end of componentDidMount
 
-	
-
+	// recording user's choice of event and event venue for 2nd api call and for later record display
 	getVenueCard = (venueId) => {
 	this.setState({
 			venueUserInput: this.props.ticketMasterData[venueId],

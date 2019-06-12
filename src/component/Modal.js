@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import firebase from '../firebase.js';
-import App from '../App'
+import App from '../App';
 import {
-    BrowserRouter as Router,
     Route,
     Link
-} from 'react-router-dom'
+} from 'react-router-dom';
+import plateSetting from '../assets/plateSetting.jpg';
 
 const venuePageCSS = {
-    background: "rgba(0, 0, 0, 0)",
+    background: "rgba(0, 0, 0, 0.7)",
     position: "absolute",
     top: "0",
     left: "0",
@@ -19,7 +19,7 @@ const venuePageCSS = {
 }
 
 const restaurantPageCSS = {
-    background: "rgba(0, 0, 0, 0)",
+    background: "rgba(0, 0, 0, 0.7)",
     position: "absolute",
     top: "0",
     left: "0",
@@ -29,23 +29,23 @@ const restaurantPageCSS = {
     color: "white"
 }
 
-const confirmationPageCSS = `
-    background: "rgba(0, 0, 0, 0)",
+const confirmationPageCSS = {
+    background: "rgba(0, 0, 0, 0.7)",
     position: "absolute",
     top: "0",
     left: "0",
-    min-height: "100vh",
+    minHeight : "100vh",
     width: "100%",
     padding: "20px 0",
     color: "#4c003e"
-`;
+}
 
 const confirmedChoicesDiv = {
     // width: "50%"
 }
 
 const h2CSS = {
-    color: "white"
+    color: "#4c003e"
 }
 
 class Modal extends Component {
@@ -91,7 +91,7 @@ class Modal extends Component {
 
     render(){
         const  {state ={}} = this.props.location;
-        const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, restaurantData, specificId, restaurantSpecificId, userInputCombination} = state;
+        const { displayModal, venuePage, restaurantPage, ticketMasterData, restaurantData, specificId, restaurantSpecificId, userInputCombination} = state;
 
         if (displayModal && venuePage) {
             return(
@@ -102,7 +102,7 @@ class Modal extends Component {
                             <h3>Venue & Address</h3>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].name}</p>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].address.line1} {ticketMasterData[specificId]._embedded.venues[0].postalCode}</p>
-                            <a href={ticketMasterData[specificId].url} className="venueLink" aria-label="go to ticketmaster page for the current event" target="_blank">buy your ticket here</a>
+                            <a href={ticketMasterData[specificId].url} className="venueLink" aria-label="go to ticketmaster page for the current event">buy your ticket here</a>
                         </div>
                         <Link to="/"><button className="exitModal"><i className="fas fa-window-close"></i></button></Link>
                     </div> 
@@ -132,44 +132,48 @@ class Modal extends Component {
         else if (displayModal &&  !restaurantPage && !venuePage) {
             return(
                 <Fragment>
-                    {}
+                    {/* {} */}
                     <div style={confirmationPageCSS} className="comboModal">
                         <div className="comboCards">
                             <div style={confirmedChoicesDiv} className="venueResult">
                                 <img src={userInputCombination[0].images[0].url} alt={userInputCombination[0].name} />
-                                <h3>Date & Time</h3>
-                                <p>{userInputCombination[0].dates.start.localDate} at {userInputCombination[0].dates.start.localTime}</p>
-                                <h3>Event Name</h3>
-                                <p>{userInputCombination[0].name}</p>
-                                <h3>Event Venue</h3>
+                                {/* <h3>Date & Time</h3> */}
+                                <h3>{userInputCombination[0].name}</h3>
                                 <p>{userInputCombination[0]._embedded.venues[0].name}</p>
+                                <p>{userInputCombination[0].dates.start.localDate} at {userInputCombination[0].dates.start.localTime}</p>
+                                {/* <h3>Event Name</h3> */}
+                                {/* <h3>Event Venue</h3> */}
                             </div>
 
                             <div style={confirmedChoicesDiv} className="restaurantResult">
+                                <img src={plateSetting} alt="A dinner plate setting."/>
                                 <h3>{userInputCombination[1].restaurant.name}</h3>
                                 <p>{userInputCombination[1].restaurant.cuisines}</p>
-                                <p>{userInputCombination[1].restaurant.user_rating.aggregate_rating}</p>
+                                {/* <p>{userInputCombination[1].restaurant.user_rating.aggregate_rating}</p> */}
                                 <p>{userInputCombination[1].restaurant.location.address}</p>
-                                <p>distance from event venue</p>
+                                {/* <p>distance from event venue</p> */}
                             </div>
-                        </div>
                         
-                        {/* This is because we haven't decided yet if they should be able to press [X] and go back to rechoose a restaurant */}
-                        {/* <Link to="/"><button>X</button> </Link> */}
+                            {/* This is because we haven't decided yet if they should be able to press [X] and go back to rechoose a restaurant */}
+                            {/* <Link to="/"><button>X</button> </Link> */}
+                            <div className="optionToSaveCombo">
+                                <div className="userName">
+                                    <label htmlFor="userName">Please enter your name to save the data:</label>
+                                    <input id="userName" type="text" placeholder="enter your name" onChange={this.handleNameChange}/>
+                                </div>
+                                <div className="optionToSaveComboButtons">
+                                    <div className="saveComboButton">
+                                        {/* <button  onClick={() => {this.submitToFirebase(this.state.userName, userInputCombination)}}>save</button> */}
+                                        <button onClick={() => { this.submitToFirebase(this.state.userName, userInputCombination) }}>save</button>
+                                    </div>
+                                    <div className="resetButton">
+                                        <button onClick={this.resetApp}>try again</button>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div className="userName">
-                            <label htmlFor="userName">Please enter your name to save the data:</label>
-                            <input id="userName" type="text" onChange={this.handleNameChange}/>
                         </div>
 
-                        <div className="resetButton">
-                            <button onClick={this.resetApp}>try again</button>
-                        </div>
-
-                        <div className="saveComboButton">
-                            {/* <button  onClick={() => {this.submitToFirebase(this.state.userName, userInputCombination)}}>save</button> */}
-                            <button onClick={() => { this.submitToFirebase(this.state.userName, userInputCombination) }}>save</button>
-                        </div>
                     </div>
                     <Route exact path="/" component={App}></Route>
                 </Fragment>

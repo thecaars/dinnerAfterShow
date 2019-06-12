@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import ItemsCarousel from 'react-items-carousel';
-import range from 'lodash/range';
 import Modal from './Modal.js';
 import {
-	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
@@ -23,19 +21,16 @@ class VenueCard extends Component {
 	
 	handleVenueClick = (e) => {
 		const targetClassName = e.target.parentElement.className
-		console.log(targetClassName)
-	
 	}
 
 	handleInfoClick = (e) => {
-		// console.log(e)
 		const clickedVenueId = e.target.parentElement.id
 		this.props.getVenueCard(clickedVenueId);
 	}
 
 
 	render() {
-		const {venuePage, restaurantPage, ticketMasterData} = this.props
+		const {venuePage, ticketMasterData} = this.props
 
 		return (
 			<Fragment>
@@ -48,7 +43,7 @@ class VenueCard extends Component {
 					outsideChevron={true}
 					showSlither={false}
 					firstAndLastGutter={true}
-					chevronWidth={50}
+					chevronWidth={30}
 					rightChevron={'>'}
 					leftChevron={'<'}
 					// Active item configurations
@@ -59,7 +54,13 @@ class VenueCard extends Component {
 						return (
 							<Fragment>
 								{/* THIS IS MODAL*/}
-								<div className={`venueCard ${this.props.selectedCardId === i ? `show` : `hide`}`}key={event.id} id={i} onClick={() => {this.props.changeSelectedCard(i)}} role="button">
+								<div 
+									className={`venueCard ${this.props.selectedCardId === i ? `show` : `hide`}`}
+									key={event.id}
+									id={i}
+									onClick={() => {this.props.changeSelectedCard(i)}} role="button"
+									tabIndex="0"
+									>
 									<Link id={i} to={{
 										pathname: venuePage ? '/modal' : undefined,
 										state: {
@@ -68,7 +69,7 @@ class VenueCard extends Component {
 											venuePage: venuePage,
 											ticketMasterData: ticketMasterData
 										}
-									}}>
+									}} tabIndex="-1">
 										<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
 									</Link>
 									<div className="imageContainer">

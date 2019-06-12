@@ -3,11 +3,10 @@ import ItemsCarousel from 'react-items-carousel';
 // import range from 'lodash/range';
 import Modal from './Modal.js';
 import {
-	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
-
+import plateSetting from '../assets/plateSetting.jpg'
 
 
 class RestaurantCard extends Component {
@@ -59,12 +58,6 @@ class RestaurantCard extends Component {
 		const distanceRounded = Math.round(distanceInMetres)
 		this.state.distanceArray.push(distanceRounded)
 
-		// TRYING TO GET A HEADING TO SHOW IN BETWEEN H2 AND CAROUSEL WHEN RESTAURANT DISTANCE IS OVER 1000m
-		// if (this.props.restaurantPage && distanceRounded > 1000) {
-		// 	this.setState({
-		// 		distanceRounded: distanceRounded
-		// 	})
-		// }
 	}
 
 	checkForWithin1km = () => {
@@ -80,10 +73,7 @@ class RestaurantCard extends Component {
 
 		return (
 			<Fragment>
-				{this.props.restaurantData == true ? this.dataFunction() : null}
 				{this.state.distanceOver1000m ? <h2>WARNING it's gonna be a lot of walking!</h2> : null}
-				{/* <h1>Hello</h1TRYING TO GET A HEADING TO SHOW IN BETWEEN H2 AND CAROUSEL WHEN RESTAURANT DISTANCE IS OVER 1000m */}
-				{/* <div className="farRestaurantWarning">{this.props.restaurantPage && this.state.distanceRounded > 1000 ? `WORK PLZ` : null}</div> */}
 
 				<ItemsCarousel
 					// Carousel configurations
@@ -94,7 +84,7 @@ class RestaurantCard extends Component {
 					outsideChevron={true}
 					showSlither={false}
 					firstAndLastGutter={true}
-					chevronWidth={50}
+					chevronWidth={30}
 					rightChevron={'>'}
 					leftChevron={'<'}
 					// Active item configurations
@@ -111,6 +101,7 @@ class RestaurantCard extends Component {
 								id={i} 
 								role="button"
 								onClick={() => { this.props.changeSelectedRestoCard(i)}}
+								tabIndex="0"
 							>
 									<Link to={{
 										pathname: restaurantPage ? '/modal' : undefined, 
@@ -120,12 +111,13 @@ class RestaurantCard extends Component {
 											venuePage: venuePage,
 											restaurantData: restaurantData,
 											displayModal: true, 
-										}}}>	
+										}
+									}} tabIndex="-1">	
 										<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
 									</Link>
 								
 								<div className="imageContainer">
-									<img className="imageContainer" src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting" />
+									<img className="imageContainer" src={plateSetting} alt="A dinner place setting." />
 								</div>
 								
 								<h3>{restaurant.restaurant.name}</h3>
@@ -145,8 +137,7 @@ class RestaurantCard extends Component {
 					)
 				})}
 				</ItemsCarousel>
-				{this.state.distanceArray[0] < 1000 ? this.checkForWithin1km() : null}
-				{console.log(this.state.distanceArray[0])}
+				{this.state.distanceArray[0] > 1000 ? this.checkForWithin1km() : null}
 				<Route path="/modal" component={Modal}></Route>
 			</Fragment>
 		)

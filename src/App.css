@@ -40,7 +40,6 @@ img {
   display: block;
   object-fit: cover;
 	overflow: hidden;
-	height: 100%;
 }
 
 h1,
@@ -69,7 +68,7 @@ h3 {
 header {
   background-image:
     linear-gradient(to bottom, rgba(204, 219, 220, .5), rgba(204, 219, 220, .5)),
-    url('./assets/brad-knight-780006-unsplash.jpg');
+    url('./assets/headerBackground.jpg');
 	background-size: cover;
 	background-position: 50% 60%;
   height: 100vh;
@@ -104,12 +103,26 @@ header {
   text-align: center;
 }
 
+/* choose either one */
+.headerInnerWrapper select:hover,
+.headerInnerWrapper select:focus,
+.headerInnerWrapper input:hover,
+.headerInnerWrapper input:focus {
+  box-shadow: 0 0 3px #cf511b;
+}
+
+/* .headerInnerWrapper select:focus,
+.headerInnerWrapper input:focus {
+  border: 1px dotted #cf511b;
+} */
+
 .input {
   margin-bottom: 15px;
 }
 
 input::placeholder {
-	color: #cf511b;
+  color: #cf511b;
+  opacity: 1;
 }
 
 .headerInnerWrapper button {
@@ -154,6 +167,7 @@ button {
   border: none;
   border-radius: 2px;
   padding: 10px;
+  transition: .2s ease-in-out;
 }
 
 .submitButton {
@@ -171,10 +185,19 @@ button {
 }
 
 .headerInnerWrapper button:hover,
-.dynamicConfirmButton:hover {
+.headerInnerWrapper button:focus,
+.dynamicConfirmButton:hover,
+.dynamicConfirmButton:focus,
+/* is placed here for driness */
+.savedCombos button:hover,
+.savedCombos button:focus {
 	background: #cf511b;
-	transition: .2s;
 }
+
+/* .headerInnerWrapper button:focus,
+.dynamicConfirmButton:focus {
+  border: 2px dotted #dfe132;
+}  */
 
 /* **************************************************** */
 /*                dynamic main display                  */
@@ -355,7 +378,6 @@ button {
 	width: 80%;
 	background: rgba(204, 219, 220, .8);
 	border: 3px solid #cf511b;
-	/* padding: 50px; */
   border-radius: 2px;
   color: pink;
 }
@@ -378,28 +400,50 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
 }
 
 .comboCards {
   background: rgba(204, 219, 220, 1);
   width: 90%;
   margin: 0 auto;
+  padding: 30px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
 }
 
 .venueResult,
 .restaurantResult {
-  width: 45%;
+  background: #fdfdfd;
+  width: 40%;
+}
+
+.userName,
+.optionToSaveComboButtons {
+  margin: 20px auto;
+  display: flex;
 }
 
 .userName {
-  width: 50%;
-  margin: 0 auto;
-  display: flex;
   flex-direction: column;
+}
+
+.userName input {
+  text-align: center;
+}
+
+.saveComboButton button {
+  padding: 10px 48px;
+}
+
+.resetButton button {
+  padding: 10px 20px;
+}
+
+.optionToSaveComboButtons {
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .exitModal {
@@ -429,19 +473,26 @@ button {
 }
 
 .savedCombosOuterContainer {
-	height: 700px;
-	border-bottom: 2px solid black;
+	/* height: 700px; */
+	/* border-bottom: 2px solid black; */
 }
 
 .savedCombosInnerContainer {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	height: 400px;
+  width: 90%;
+  margin: 0 auto;
+	/* height: 400px; */
 }
 
 .savedCombosInnerContainer .imageContainer {
 	height: 70%;
+}
+
+.eventComboContainer,
+.restaurantComboContainer {
+  background: #fdfdfd;
+  margin: 3px;
 }
 
 .eventComboContainer {
@@ -455,13 +506,16 @@ button {
 .comboContainer {
 	display: flex;
 	flex-direction: column;
-	/* width: calc(50% - 10px); */
 	width: 50%;
 }
 
 .savedCombos h3 {
 	font-size: 2rem;
 	color: #4c003e;
+}
+
+.removeButton {
+  margin: 10px;
 }
 
 /* **************************************************** */
@@ -491,6 +545,27 @@ button {
   .restaurantModal h2 {
     font-size: 5.4vw;
   }
+
+  .savedCombosInnerContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .venueResult,
+  .restaurantResult {
+    width: 77%;
+    margin: 8px 0;
+  }
+
+  .savedCombosInnerContainer {
+    flex-wrap: wrap;
+  }
+
+  .comboContainer {
+    width: 70%;
+    margin: 8px auto;
+  }
 }
 
 @media (max-width: 535px) {
@@ -503,10 +578,22 @@ button {
   .headerInnerWrapper h1 {
     font-size: 4rem;
   }
+
+  .comboCards {
+    width: 95%;
+  }
+
+  .headerInnerWrapper button {
+    font-size: 0.85rem;
+  }
+
+  .comboContainer {
+    width: 90%;
+  }
 }
 
-@media (max-width: 333px) {
-  .communitySuggestion {
-    font-size: 0.9rem;
+@media (max-width: 340px) {
+  .optionToSaveComboButtons button {
+    font-size: 0.85rem;
   }
 }
