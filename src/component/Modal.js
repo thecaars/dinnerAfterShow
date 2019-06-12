@@ -35,11 +35,11 @@ const confirmationPageCSS = {
     position: "absolute",
     top: "0",
     left: "0",
-    // height: "100vh",
+    'min-height': "100vh",
     width: "100%",
     padding: "20px 0",
     color: "#4c003e"
-};
+}
 
 const confirmedChoicesDiv = {
     // width: "50%"

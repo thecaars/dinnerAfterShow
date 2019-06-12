@@ -103,17 +103,26 @@ header {
   text-align: center;
 }
 
+/* choose either one */
+.headerInnerWrapper select:hover,
 .headerInnerWrapper select:focus,
+.headerInnerWrapper input:hover,
+.headerInnerWrapper input:focus {
+  box-shadow: 0 0 3px #cf511b;
+}
+
+/* .headerInnerWrapper select:focus,
 .headerInnerWrapper input:focus {
   border: 1px dotted #cf511b;
-}
+} */
 
 .input {
   margin-bottom: 15px;
 }
 
 input::placeholder {
-	color: #cf511b;
+  color: #cf511b;
+  opacity: 1;
 }
 
 .headerInnerWrapper button {
@@ -176,14 +185,19 @@ button {
 }
 
 .headerInnerWrapper button:hover,
-.dynamicConfirmButton:hover {
+.headerInnerWrapper button:focus,
+.dynamicConfirmButton:hover,
+.dynamicConfirmButton:focus,
+/* is placed here for driness */
+.savedCombos button:hover,
+.savedCombos button:focus {
 	background: #cf511b;
 }
 
-.headerInnerWrapper button:focus,
+/* .headerInnerWrapper button:focus,
 .dynamicConfirmButton:focus {
   border: 2px dotted #dfe132;
-} 
+}  */
 
 /* **************************************************** */
 /*                dynamic main display                  */
@@ -393,6 +407,7 @@ button {
   background: rgba(204, 219, 220, 1);
   width: 90%;
   margin: 0 auto;
+  padding: 30px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -400,6 +415,7 @@ button {
 
 .venueResult,
 .restaurantResult {
+  background: #fdfdfd;
   width: 40%;
 }
 
@@ -457,19 +473,34 @@ button {
 }
 
 .savedCombosOuterContainer {
-	height: 700px;
-	border-bottom: 2px solid black;
+	/* height: 700px; */
+	/* border-bottom: 2px solid black; */
 }
 
 .savedCombosInnerContainer {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	height: 400px;
+  width: 90%;
+  margin: 0 auto;
+	/* height: 400px; */
 }
 
 .savedCombosInnerContainer .imageContainer {
 	height: 70%;
+}
+
+.eventComboContainer,
+.restaurantComboContainer {
+  background: #fdfdfd;
+  margin: 3px;
+}
+
+.eventComboContainer {
+	/* margin-right: 10px; */
+}
+
+.restaurantComboContainer {
+	/* margin-left: 10px; */
 }
 
 .comboContainer {
@@ -481,6 +512,10 @@ button {
 .savedCombos h3 {
 	font-size: 2rem;
 	color: #4c003e;
+}
+
+.removeButton {
+  margin: 10px;
 }
 
 /* **************************************************** */
@@ -510,6 +545,27 @@ button {
   .restaurantModal h2 {
     font-size: 5.4vw;
   }
+
+  .savedCombosInnerContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .venueResult,
+  .restaurantResult {
+    width: 77%;
+    margin: 8px 0;
+  }
+
+  .savedCombosInnerContainer {
+    flex-wrap: wrap;
+  }
+
+  .comboContainer {
+    width: 70%;
+    margin: 8px auto;
+  }
 }
 
 @media (max-width: 535px) {
@@ -522,10 +578,22 @@ button {
   .headerInnerWrapper h1 {
     font-size: 4rem;
   }
+
+  .comboCards {
+    width: 95%;
+  }
+
+  .headerInnerWrapper button {
+    font-size: 0.85rem;
+  }
+
+  .comboContainer {
+    width: 90%;
+  }
 }
 
-@media (max-width: 333px) {
-  .communitySuggestion {
-    font-size: 0.9rem;
+@media (max-width: 340px) {
+  .optionToSaveComboButtons button {
+    font-size: 0.85rem;
   }
 }

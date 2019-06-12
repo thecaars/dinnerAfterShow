@@ -87,7 +87,7 @@ class RestaurantCard extends Component {
 					outsideChevron={true}
 					showSlither={false}
 					firstAndLastGutter={true}
-					chevronWidth={50}
+					chevronWidth={30}
 					rightChevron={'>'}
 					leftChevron={'<'}
 					// Active item configurations
@@ -104,6 +104,7 @@ class RestaurantCard extends Component {
 								id={i} 
 								role="button"
 								onClick={() => { this.props.changeSelectedRestoCard(i)}}
+								tabIndex="0"
 							>
 									<Link to={{
 										pathname: restaurantPage ? '/modal' : undefined, 
@@ -113,7 +114,8 @@ class RestaurantCard extends Component {
 											venuePage: venuePage,
 											restaurantData: restaurantData,
 											displayModal: true, 
-										}}}>	
+										}
+									}} tabIndex="-1">	
 										<button onClick={this.handleInfoClick} className="moreInfo"><i className="fas fa-info-circle"></i></button>
 									</Link>
 								

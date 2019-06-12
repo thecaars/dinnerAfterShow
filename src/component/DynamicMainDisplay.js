@@ -10,8 +10,8 @@ import Modal from './Modal.js';
 import ProgressBar from './ProgressBar.js';
 
 class DynamicMainDisplay extends Component {
-	constructor(props){
-			super(props);
+	constructor(){
+			super();
 			this.state = {
 				//Zomato states
 				restaurantData: [],
@@ -25,7 +25,6 @@ class DynamicMainDisplay extends Component {
 				// Page state - controlling when they appear
 				venuePage: true,
 				restaurantPage: false,
-				resetVenueResto: this.props.resetVenueResto,
 				confirmationPage: false,
 				savedCombosPage: false,
 				modalPage: false,
