@@ -7,7 +7,7 @@ import {
 	Route,
 	Link
 } from 'react-router-dom'
-
+import plateSetting from '../assets/plateSetting.jpg'
 
 
 class RestaurantCard extends Component {
@@ -120,7 +120,7 @@ class RestaurantCard extends Component {
 									</Link>
 								
 								<div className="imageContainer">
-									<img className="imageContainer" src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting" />
+									<img className="imageContainer" src={plateSetting} alt="A dinner place setting." />
 								</div>
 								
 								<h3>{restaurant.restaurant.name}</h3>

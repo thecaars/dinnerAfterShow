@@ -34,7 +34,7 @@ class DynamicMainDisplay extends Component {
 				restaurantUserInput: false,
 				userInputCombination: false,
 				ticketMasterData: [],
-				// restaurantData: [], // duplicate of above
+				// restaurantData: [], // DUPLICATE OF ABOVE
 
 				// Progress Bar Initial State (Starts at 33.34% to indicate Stage 1 of 3 is complete)
 				percentage: 33.34,
