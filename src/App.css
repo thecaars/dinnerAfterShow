@@ -168,15 +168,6 @@ button {
   width: calc(50% - 20px);
 }
 
-/* .headerInnerWrapper select:hover,
-.headerInnerWrapper select:focus,
-.headerInnerWrapper select:active,
-.headerInnerWrapper input:hover,
-.headerInnerWrapper input:focus,
-.headerInnerWrapper input:active {
-
-} */
-
 .headerInnerWrapper button:hover,
 .dynamicConfirmButton:hover {
 	background: #cf511b;
@@ -484,5 +475,11 @@ button {
 @media (max-width: 400px) {
   .headerInnerWrapper h1 {
     font-size: 4rem;
+  }
+}
+
+@media (max-width: 333px) {
+  .communitySuggestion {
+    font-size: 0.9rem;
   }
 }
