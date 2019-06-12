@@ -45,7 +45,7 @@ const confirmedChoicesDiv = {
 }
 
 const h2CSS = {
-    color: "white"
+    color: "#4c003e"
 }
 
 class Modal extends Component {
