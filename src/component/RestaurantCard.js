@@ -3,7 +3,6 @@ import ItemsCarousel from 'react-items-carousel';
 // import range from 'lodash/range';
 import Modal from './Modal.js';
 import {
-	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
@@ -73,7 +72,7 @@ class RestaurantCard extends Component {
 
 		return (
 			<Fragment>
-				{this.props.restaurantData == true ? this.dataFunction() : null}
+				{this.props.restaurantData === true ? this.dataFunction() : null}
 
 				{/* TRYING TO GET A HEADING TO SHOW IN BETWEEN H2 AND CAROUSEL WHEN RESTAURANT DISTANCE IS OVER 1000m */}
 				{/* <div className="farRestaurantWarning">{this.props.restaurantPage && this.state.distanceRounded > 1000 ? `WORK PLZ` : null}</div> */}

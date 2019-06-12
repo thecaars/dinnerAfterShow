@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import firebase from '../firebase.js';
 import App from '../App';
 import {
-    BrowserRouter as Router,
     Route,
     Link
 } from 'react-router-dom';
@@ -35,7 +34,7 @@ const confirmationPageCSS = {
     position: "absolute",
     top: "0",
     left: "0",
-    'min-height': "100vh",
+    minHeight : "100vh",
     width: "100%",
     padding: "20px 0",
     color: "#4c003e"
@@ -92,7 +91,7 @@ class Modal extends Component {
 
     render(){
         const  {state ={}} = this.props.location;
-        const { displayModal, venuePage, confirmationPage, restaurantPage, venueUserInput, restaurantUserInput, ticketMasterData, restaurantData, specificId, restaurantSpecificId, userInputCombination} = state;
+        const { displayModal, venuePage, restaurantPage, ticketMasterData, restaurantData, specificId, restaurantSpecificId, userInputCombination} = state;
 
         if (displayModal && venuePage) {
             return(
@@ -103,7 +102,7 @@ class Modal extends Component {
                             <h3>Venue & Address</h3>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].name}</p>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].address.line1} {ticketMasterData[specificId]._embedded.venues[0].postalCode}</p>
-                            <a href={ticketMasterData[specificId].url} className="venueLink" aria-label="go to ticketmaster page for the current event" target="_blank">buy your ticket here</a>
+                            <a href={ticketMasterData[specificId].url} className="venueLink" aria-label="go to ticketmaster page for the current event">buy your ticket here</a>
                         </div>
                         <Link to="/"><button className="exitModal"><i className="fas fa-window-close"></i></button></Link>
                     </div> 

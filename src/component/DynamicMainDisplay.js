@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import Carousel from './Carousel.js';
 import {
-	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
@@ -80,7 +79,6 @@ class DynamicMainDisplay extends Component {
 		} // end of getRestaurantData
 
 		const intViewportWidth = window.innerWidth;
-		// console.log(intViewportWidth)
 		this.setState({
 			screenWidth: intViewportWidth
 		})
