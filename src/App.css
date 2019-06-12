@@ -40,7 +40,6 @@ img {
   display: block;
   object-fit: cover;
 	overflow: hidden;
-	height: 100%;
 }
 
 h1,
@@ -69,7 +68,7 @@ h3 {
 header {
   background-image:
     linear-gradient(to bottom, rgba(204, 219, 220, .5), rgba(204, 219, 220, .5)),
-    url('./assets/brad-knight-780006-unsplash.jpg');
+    url('./assets/headerBackground.jpg');
 	background-size: cover;
 	background-position: 50% 60%;
   height: 100vh;
@@ -102,6 +101,11 @@ header {
   border: none;
   color: #cf511b;
   text-align: center;
+}
+
+.headerInnerWrapper select:focus,
+.headerInnerWrapper input:focus {
+  border: 1px dotted #cf511b;
 }
 
 .input {
@@ -154,6 +158,7 @@ button {
   border: none;
   border-radius: 2px;
   padding: 10px;
+  transition: .2s ease-in-out;
 }
 
 .submitButton {
@@ -173,8 +178,12 @@ button {
 .headerInnerWrapper button:hover,
 .dynamicConfirmButton:hover {
 	background: #cf511b;
-	transition: .2s;
 }
+
+.headerInnerWrapper button:focus,
+.dynamicConfirmButton:focus {
+  border: 2px dotted #dfe132;
+} 
 
 /* **************************************************** */
 /*                dynamic main display                  */
@@ -355,7 +364,6 @@ button {
 	width: 80%;
 	background: rgba(204, 219, 220, .8);
 	border: 3px solid #cf511b;
-	/* padding: 50px; */
   border-radius: 2px;
   color: pink;
 }
@@ -378,6 +386,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
 }
 
 .comboCards {
@@ -387,19 +396,38 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
 }
 
 .venueResult,
 .restaurantResult {
-  width: 45%;
+  width: 40%;
+}
+
+.userName,
+.optionToSaveComboButtons {
+  margin: 20px auto;
+  display: flex;
 }
 
 .userName {
-  width: 50%;
-  margin: 0 auto;
-  display: flex;
   flex-direction: column;
+}
+
+.userName input {
+  text-align: center;
+}
+
+.saveComboButton button {
+  padding: 10px 48px;
+}
+
+.resetButton button {
+  padding: 10px 20px;
+}
+
+.optionToSaveComboButtons {
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .exitModal {
@@ -444,18 +472,9 @@ button {
 	height: 70%;
 }
 
-.eventComboContainer {
-	/* margin-right: 10px; */
-}
-
-.restaurantComboContainer {
-	/* margin-left: 10px; */
-}
-
 .comboContainer {
 	display: flex;
 	flex-direction: column;
-	/* width: calc(50% - 10px); */
 	width: 50%;
 }
 
