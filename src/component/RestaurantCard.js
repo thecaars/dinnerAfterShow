@@ -87,7 +87,7 @@ class RestaurantCard extends Component {
 					outsideChevron={true}
 					showSlither={false}
 					firstAndLastGutter={true}
-					chevronWidth={50}
+					chevronWidth={30}
 					rightChevron={'>'}
 					leftChevron={'<'}
 					// Active item configurations

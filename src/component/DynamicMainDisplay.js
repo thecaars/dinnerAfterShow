@@ -139,13 +139,6 @@ class DynamicMainDisplay extends Component {
 				percentage: this.state.percentage + 33.33
 			})
 		}
-<<<<<<< HEAD
-		// else if (this.state.venuePage && this.state.venueUserInput === false) {
-		// 	alert("Please select an event.");
-		// }
-		// else if (this.state.restaurantPage && this.state.restaurantUserInput === false) {
-		// 	alert("Please select a restaurant.");
-=======
 		// Error handling if no event is selected before trying to proceed
 		else if (this.state.venuePage && this.state.venueUserInput === false) {
 			alert("Please select an event.");
@@ -153,9 +146,8 @@ class DynamicMainDisplay extends Component {
 		// Error handling if no restaurant is selected before trying to proceed
 		else if (this.state.restaurantPage && this.state.restaurantUserInput === false) {
 			alert("Please select a restaurant.");
->>>>>>> master
 
-		// }
+		}
 	} // end of handleClick
 
 	render() {
