@@ -44,7 +44,7 @@ const confirmedChoicesDiv = {
     // width: "50%"
 }
 
-const h1CSS = {
+const h2CSS = {
     color: "white"
 }
 
@@ -98,13 +98,13 @@ class Modal extends Component {
                 <> 
                     <div style={venuePageCSS}>
                         <div className="venueModal wrapper">
-                            <h2 style={h1CSS}>{ticketMasterData[specificId].name}</h2>
+                            <h2 style={h2CSS}>{ticketMasterData[specificId].name}</h2>
                             <h3>Venue & Address</h3>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].name}</p>
                             <p>{ticketMasterData[specificId]._embedded.venues[0].address.line1} {ticketMasterData[specificId]._embedded.venues[0].postalCode}</p>
                             <a href={ticketMasterData[specificId].url} className="venueLink" aria-label="go to ticketmaster page for the current event" target="_blank">buy your ticket here</a>
                         </div>
-                        <Link to="/"><button className="exitModal"><i class="fas fa-window-close"></i></button></Link>
+                        <Link to="/"><button className="exitModal"><i className="fas fa-window-close"></i></button></Link>
                     </div> 
 
                     <Route exact path="/" component={App}></Route>
@@ -117,12 +117,12 @@ class Modal extends Component {
                 <>
                     <div style={restaurantPageCSS} key={restaurantData[restaurantSpecificId].restaurant.id}>
                         <div className="restaurantModal wrapper">
-                            <h1 style={h1CSS}>{restaurantData[restaurantSpecificId].restaurant.name}</h1>
+                            <h2 style={h2CSS}>{restaurantData[restaurantSpecificId].restaurant.name}</h2>
                             <p>{restaurantData[restaurantSpecificId].restaurant.location.address}</p>
                             <p>Price Range: {restaurantData[restaurantSpecificId].restaurant.price_range}/5</p>
                             <a href={restaurantData[restaurantSpecificId].restaurant.url} className="restaurantLink">Link to Zomato Profile</a>
                         </div>
-                        <Link to="/"><button className="exitModal"><i class="fas fa-window-close"></i></button></Link>
+                        <Link to="/"><button className="exitModal"><i className="fas fa-window-close"></i></button></Link>
                     </div>
                     <Route exact path="/" component={App}></Route>
                 </>

@@ -72,7 +72,7 @@ header {
     url('./assets/brad-knight-780006-unsplash.jpg');
 	background-size: cover;
 	background-position: 50% 60%;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
 }
@@ -80,7 +80,7 @@ header {
 .headerInnerWrapper {
   width: 80%;
   margin: 0 auto;
-  padding: 7%;
+  padding: 5%;
   color: #4c003e;
 }
 
@@ -100,6 +100,8 @@ header {
   width: 100%;
   padding: 0 10px;
   border: none;
+  color: #cf511b;
+  text-align: center;
 }
 
 .input {
@@ -257,6 +259,7 @@ button {
 	margin-top: 0;
   margin-bottom: 0;
   line-height: 1.4;
+  hyphens: auto;
 }
 
 .show {
@@ -339,6 +342,7 @@ button {
   text-decoration: none;
   color: white;
   border-bottom: 1px dashed #cf511b;
+  text-shadow: 0 0 10px black;
 }
 
 .venueLink:hover,
@@ -349,11 +353,18 @@ button {
 .venueModal,
 .restaurantModal {
 	width: 80%;
-	background: rgba(204, 219, 220, .7);
-	border: 2px solid #cf511b;
-	padding: 50px;
+	background: rgba(204, 219, 220, .8);
+	border: 3px solid #cf511b;
+	/* padding: 50px; */
   border-radius: 2px;
   color: pink;
+}
+
+.venueModal {
+  padding: 50px;
+}
+.restaurantModal {
+  padding: 70px;
 }
 
 .venueModal h2,
@@ -400,7 +411,9 @@ button {
 
 .fa-window-close {
 	background: #000;
-	color: #ccdbdc;
+  color: #ccdbdc;
+  border: 2px solid black;
+  border-left: 3px solid black;
 }
 
 /* **************************************************** */
@@ -463,6 +476,20 @@ button {
   .headerInnerWrapper select,
   .headerInnerWrapper input {
     text-align: center;
+  }
+
+  .venueCard,
+  .restaurantCard {
+    min-height: 70%;
+  }
+
+  .XGglj {
+    margin: 15px auto;
+  }
+
+  .venueModal h2,
+  .restaurantModal h2 {
+    font-size: 5.4vw;
   }
 }
 

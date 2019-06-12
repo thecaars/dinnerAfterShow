@@ -35,7 +35,7 @@ class DynamicMainDisplay extends Component {
 				restaurantUserInput: false,
 				userInputCombination: false,
 				ticketMasterData: [],
-				restaurantData: [],
+				// restaurantData: [], // duplicate of above
 
 				// Progress Bar Initial State (Starts at 33.34% to indicate Stage 1 of 3 is complete)
 				percentage: 33.34,
@@ -81,7 +81,7 @@ class DynamicMainDisplay extends Component {
 		} // end of getRestaurantData
 
 		const intViewportWidth = window.innerWidth;
-		console.log(intViewportWidth)
+		// console.log(intViewportWidth)
 		this.setState({
 			screenWidth: intViewportWidth
 		})
@@ -139,11 +139,21 @@ class DynamicMainDisplay extends Component {
 				percentage: this.state.percentage + 33.33
 			})
 		}
+<<<<<<< HEAD
 		// else if (this.state.venuePage && this.state.venueUserInput === false) {
 		// 	alert("Please select an event.");
 		// }
 		// else if (this.state.restaurantPage && this.state.restaurantUserInput === false) {
 		// 	alert("Please select a restaurant.");
+=======
+		// Error handling if no event is selected before trying to proceed
+		else if (this.state.venuePage && this.state.venueUserInput === false) {
+			alert("Please select an event.");
+		}
+		// Error handling if no restaurant is selected before trying to proceed
+		else if (this.state.restaurantPage && this.state.restaurantUserInput === false) {
+			alert("Please select a restaurant.");
+>>>>>>> master
 
 		// }
 	} // end of handleClick

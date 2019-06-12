@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ItemsCarousel from 'react-items-carousel';
-import range from 'lodash/range';
+// import range from 'lodash/range';
 import Modal from './Modal.js';
 import {
 	BrowserRouter as Router,
