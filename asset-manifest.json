@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/dinnerAfterShow/static/css/main.f9b0adeb.chunk.css",
+    "main.css": "/dinnerAfterShow/static/css/main.bdb460f9.chunk.css",
     "main.js": "/dinnerAfterShow/static/js/main.76e6f83e.chunk.js",
     "main.js.map": "/dinnerAfterShow/static/js/main.76e6f83e.chunk.js.map",
     "runtime~main.js": "/dinnerAfterShow/static/js/runtime~main.04fcb010.js",
@@ -8,9 +8,9 @@
     "static/js/2.8331d095.chunk.js": "/dinnerAfterShow/static/js/2.8331d095.chunk.js",
     "static/js/2.8331d095.chunk.js.map": "/dinnerAfterShow/static/js/2.8331d095.chunk.js.map",
     "index.html": "/dinnerAfterShow/index.html",
-    "precache-manifest.4c6be48ff285cb94dd94bdd71e01535a.js": "/dinnerAfterShow/precache-manifest.4c6be48ff285cb94dd94bdd71e01535a.js",
+    "precache-manifest.10ed8abc108afb57b240b26024339ece.js": "/dinnerAfterShow/precache-manifest.10ed8abc108afb57b240b26024339ece.js",
     "service-worker.js": "/dinnerAfterShow/service-worker.js",
-    "static/css/main.f9b0adeb.chunk.css.map": "/dinnerAfterShow/static/css/main.f9b0adeb.chunk.css.map",
+    "static/css/main.bdb460f9.chunk.css.map": "/dinnerAfterShow/static/css/main.bdb460f9.chunk.css.map",
     "static/media/App.css": "/dinnerAfterShow/static/media/headerBackground.34edbd18.jpg",
     "static/media/plateSetting.jpg": "/dinnerAfterShow/static/media/plateSetting.fb5ce5c3.jpg"
   }
