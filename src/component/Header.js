@@ -209,7 +209,7 @@ displaySavedCombos = () => {
 								</div>			
 						</form>
 						<label htmlFor="communitySuggestion" className="visuallyHidden">See all posted results</label>
-						<button href="#combo" id="communitySuggestion" onClick={this.displaySavedCombos}>Previously Saved Combos</button>
+						<button href="#combo" id="communitySuggestion" onClick={this.displaySavedCombos} className="communitySuggestion">Saved Suggestions</button>
 					</div>
 				</header>
 
