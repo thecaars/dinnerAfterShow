@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import firebase from '../firebase.js';
+import plateSetting from '../assets/plateSetting.jpg';
 
 class SavedCombos extends Component {
     createNewCombo = () => {
@@ -44,7 +45,8 @@ class SavedCombos extends Component {
 										</div>
 									<div className="restaurantComboContainer comboContainer">
 											<div className="imageContainer">
-											<img src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting"/>
+											{/* <img src="./../../assets/pepe-nero-88205-unsplash.jpg" alt="dinner place setting"/> */}
+											<img src={plateSetting} alt="A dinner place setting." />
 											</div>
 												<h3>{resto.name}</h3>
 												<p>{resto.cuisines}</p>

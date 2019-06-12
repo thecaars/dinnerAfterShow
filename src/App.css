@@ -557,6 +557,15 @@ button {
     width: 77%;
     margin: 8px 0;
   }
+
+  .savedCombosInnerContainer {
+    flex-wrap: wrap;
+  }
+
+  .comboContainer {
+    width: 70%;
+    margin: 8px auto;
+  }
 }
 
 @media (max-width: 535px) {
@@ -576,6 +585,10 @@ button {
 
   .headerInnerWrapper button {
     font-size: 0.85rem;
+  }
+
+  .comboContainer {
+    width: 90%;
   }
 }
 
