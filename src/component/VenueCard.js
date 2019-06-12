@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import ItemsCarousel from 'react-items-carousel';
-import range from 'lodash/range';
 import Modal from './Modal.js';
 import {
-	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
@@ -23,19 +21,16 @@ class VenueCard extends Component {
 	
 	handleVenueClick = (e) => {
 		const targetClassName = e.target.parentElement.className
-		console.log(targetClassName)
-	
 	}
 
 	handleInfoClick = (e) => {
-		// console.log(e)
 		const clickedVenueId = e.target.parentElement.id
 		this.props.getVenueCard(clickedVenueId);
 	}
 
 
 	render() {
-		const {venuePage, restaurantPage, ticketMasterData} = this.props
+		const {venuePage, ticketMasterData} = this.props
 
 		return (
 			<Fragment>

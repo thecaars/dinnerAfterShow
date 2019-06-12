@@ -71,9 +71,6 @@ componentDidMount() {
 				}, 10);
 			}
 			else {
-				// ******************************************
-				// dynamicMainDisplay shows different content
-				// ******************************************
 				this.setState({
 					ticketMasterData: [],
 					dynamicMainDisplayPage: false
@@ -171,7 +168,7 @@ displaySavedCombos = () => {
 	}
 }
 
-
+	// rendering a form for user to start their search
 	render() {
 		return (
 			<div>
