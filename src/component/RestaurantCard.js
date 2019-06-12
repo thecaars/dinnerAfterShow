@@ -17,6 +17,7 @@ class RestaurantCard extends Component {
 			activeItemIndex: 0,
 			distanceArray: [],
 			distanceRounded: 0,
+			distanceOver1000m: false,
 			// selectedCard: [],
 		}
 	}
@@ -57,25 +58,22 @@ class RestaurantCard extends Component {
 		const distanceRounded = Math.round(distanceInMetres)
 		this.state.distanceArray.push(distanceRounded)
 
-		// TRYING TO GET A HEADING TO SHOW IN BETWEEN H2 AND CAROUSEL WHEN RESTAURANT DISTANCE IS OVER 1000m
-		// if (this.props.restaurantPage && distanceRounded > 1000) {
-		// 	this.setState({
-		// 		distanceRounded: distanceRounded
-		// 	})
-		// }
 	}
 
-	
+	checkForWithin1km = () => {
+		if (!this.state.distanceOver1000m){
+			this.setState({
+			distanceOver1000m: true
+		})
+		}
+	} 
 
 	render() {
 		const { restaurantData, restaurantPage, venuePage } = this.props
 
 		return (
 			<Fragment>
-				{this.props.restaurantData === true ? this.dataFunction() : null}
-
-				{/* TRYING TO GET A HEADING TO SHOW IN BETWEEN H2 AND CAROUSEL WHEN RESTAURANT DISTANCE IS OVER 1000m */}
-				{/* <div className="farRestaurantWarning">{this.props.restaurantPage && this.state.distanceRounded > 1000 ? `WORK PLZ` : null}</div> */}
+				{this.state.distanceOver1000m ? <h2>WARNING it's gonna be a lot of walking!</h2> : null}
 
 				<ItemsCarousel
 					// Carousel configurations
@@ -127,17 +125,19 @@ class RestaurantCard extends Component {
 								
 								{restaurant.restaurant.user_rating.aggregate_rating > 0 
 								? <h4>{restaurant.restaurant.user_rating.aggregate_rating}</h4>
-									: <h4 className="notRated">{restaurant.restaurant.user_rating.rating_text}</h4>}
+								: <h4 className="notRated">{restaurant.restaurant.user_rating.rating_text}</h4>}
 								
 								<p>{restaurant.restaurant.location.address}</p>
 
 								<p>Distance from Venue: <span>{this.state.distanceArray[i]}m</span></p>
+								
 								<div className="overlay" onClick={this.handleRestaurantClick}></div>
 							</div>
 						</Fragment>
 					)
 				})}
 				</ItemsCarousel>
+				{this.state.distanceArray[0] > 1000 ? this.checkForWithin1km() : null}
 				<Route path="/modal" component={Modal}></Route>
 			</Fragment>
 		)
