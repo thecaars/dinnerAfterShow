@@ -31,7 +31,7 @@ const restaurantPageCSS = {
 }
 
 const confirmationPageCSS = {
-    background: "rgba(0, 0, 0, 0)",
+    background: "rgba(0, 0, 0, 0.7)",
     position: "absolute",
     top: "0",
     left: "0",

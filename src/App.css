@@ -111,10 +111,10 @@ header {
   box-shadow: 0 0 3px #cf511b;
 }
 
-.headerInnerWrapper select:focus,
+/* .headerInnerWrapper select:focus,
 .headerInnerWrapper input:focus {
   border: 1px dotted #cf511b;
-}
+} */
 
 .input {
   margin-bottom: 15px;
@@ -194,10 +194,10 @@ button {
 	background: #cf511b;
 }
 
-.headerInnerWrapper button:focus,
+/* .headerInnerWrapper button:focus,
 .dynamicConfirmButton:focus {
   border: 2px dotted #dfe132;
-} 
+}  */
 
 /* **************************************************** */
 /*                dynamic main display                  */
@@ -407,6 +407,7 @@ button {
   background: rgba(204, 219, 220, 1);
   width: 90%;
   margin: 0 auto;
+  padding: 30px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -414,6 +415,7 @@ button {
 
 .venueResult,
 .restaurantResult {
+  background: #fdfdfd;
   width: 40%;
 }
 
@@ -549,6 +551,14 @@ button {
   }
 }
 
+@media (max-width: 560px) {
+  .venueResult,
+  .restaurantResult {
+    width: 77%;
+    margin: 8px 0;
+  }
+}
+
 @media (max-width: 535px) {
   .headerInnerWrapper {
     padding: 8px 0;
@@ -559,10 +569,18 @@ button {
   .headerInnerWrapper h1 {
     font-size: 4rem;
   }
+
+  .comboCards {
+    width: 95%;
+  }
+
+  .headerInnerWrapper button {
+    font-size: 0.85rem;
+  }
 }
 
-@media (max-width: 333px) {
-  .headerInnerWrapper button {
+@media (max-width: 340px) {
+  .optionToSaveComboButtons button {
     font-size: 0.85rem;
   }
 }
