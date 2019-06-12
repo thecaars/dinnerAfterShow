@@ -59,7 +59,13 @@ class VenueCard extends Component {
 						return (
 							<Fragment>
 								{/* THIS IS MODAL*/}
-								<div className={`venueCard ${this.props.selectedCardId === i ? `show` : `hide`}`}key={event.id} id={i} onClick={() => {this.props.changeSelectedCard(i)}} role="button">
+								<div 
+									className={`venueCard ${this.props.selectedCardId === i ? `show` : `hide`}`}
+									key={event.id}
+									id={i}
+									onClick={() => {this.props.changeSelectedCard(i)}} role="button"
+									tabIndex="0"
+									>
 									<Link id={i} to={{
 										pathname: venuePage ? '/modal' : undefined,
 										state: {
@@ -68,7 +74,7 @@ class VenueCard extends Component {
 											venuePage: venuePage,
 											ticketMasterData: ticketMasterData
 										}
-									}}>
+									}} tabIndex="-1">
 										<button className="moreInfo"><i className="fas fa-info-circle"></i></button>
 									</Link>
 									<div className="imageContainer">

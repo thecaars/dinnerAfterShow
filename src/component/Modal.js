@@ -29,16 +29,16 @@ const restaurantPageCSS = {
     color: "white"
 }
 
-const confirmationPageCSS = `
+const confirmationPageCSS = {
     background: "rgba(0, 0, 0, 0)",
     position: "absolute",
     top: "0",
     left: "0",
-    min-height: "100vh",
+    'min-height': "100vh",
     width: "100%",
     padding: "20px 0",
     color: "#4c003e"
-`;
+}
 
 const confirmedChoicesDiv = {
     // width: "50%"
